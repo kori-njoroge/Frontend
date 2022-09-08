@@ -1,0 +1,121 @@
+body{
+    background-color: #E5E5E5;
+    box-sizing: border-box;
+    /* top: 20px; */
+
+
+}
+.coolpic{
+    /* width:; */
+    position:absolute;
+    height: 406px;
+    left:150px;
+    top: 140px;
+    border-radius: 20px;
+}
+
+
+.signin--form{
+    position:relative;
+    width: 347px;
+    height: 406px;
+    left: 750px;
+    top: 10px;   
+
+}
+.signin-text{
+
+font-weight: 700;
+font-size: 50px;
+line-height: 80px;
+text-transform: capitalize;
+padding-left: 50px;
+
+
+/* text-align: center; */
+
+color: #224957;
+/* color: rgb(88, 78, 78); */
+
+
+/* border: 1px solid #000000; */
+}
+
+.signin-paragraph{
+
+
+font-family: 'Lexend Deca';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+
+color: #224957;
+}
+
+.username,.password{
+    width: 300px;
+    height: 35px;
+    top: 332px;
+    left: 490px;
+    /* background: #326172; */
+    border-radius: 10px;
+    border-color: #000000 0.5px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    /* text-align: center; */
+
+    color: #224957;
+
+}
+
+
+.forgot--password a{
+    color: #224957;
+    font-size: 15px;
+    padding-right: 20px;
+}
+
+.signin-btn{
+    /* background: #20DF7F; */
+    box-shadow: 0px 4px 4px rgba(119, 73, 73, 0.3);
+    border-radius: 10px;
+    border:0px ;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+
+    width: 300px;
+    height: 45px;
+    top: 332px;
+    left: 490px;
+
+    text-align: center;
+    text-transform: capitalize;
+
+    color: #224957;
+        }
+section{
+    padding-left: 2px;
+    color: #093545;
+    display: flex;
+    
+
+}
+.remember{
+    padding-right: 50px;
+    font-size: 15px;
+}
+.no--account{
+    font-size: 13px;
+    padding-left: 110px;
+    color: #224957;
+    font-weight: bolder;
+}

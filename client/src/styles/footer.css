@@ -1,0 +1,28 @@
+/* .footer{
+    color: red;
+    border: 1px solid black;
+    padding-top: 10px;
+    top: 90%;
+    /* justify-content: space-around; */
+/* } */
+.footer--content{
+    display: flex;
+}
+.footer--content h1{
+    color:blue;
+    padding-right: 10px;
+}
+
+.footer--content a{
+    color: blue;
+    text-transform: capitalize;
+    font-size: small;
+    text-decoration: none;
+}
+.footer--content a:link{
+    text-decoration: none;
+    
+}
+.footer--content a:hover{
+    text-decoration: underline;
+}
