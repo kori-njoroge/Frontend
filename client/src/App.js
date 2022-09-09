@@ -11,7 +11,8 @@ import Signin from './pages/signin';
 import Aboutus from './pages/Aboutus';
 import Signup from './pages/signup';
 import ContactUs from './pages/Contactus';
-// import UserDashboard from './components/userdashboard';
+import UserDashboard from './components/userdashboard';
+import ErrorPage from './pages/errorPage';
 
 
 function App() {
@@ -19,11 +20,13 @@ function App() {
     <BrowserRouter>
     <Navbar />
       <Routes>
-        <Route path='/Home' element ={<Home />}/>
+          <Route path='/signup' element ={<Signup/>}/>
+          <Route path='/' element ={<Home />}/>
           <Route path='/Aboutus' element ={<Aboutus/>}/>
           <Route path='/Contactus' element ={<ContactUs/>}/>
           <Route path='/signin' element ={<Signin/>}/>
-          <Route path='/signup' element ={<Signup/>}/>
+          <Route path='/dashboard' element ={<UserDashboard />} />
+          <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

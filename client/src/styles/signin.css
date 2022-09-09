@@ -1,12 +1,11 @@
 body{
     background-color: #E5E5E5;
     box-sizing: border-box;
-    /* top: 20px; */
+
 
 
 }
 .coolpic{
-    /* width:; */
     position:absolute;
     height: 406px;
     left:150px;
@@ -118,4 +117,8 @@ section{
     padding-left: 110px;
     color: #224957;
     font-weight: bolder;
+}
+.wrong--credentials{
+    color: red;
+    font-size: 15px;
 }

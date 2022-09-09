@@ -1,0 +1,10 @@
+/*about us page styles */
+.aboutus{
+    height: 200%;
+    width: 90%;
+    position: absolute;
+    left: 5rem;
+    top: 8rem;
+
+    border-radius: 10px;
+}

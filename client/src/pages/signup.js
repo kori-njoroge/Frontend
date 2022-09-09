@@ -1,13 +1,15 @@
 import React from "react";
 import { useState} from "react";
-// import { Navigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from 'axios'
 
 import '../styles/signup.css'
 import group from '../images/group_en.png'
+import axios from "axios";
 
 export default function Signup(){
-    
+
+    const navigate = useNavigate();
     const[singupData, setSignupData] = useState(
         {
             firstname: "", 
@@ -19,6 +21,7 @@ export default function Signup(){
             confirmpassword: ""
         }
         );
+
     function handleChange(event){
         const{name,value} = event.target;
         setSignupData(prevData =>{
@@ -28,17 +31,25 @@ export default function Signup(){
             }
         })
     }
+
+    axios.defaults.withCredentials =true;
     
     function handleSubmit(event){
         event.preventDefault();
-
-        //submit to api
-        console.log(singupData);
-        // return <Navigate replace to="/signin" />
+        Axios.post('http://localhost:3001/signup',
+        {
+            firstname: singupData.firstname, 
+            lastname: singupData.lastname, 
+            email: singupData.email,
+            phonenumber: singupData.phonenumber,
+            IDnumber: singupData.IDnumber,
+            password: singupData.password,
+            confirmpassword: singupData.confirmpassword
+        })
+        navigate('/signin')
     }
     
     return(
-        <>
         <div className="signup--page">
             <span className="image--section">
             <img src={group} alt="Group"/>
@@ -136,6 +147,5 @@ export default function Signup(){
                 </form>
             </div>
         </div>
-        </>
     )
 }
