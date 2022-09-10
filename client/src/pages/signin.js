@@ -68,6 +68,11 @@ export default function Signin(){
             name="IDnumber"
             value={signinData.IDnumber}
             onChange={handleChange}
+            maxLength ={8}
+            onInput={(e) => {
+                if (e.target.value.length > e.target.maxLength)
+                e.target.value = e.target.value.slice(0,e.target.maxLength);
+                }}
             required
             />
 
