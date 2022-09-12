@@ -10,11 +10,11 @@ import pic from '../images/Cafebord-2-COLOURBOX23980354-1024x1024-1.jpg'
 
 export default function Signin(){
     const navigate = useNavigate();
-    const[loginStatus, setLoginstatus] = useState("")
+    const[loginStatus, setLoginstatus] = useState(false)
     const [signinData, setSigninData] = useState(
         {   
             firstname: "",
-            IDnumber:"",
+            phonenumber:"",
             password:""
         }
     )
@@ -35,7 +35,7 @@ export default function Signin(){
         event.preventDefault();
         Axios.post('http://localhost:3001/signin',
         {
-            IDnumber: signinData.IDnumber,
+            phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{
             if(response.data.message){
@@ -47,11 +47,18 @@ export default function Signin(){
         });
     }
 
+
     useEffect (() =>{
         Axios.get('http://localhost:3001/signin').then((response) =>{
-            setLoginstatus(response.data.user);
+            // setLoginstatus(response.data.user);
+            if(response){
+                setLoginstatus(true);
+            }else{
+                console.log('No response');
+            }
         })
     },[]);
+    console.log(loginStatus);
 
     return(
 
@@ -64,11 +71,11 @@ export default function Signin(){
             <input 
             type='number' 
             className="username" 
-            placeholder="ID number" 
-            name="IDnumber"
-            value={signinData.IDnumber}
+            placeholder="Phone Number(07 or 01)" 
+            name="phonenumber"
+            value={signinData.phonenumber}
             onChange={handleChange}
-            maxLength ={8}
+            maxLength ={12}
             onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
                 e.target.value = e.target.value.slice(0,e.target.maxLength);

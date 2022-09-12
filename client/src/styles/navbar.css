@@ -1,9 +1,8 @@
-nav {
+.project--nav{
     display: flex;
     align-items: center;
     background-color: #652377;
-    /* background-color: #925ba3; */
-    height: 70px;
+    height: 80px;
     width: 100%;
     padding: 30px 25px;
     border-radius: 0px 0px 5px 5px;
@@ -26,6 +25,7 @@ body {
 
 .nav--logo_text, .nav--title {
     margin: 0;
+    /* background-color: blue; */
 }
 
 .nav--logo_text {
@@ -39,6 +39,7 @@ body {
 .nav--title,.nav--home,.nav--aboutus{
     color: #DEEBF8;
     font-weight: 600;
+    /* background-color: blue; */
     padding-right: 23px;
     /* margin-right: auto; */
 }

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes,Route} from 'react-router-dom';
 
 import './App.css';
 
-import Navbar from './components/navbar';
 
 //importing pages
 import Home from './pages/Home';
@@ -13,19 +12,33 @@ import Signup from './pages/signup';
 import ContactUs from './pages/Contactus';
 import UserDashboard from './components/userdashboard';
 import ErrorPage from './pages/errorPage';
+import Dashboard from './pages/dashboard';
+import MyWallet from './pages/mywallet';
+import Loans from './pages/loans';
+import ApplyLoan from './pages/applyloan';
+import Members from './pages/members';
 
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
       <Routes>
-          <Route path='/signup' element ={<Signup/>}/>
           <Route path='/' element ={<Home />}/>
-          <Route path='/Aboutus' element ={<Aboutus/>}/>
-          <Route path='/Contactus' element ={<ContactUs/>}/>
-          <Route path='/signin' element ={<Signin/>}/>
-          <Route path='/dashboard' element ={<UserDashboard />} />
+          <Route path='/signup' element ={<Signup/>}/>
+          <Route path='/aboutus' element ={<Aboutus/>}/>
+          <Route path='/contactus' element ={<ContactUs/>}/>
+          {/* <Route path='/settings' element={<Settings />} /> */}
+            <Route path='signin' element ={<Signin/>}/>
+          <Route path='/dashboard' element ={<UserDashboard />}>
+            <Route path='summary' element ={<Dashboard />}/> 
+            <Route path='mywallet' element={<MyWallet/>}/>
+            {/* <Route path='loans' element={<Home />}/> */}
+            <Route path='applyloan' element={<ApplyLoan />}/>
+            <Route path='myloans' element={<Loans />} >
+            <Route path='applyloan' element={<ApplyLoan />}/>
+            </Route>
+            <Route path='members' element={<Members />} />
+          </Route>
           <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

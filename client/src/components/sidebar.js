@@ -1,24 +1,19 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import '../styles/sidebar.css'
 
 
 export default function Sidebar(){
-    function handleClick(){
-        alert('I was clicked')
-    }
     return(
         <div className="sidebar">
-            <h3>Search Menu</h3>
+            <h3>Services</h3>
             <br />
-            <h4 onClick={handleClick}>Dashboard</h4>
-            <h4 onClick={handleClick}>My Wallet</h4>
-            <h4 onClick={handleClick}>My Loans</h4>
-            <h4 onClick={handleClick}>Apply Loan</h4>
-            <h4 onClick={handleClick}>Members</h4>
-            <h4 onClick={handleClick}>Settings</h4>
-            <h4 onClick={handleClick}>Dashboard</h4>
-            <h4 onClick={handleClick}>Dashboard</h4>
-            <h4 onClick={handleClick}>Dashboard</h4>
+            <NavLink to ={"summary"}  style={{textDecoration:"none"}} ><h4>Dashboard</h4></NavLink>
+            <NavLink to ={"mywallet"}   style={{textDecoration:"none"}} ><h4>My Wallet</h4></NavLink>
+            <NavLink to ={"myloans"}    style={{textDecoration:"none"}} ><h4>My Loans</h4></NavLink>
+            <NavLink to ={"applyloan"}  style={{textDecoration:"none"}} ><h4>Apply Loan</h4></NavLink>
+            <NavLink to ={"members"}    style={{textDecoration:"none"}} ><h4>Members</h4></NavLink>
+            <NavLink to ={"settings"}   style={{textDecoration:"none"}} ><h4>Settings</h4></NavLink>
         </div>
     )
 }

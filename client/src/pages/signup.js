@@ -7,6 +7,7 @@ import '../styles/signup.css'
 import group from '../images/group_en.png'
 import axios from "axios";
 import PWDRequisite from "./pswRequiste";
+import { NavLink } from "react-router-dom";
 
 export default function Signup(){
 
@@ -47,13 +48,16 @@ export default function Signup(){
     function handleOnBlur(){
         setPwdRequisite(false)
     }
-    //Id
+    //confirmPassword
     function handleonBlurconfirmPassword(){
         setAdvice(false);
     }
     function handleonFocusconfirmPassword(){
         setAdvice(false);
     }
+
+    //ID check
+
     //password
     function handleOnKeyUp(event){
         const {value} = event.target;
@@ -70,6 +74,26 @@ export default function Signup(){
             specialCharCheck
         });
     };
+
+    //validate ID number.
+    // const[idValidity, setIdValidity] =useState(true);
+    const[idnumbercheck, setIdnumberCheck] = useState({
+        idLengthCheck:false,
+        similarityCheck:false
+    });
+
+    function handleIdCheck(event){
+        const {value} = event.target;
+        const idLengthCheck = value.length >=8;
+        const similarityCheck =/^(?!.*(\d)\1{5}).*$/.test(value);
+        setIdnumberCheck({
+            idLengthCheck,
+            similarityCheck
+        }
+        );
+    }
+
+
         //end of   validator
 
     function handleChange(event){
@@ -106,6 +130,8 @@ export default function Signup(){
     }
     
     return(
+        <>
+        <NavLink to={"/"}  ><h4 className="back">Back</h4></NavLink>
         <div className="signup--page">
             <span className="image--section">
             <img src={group} alt="Group"/>
@@ -158,6 +184,11 @@ export default function Signup(){
                     onChange={handleChange}
                     name="phonenumber"
                     value={singupData.phonenumber}
+                    maxLength ={10}
+                    onInput={(e) => {
+                        if (e.target.value.length > e.target.maxLength)
+                        e.target.value = e.target.value.slice(0,e.target.maxLength);
+                    }}
                     required
                     />
                     
@@ -173,11 +204,13 @@ export default function Signup(){
                     onInput={(e) => {
                         if (e.target.value.length > e.target.maxLength)
                         e.target.value = e.target.value.slice(0,e.target.maxLength);
-                        }}
+                    }}
                     onBlur ={handleonBlurconfirmPassword}
                     onFocus ={handleonFocusconfirmPassword}
+                    onKeyUp={handleIdCheck}
                     required
                     />
+                    {idnumbercheck.similarityCheck ?  "" : " " /**<p className="password--notmatch">Input valid Id Number</p> */ }
                     
                     <br /><br />
                     <label className="form--text" htmlFor="password">Password</label><br />
@@ -216,10 +249,11 @@ export default function Signup(){
                     <br />
                     <span className="form--footer">
                     <button type="submit">Sign Up</button>
-                    {/* <button type="button"><Link to={'/signin'}>login</Link></button> */}
+                    <button type="button"><Link to={'/signin'}>login</Link></button>
                     </span>
                 </form>
             </div>
         </div>
+        </>
     )
 }

@@ -9,3 +9,236 @@
     border-radius: 10px;
 }
 
+/* //home styles */
+.home--page{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.home--nav{
+    display: flex;
+    background-color: rgb(176, 142, 209);
+    align-items: center;
+    /* background-color: #652377; */
+    height: 100px;
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 0px 0px 5px 5px;
+    position:fixed;
+    /* margin-top: -20px; */
+
+}
+
+.homenav--btn{
+    background-color: rgb(176, 142, 209);
+    padding:13px 10px 10px 10px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    margin-right: 15px;
+    right: 0;
+    align-items: center;
+}
+.homenav--btn:hover{
+    color: red;
+    height:35px ;
+    padding:6px 10px 10px 10px;
+    background-color:#ffffff;
+    color: rgb(161, 101, 221);
+    font-weight: bold;
+}
+
+.home--bottom{
+    display: flex;
+    padding: 20px;
+    height:700px;
+    padding-top: 130px;
+    
+}
+.home--photo{
+    /* border: 2px solid black; */
+    margin-left: auto;
+    margin-right: 70px;
+    height: 90%;
+    width: 40%;
+    border-radius: 15px;
+
+}
+.home--photo:hover{
+    box-shadow: 0px 4px 4px rgba(119, 73, 73, 0.3);
+    height:95% ;
+    width: 45%;
+}
+
+.intro{
+    max-width: 500px;
+    margin-left: 30px;
+}
+
+.intro:hover{
+    box-shadow: 0px 4px 4px rgba(98, 73, 119, 0.3);
+    border-radius: 20px;
+    width: 600px;
+
+}
+.intro h3{
+    text-align: center;
+    font-size: 50px;
+}
+/* middle section */
+.middle-section{
+    background-color: rgb(217, 203, 231);
+
+}
+
+/* footer styles */
+
+.home--footer{
+    display: flex;
+    padding-left: 50px;
+    height: 300px;
+    background-color: rgb(206, 180, 233);
+    padding-top: 30px;
+}
+.footer--cards{
+    margin-right: auto;
+    width: 400px;
+    /* border:1px solid black; */
+    padding-left: 15px;
+    height: 230px;
+    background-color: #dcd2dd;
+    border-radius: 10px;
+}
+.footer--cards h3{
+    text-align: center;
+}
+
+
+.quick--links{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    color: black;
+}
+.icon--class{
+    margin-left: 0px;
+}
+
+.below--footer{
+    background-color: rgb(206, 180, 233);
+    padding: 0px 0px 0px 600px ;
+    
+}
+#social--icons{
+    padding: 5px 0px 0px 5px;
+}
+.copyright{
+    text-align: center;
+    font-weight: bold;
+    padding:0px 0px 0px 0px;
+    /* background-color: rgb(206, 180, 233); */
+}
+
+/*Dashboard page styling */
+.dashboard{
+    display: flex;
+    margin-right: auto;
+    position: absolute;
+}
+
+
+.mycontributions--card,.myLoans--card{
+    background-color: #E5E5E5;
+    /* border: 1px solid black; */
+    padding: 20px 10px 10px 20px;
+    border-radius: 20px;
+
+    margin: 60px;
+    margin-top: 150px;
+    height: 200px;
+    width: 380px;
+}
+
+.myLoans--card{
+    margin-right: auto;
+}
+.mycontributions--card{
+    position: relative;
+}
+
+/* my wallet styles
+*/
+table{
+    width:50%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+th{
+    height: 30px;
+    border-bottom: 1px solid;
+    border-left: 1px solid white;
+    text-align: left;
+    padding-left: 5px; 
+    background-color: rgb(176, 142, 209);
+    color: black;
+}
+td{
+    /* border: 1px solid;*/
+    padding-left: 5px; 
+    border-left: 2px solid white;
+    border-bottom: 1px solid;
+    word-wrap: break-word;
+    max-width: 80px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+/* my loans styles */
+
+.loans--table{
+        width:80%;
+        border: 1px solid;
+        border-collapse: collapse;
+}
+
+/* Apply loans page styles */
+fieldset{
+    border-radius: 10px;
+    /* margin: 42px; */
+    border: 0px;
+}
+
+legend{
+    font-weight: bold;
+}
+
+.loan--item{
+    margin: 15px;
+}
+
+.form--loan{
+    margin: 42px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    /* height: 100px; */
+    height:400px;
+    overflow-y:auto;
+    padding-left: 35px;
+}
+
+
+
+.form--loan h4{
+    margin-right: 2px;
+}
+.loan--input{
+    width: 35%;
+    background-color: #ffffff;
+    border: 0px solid;
+    /* border-radius: 5px; */
+    height: 30px;
+    box-shadow: 0px 2px 2px rgba(119, 73, 73, 0.3);
+    margin-right: 20px;
+}
