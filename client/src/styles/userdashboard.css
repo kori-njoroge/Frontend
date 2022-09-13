@@ -19,7 +19,7 @@
     padding-left: 0px;
     width: 300px;
     border-radius: 10px;
-    position: fixed;
+    /* position: fixed; */
 }
 .sidebar,.outlets{
     background-color: #dae2e2;

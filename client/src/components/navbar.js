@@ -18,7 +18,7 @@ export default function Navbar() {
             <NavLink to={'/contactus'}  style={{textDecoration:"none"}} ><h4 className="nav--title">Contact us</h4></NavLink>
             <NavLink to ={'/profile'}  style={{textDecoration:"none"}} ><h4 className="nav--title"><i className="fa-solid fa-user fa-2x"/></h4></NavLink>
         </nav>
-        <NavLink to ={'/signin'}  style={{textDecoration:"none"}} >Log out</NavLink>
+        {/* <NavLink to ={'/signin'}  style={{textDecoration:"none"}} >Log out</NavLink> */}
         </>
     )
 }

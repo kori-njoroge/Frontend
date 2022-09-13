@@ -20,10 +20,12 @@ import Members from './pages/members';
 
 
 function App() {
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
+  console.log(loggedIn,"login");
   return (
     <BrowserRouter>
       <Routes>
-          <Route path='/' element ={<Home />}/>
+          <Route path='/' element ={loggedIn ? <UserDashboard/> :<Home />}/>
           <Route path='/signup' element ={<Signup/>}/>
           <Route path='/aboutus' element ={<Aboutus/>}/>
           <Route path='/contactus' element ={<ContactUs/>}/>

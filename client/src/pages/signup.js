@@ -131,7 +131,7 @@ export default function Signup(){
     
     return(
         <>
-        <NavLink to={"/"}  ><h4 className="back">Back</h4></NavLink>
+        <NavLink to={"/"}  ><h4 className="back">Home</h4></NavLink>
         <div className="signup--page">
             <span className="image--section">
             <img src={group} alt="Group"/>

@@ -10,10 +10,9 @@ import pic from '../images/Cafebord-2-COLOURBOX23980354-1024x1024-1.jpg'
 
 export default function Signin(){
     const navigate = useNavigate();
-    const[loginStatus, setLoginstatus] = useState(false)
+    const[loginStatus, setLoginstatus] = useState(false)//error code here 
     const [signinData, setSigninData] = useState(
         {   
-            firstname: "",
             phonenumber:"",
             password:""
         }
@@ -29,36 +28,41 @@ export default function Signin(){
         })
     }
 
-    Axios.defaults.withCredentials= true;
+    // Axios.defaults.withCredentials= true;
 
     function SigninFunc(event){
         event.preventDefault();
         Axios.post('http://localhost:3001/signin',
-        {
+        {   
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{
+            const username =response.data[0].firstname;
+            console.log(username);
+            
             if(response.data.message){
                 setLoginstatus(response.data.message)
+                window.localStorage.setItem =("username",username)
             }else{
                 setLoginstatus(response.data[0].firstname);
+                window.localStorage.setItem("isLoggedIn",true);
                 navigate('/dashboard');
             }
         });
     }
-
+// console.log(signinData.firstname);
 
     useEffect (() =>{
         Axios.get('http://localhost:3001/signin').then((response) =>{
-            // setLoginstatus(response.data.user);
             if(response){
-                setLoginstatus(true);
+                // setLoginstatus(true);
+                setLoginstatus(response.data.user);
             }else{
                 console.log('No response');
             }
         })
     },[]);
-    console.log(loginStatus);
+    // console.log(loginStatus);
 
     return(
 

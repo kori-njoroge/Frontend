@@ -22,6 +22,7 @@ export default function UserDashboard(){
         </div>
         <div  className="footer">
         {/* <Footer /> */}
+        
         </div>
         </>
     )
