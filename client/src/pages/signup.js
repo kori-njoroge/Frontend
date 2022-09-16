@@ -248,8 +248,8 @@ export default function Signup(){
                     <br />
                     <br />
                     <span className="form--footer">
-                    <button type="submit">Sign Up</button>
                     <button type="button"><Link to={'/signin'}>login</Link></button>
+                    <button type="submit">Sign Up</button>
                     </span>
                 </form>
             </div>

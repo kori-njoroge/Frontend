@@ -1,7 +1,8 @@
 .project--nav{
     display: flex;
     align-items: center;
-    background-color: #652377;
+    background-color: rgb(176, 142, 209);
+    /* background-color: #652377; */
     height: 80px;
     width: 100%;
     padding: 30px 25px;

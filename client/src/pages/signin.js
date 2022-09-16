@@ -37,20 +37,17 @@ export default function Signin(){
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{
-            const username =response.data[0].firstname;
-            console.log(username);
             
             if(response.data.message){
                 setLoginstatus(response.data.message)
-                window.localStorage.setItem =("username",username)
             }else{
                 setLoginstatus(response.data[0].firstname);
+                window.localStorage.setItem("username",response.data[0].firstname)
                 window.localStorage.setItem("isLoggedIn",true);
-                navigate('/dashboard');
+                navigate('/dashboard/summary');
             }
         });
     }
-// console.log(signinData.firstname);
 
     useEffect (() =>{
         Axios.get('http://localhost:3001/signin').then((response) =>{
@@ -62,7 +59,6 @@ export default function Signin(){
             }
         })
     },[]);
-    // console.log(loginStatus);
 
     return(
 
