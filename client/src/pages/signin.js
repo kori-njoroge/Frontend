@@ -28,7 +28,7 @@ export default function Signin(){
         })
     }
 
-    // Axios.defaults.withCredentials= true;
+    Axios.defaults.withCredentials= true;
 
     function SigninFunc(event){
         event.preventDefault();
@@ -43,6 +43,7 @@ export default function Signin(){
             }else{
                 setLoginstatus(response.data[0].firstname);
                 window.localStorage.setItem("username",response.data[0].firstname)
+                window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
                 navigate('/dashboard/summary');
             }

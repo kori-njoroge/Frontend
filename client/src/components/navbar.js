@@ -23,7 +23,7 @@ export default function Navbar() {
         <nav className="project--nav">
             <i className="fas fa-bars fa-2x" id="bars"></i>
             <img src= {logo} className="nav--icon" alt=" logo" />
-            <h3 className="nav--logo_text" >St. Andrews Group</h3>
+            <h3 className="nav--logo_text" >St. Andrews Women Group</h3>
             <NavLink to={"/"}  style={{textDecoration:"none"}} ><h4 className="nav--home">Home</h4></NavLink>
             <NavLink to={'/aboutus'}  style={{textDecoration:"none"}} ><h4 className="nav--aboutus">About us</h4></NavLink>
             <NavLink to={'/contactus'}  style={{textDecoration:"none"}} ><h4 className="nav--title">Contact us</h4></NavLink>

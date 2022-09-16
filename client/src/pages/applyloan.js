@@ -61,16 +61,9 @@ export default function ApplyLoan(){
                 g2lastName:applicationformData.g2lastName,
                 g2IDnumber:applicationformData.g2IDnumber,
                 g2phoneNumber:applicationformData.g2phoneNumber
-            }
+            },
+            alert("Loan Application Successful!")
             )
-    //         <p class="company-industry">
-    //         <a innerHTML="text"
-    //         href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{approvedApplicantDetails.email}}&su=Congratulations! You have been approved for the {{internshipDetails.internshipTitle}} by {{internshipDetails.companyName}}&body=Hello {{approvedApplicantDetails.name}},We extend our heartiest congratulations and best wishes to you for being shortlisted for the internship : {{internshipDetails.internshipTitle}}. {{internshipDetails.companyName}} had received many applications, out of which only a few were shortlisted based on the Applicant letter sent via Intern Finder system website. {{internshipDetails.companyName}} is very honored to welcome you under our roof for an internship. Your Resume enlightens the person within you very accurately. It is compact, solid, and robust. We are very impressed with the application letter you wrote. You are the ideal intern we are looking for. {{internshipDetails.internshipTitle}} has always been an epitome of success, fame, and producing the best-skilled personnel for the country. It is a great choice you have made for an internship in your domain. It has a lot to yield to you. We hope this internship with us will be a fruitful and rewarding one for you. We wish you all the success. Welcome to the world of {{internshipDetails.companyName}}."
-    //         target="_blank"><small>(Send approval mail)</small></a>
-
-
-    // </p>
-            // alert("Loan application successful!") 
         }
 
 
@@ -92,25 +85,26 @@ export default function ApplyLoan(){
 
         function handlecancelLoan(){
             
-            setApplicationformData(
-                {
-                    firstName:"",
-                    lastName:"",
-                    IDnumber:"",
-                    phonenumber:"",
-                    amount:"",
-                    duration:"3 months",
-                    purpose:"",
-                    g1firstName:"",
-                    g1lastName:"",
-                    g1IDnumber:"",
-                    g1phoneNumber:"",
-                    g2firstName:"",
-                    g2lastName:"",
-                    g2IDnumber:"",
-                    g2phoneNumber:""
-                }
-            )
+            // setApplicationformData(
+            //     {
+            //         firstName:"",
+            //         lastName:"",
+            //         IDnumber:"",
+            //         phonenumber:"",
+            //         amount:"",
+            //         duration:"3 months",
+            //         purpose:"",
+            //         g1firstName:"",
+            //         g1lastName:"",
+            //         g1IDnumber:"",
+            //         g1phoneNumber:"",
+            //         g2firstName:"",
+            //         g2lastName:"",
+            //         g2IDnumber:"",
+            //         g2phoneNumber:""
+            //     }
+            // )
+            return alert("Loan application aborted!")
         }
 
     return(
@@ -324,13 +318,12 @@ export default function ApplyLoan(){
                     <br />
                     <br />
                 </fieldset>
-                {/* <button type="button" onClick={handlecancelLoan}>Cancel</button> */}
-                {/* <button type="button" onClick={submit}>Cancel</button>
+                {/* <button type="button" onClick={handlecancelLoan}>Cancel</button>
+                <button type="button" onClick={submit}>Cancel</button>
                  */}
-                
                 <button 
                 type="button"
-                    onClick={handleConfirm}>
+                    onClick={handlecancelLoan}>
                 Cancel
                 </button>
                 <button>Submit</button>
