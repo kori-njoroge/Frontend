@@ -5,11 +5,9 @@ import {useEffect,useState } from "react";
 
 
 export default function Dashboard(){
-    //////delete this
-    const[save,setSave] = useState(0)
 
     const[dashboardInfo, setdashboardInfo] =useState({
-        savings:"",
+        savings:20000,
         contribution:"",
         loanIssued:"",
         loanPayed:"",
@@ -18,21 +16,23 @@ export default function Dashboard(){
 
     })
     
-    const currentUserPhoneNumber  = window.localStorage.getItem("phonenumber");
     useEffect(() =>{
+        const currentUserPhoneNumber  = window.localStorage.getItem("phonenumber");
         Axios.post("http://localhost:3001/dashboard/summary" ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
-            console.log(reply.data[0]);
-            setdashboardInfo({
-                savings:3000,
-                contribution:"",
-                loanIssued:reply.data[0].amount,
-                loanPayed:2000,
-                toBePaid:"",
-                myLoanLimit:""
-        
-            })
+            // console.log(reply.data[0]);
+                setdashboardInfo({
+                    savings:100,
+                    contribution:"",
+                    loanIssued:reply.data[0].amount,
+                    loanPayed:2000,
+                    toBePaid:"",
+                    myLoanLimit:""
+            
+                });
+        }).catch(err =>{
+            setdashboardInfo(prevState => prevState);
         })
         console.log(currentUserPhoneNumber);
     },[])

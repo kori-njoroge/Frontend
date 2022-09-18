@@ -28,7 +28,7 @@ export default function Navbar() {
             <NavLink to={'/aboutus'}  style={{textDecoration:"none"}} ><h4 className="nav--aboutus">About us</h4></NavLink>
             <NavLink to={'/contactus'}  style={{textDecoration:"none"}} ><h4 className="nav--title">Contact us</h4></NavLink>
             <NavLink to ={'/profile'}  style={{textDecoration:"none"}} ><h4 className="nav--title"><i className="fa-solid fa-user fa-2x"/></h4></NavLink>
-            <button onClick={Signout}>Log out</button>
+            <button onClick={Signout} ><i className="fa-solid fa-right-from-bracket" id ="logoutIcon"></i></button>
         </nav>
         {/* <NavLink to ={'/signin'}  style={{textDecoration:"none"}} >Log out</NavLink> */}
         </>

@@ -13,7 +13,7 @@ export default function Loans(){
                         <h4 style={{textDecoration:"underline", margin:"40px"}} >Processed loans</h4>
             <table className="loans--table">
                     <thead>
-                        <th>item</th>
+                        <th>#</th>
                         <th>Loan Id</th>
                         <th>Amount(Ksh)</th>
                         <th>Purpose</th>
@@ -41,7 +41,7 @@ export default function Loans(){
                         <td>Pending</td>
                     </tr>
                     {/* <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Date</td>
                         <td>Date</td>
                         <td>Date</td>
@@ -49,7 +49,7 @@ export default function Loans(){
                         <td>Purpose</td>
                     </tr>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Amount</td>
                         <td>Amount</td>
                         <td>Date</td>
@@ -57,7 +57,7 @@ export default function Loans(){
                         <td>Purpose</td>
                     </tr>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Date</td>
                         <td>Date</td>
                         <td>Date</td>
@@ -65,7 +65,7 @@ export default function Loans(){
                         <td>Purpose</td>
                     </tr>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Amount</td>
                         <td>Amount</td>
                         <td>Date</td>
@@ -73,7 +73,7 @@ export default function Loans(){
                         <td>Purpose</td>
                     </tr>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Date</td>
                         <td>Amount</td>
                         <td>Amount</td>
@@ -81,7 +81,7 @@ export default function Loans(){
                         <td>Purpose</td>
                     </tr>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Amount</td>
                         <td>Amount</td>
                         <td>Date</td>
@@ -91,7 +91,7 @@ export default function Loans(){
                     </tbody>
                     {/* <tfoot>
                     <tr>
-                        <td>Item No.</td>
+                        <td># No.</td>
                         <td>Amount</td>
                         <td>Amount</td>
                         <td>Date</td>
@@ -104,7 +104,7 @@ export default function Loans(){
                     <legend style={{textDecoration:"underline"}}>Loan Approved and Disbursed</legend>
                     <table className="pending--loans">
                     <thead>
-                        <th>item</th>
+                        <th>#</th>
                         <th>Loan Id</th>
                         <th>Amount(Ksh)</th>
                         <th>Application Date</th>
@@ -124,7 +124,7 @@ export default function Loans(){
                     <legend style={{textDecoration:"underline"}}>Loans Pending approval</legend>
                     <table className="pending--loans">
                     <thead>
-                        <th>item</th>
+                        <th>#</th>
                         <th>Loan Id</th>
                         <th>Amount(Ksh)</th>
                         <th>Application Date</th>

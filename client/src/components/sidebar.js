@@ -25,7 +25,7 @@ function Signout(){
             <NavLink to ={"myloans"}    style={{textDecoration:"none"}} ><h4><i className="fa-solid fa-money-check-dollar"></i>  My Loans</h4></NavLink>
             <NavLink to ={"members"}    style={{textDecoration:"none"}} ><h4><i className="fa-solid fa-users"></i>  Members</h4></NavLink>
             <NavLink to ={"settings"}   style={{textDecoration:"none"}} ><h4><i className="fas fa-cogs"></i>  Settings</h4></NavLink>
-            <button onClick={Signout}>Log out</button>
+            <button onClick={Signout}>Log out  <i className="fa-solid fa-right-from-bracket" id ="logoutIcon"></i></button>
         </div>
     )
 }

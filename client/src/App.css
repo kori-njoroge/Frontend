@@ -339,6 +339,9 @@ legend{
     margin: 40px;
     border: 0px ;
 }
+.members-table{
+    width: 150%;
+}
 
 
 
@@ -378,4 +381,8 @@ legend{
     top: 2%;
     padding: 6px 8px 8px;
     text-align: center;
+}
+
+#logoutIcon{
+    color:rgb(92, 19, 165);
 }

@@ -10,7 +10,9 @@ import PWDRequisite from "./pswRequiste";
 import { NavLink } from "react-router-dom";
 
 export default function Signup(){
+    
 
+    const[signupText, setsignupText] = useState("");
     const navigate = useNavigate();
     const[singupData, setSignupData] = useState(
         {
@@ -29,6 +31,10 @@ export default function Signup(){
 
         // validator
         
+        //PHONE NUMBER VALIDATION
+        const[statementPhone, setStatementPhone]= useState("");
+
+
 
         //password
     const[PwdRequisite, setPwdRequisite] = useState(false);
@@ -78,17 +84,17 @@ export default function Signup(){
     //validate ID number.
     // const[idValidity, setIdValidity] =useState(true);
     const[idnumbercheck, setIdnumberCheck] = useState({
-        idLengthCheck:false,
-        similarityCheck:false
+        idLengthCheck:""
+        // similarityCheck:false
     });
 
     function handleIdCheck(event){
         const {value} = event.target;
-        const idLengthCheck = value.length >=8;
-        const similarityCheck =/^(?!.*(\d)\1{5}).*$/.test(value);
+        const idLengthCheck = /\d{8}/.test(value);
+        // const similarityCheck =/^(?!.*(\d)\1{5}).*$/.test(value);
         setIdnumberCheck({
-            idLengthCheck,
-            similarityCheck
+            idLengthCheck
+            // similarityCheck
         }
         );
     }
@@ -124,6 +130,14 @@ export default function Signup(){
             IDnumber: singupData.IDnumber,
             password: singupData.password,
             confirmpassword: singupData.confirmpassword
+        }).then(resres =>{
+            console.log(resres);
+            if(resres.data.message){
+                setsignupText(resres.data.message);
+                // console.log(resres.data.message);
+            }else{
+                setSignupData(prevState => prevState);
+            }
         })
         navigate('/signin')
         }
@@ -137,6 +151,7 @@ export default function Signup(){
             <img src={group} alt="Group"/>
             </span>
             <div className="signup--form">
+                <p className="invalid">{signupText}</p>
                 <h2>Sign up</h2>
                 <h4>Fill the form to create your profile</h4>
                 <form onSubmit={handleSubmit}>
@@ -210,7 +225,7 @@ export default function Signup(){
                     onKeyUp={handleIdCheck}
                     required
                     />
-                    {idnumbercheck.similarityCheck ?  "" : " " /**<p className="password--notmatch">Input valid Id Number</p> */ }
+                    {idnumbercheck.idLengthCheck ?  <p className="password--notmatch">Input valid Id Number</p> : "" }
                     
                     <br /><br />
                     <label className="form--text" htmlFor="password">Password</label><br />
