@@ -43,68 +43,41 @@ export default function ApplyLoan(){
         
         function submitloanData(event){
             event.preventDefault();
-            Axios.post('http://localhost:3001/applyloan',
-            {
-                
-                firstName:applicationformData.firstName,
-                lastName:applicationformData.lastName,
-                IDnumber:applicationformData.IDnumber,
-                phonenumber:applicationformData.phonenumber,
-                amount:applicationformData.amount,
-                duration:applicationformData.duration,
-                purpose:applicationformData.purpose,
-                g1firstName:applicationformData.g1firstName,
-                g1lastName:applicationformData.g1lastName,
-                g1IDnumber:applicationformData.g1IDnumber,
-                g1phoneNumber:applicationformData.g1phoneNumber,
-                g2firstName:applicationformData.g2firstName,
-                g2lastName:applicationformData.g2lastName,
-                g2IDnumber:applicationformData.g2IDnumber,
-                g2phoneNumber:applicationformData.g2phoneNumber
-            },
-            alert("Loan Application Successful!")
-            )
-        }
-
-
-        const handleConfirm = () =>{
-
-            
-                const confirmBox = window.confirm(
+            const confirmBox = window.confirm(
                 "Confirm to finish loan application!"
                 )
                 if (confirmBox === true) {
-                    submitloanData();
-                    window.alert("Application Successful");
+                    Axios.post('http://localhost:3001/applyloan',
+                    {
+                        
+                        firstName:applicationformData.firstName,
+                        lastName:applicationformData.lastName,
+                        IDnumber:applicationformData.IDnumber,
+                        phonenumber:applicationformData.phonenumber,
+                        amount:applicationformData.amount,
+                        duration:applicationformData.duration,
+                        purpose:applicationformData.purpose,
+                        g1firstName:applicationformData.g1firstName,
+                        g1lastName:applicationformData.g1lastName,
+                        g1IDnumber:applicationformData.g1IDnumber,
+                        g1phoneNumber:applicationformData.g1phoneNumber,
+                        g2firstName:applicationformData.g2firstName,
+                        g2lastName:applicationformData.g2lastName,
+                        g2IDnumber:applicationformData.g2IDnumber,
+                        g2phoneNumber:applicationformData.g2phoneNumber
+                    },
+                    alert("Loan Application Successful!")
+                    );
                 }else{
                     handlecancelLoan();
-                    window.alert("Application Aborted");
-                
             }
         }
 
+
         function handlecancelLoan(){
             
-            // setApplicationformData(
-            //     {
-            //         firstName:"",
-            //         lastName:"",
-            //         IDnumber:"",
-            //         phonenumber:"",
-            //         amount:"",
-            //         duration:"3 months",
-            //         purpose:"",
-            //         g1firstName:"",
-            //         g1lastName:"",
-            //         g1IDnumber:"",
-            //         g1phoneNumber:"",
-            //         g2firstName:"",
-            //         g2lastName:"",
-            //         g2IDnumber:"",
-            //         g2phoneNumber:""
-            //     }
-            // )
-            return alert("Loan application aborted!")
+            setApplicationformData(prevState => prevState);
+            return alert("Loan application aborted!");
         }
 
     return(

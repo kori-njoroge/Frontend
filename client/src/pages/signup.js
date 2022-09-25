@@ -13,6 +13,7 @@ export default function Signup(){
     
 
     const[signupText, setsignupText] = useState("");
+    const[userAdvice, setUserAdvice] = useState(false)
     const navigate = useNavigate();
     const[singupData, setSignupData] = useState(
         {
@@ -32,7 +33,7 @@ export default function Signup(){
         // validator
         
         //PHONE NUMBER VALIDATION
-        const[statementPhone, setStatementPhone]= useState("");
+        // const[statementPhone, setStatementPhone]= useState("");
 
 
 
@@ -131,17 +132,22 @@ export default function Signup(){
             password: singupData.password,
             confirmpassword: singupData.confirmpassword
         }).then(resres =>{
-            console.log(resres);
+            // console.log(resres);
             if(resres.data.message){
                 setsignupText(resres.data.message);
-                // console.log(resres.data.message);
-            }else{
-                setSignupData(prevState => prevState);
+                if(resres.data.message === "Registration successful!"){
+                    setTimeout(() => {
+                    navigate('/signin');                
+                    }, 2000)
+                }
+                setUserAdvice(true);
+                return;
             }
-        })
-        navigate('/signin')
+            }
+        );
         }
     }
+    console.log(signupText);
     
     return(
         <>
@@ -151,7 +157,7 @@ export default function Signup(){
             <img src={group} alt="Group"/>
             </span>
             <div className="signup--form">
-                <p className="invalid">{signupText}</p>
+                {userAdvice?  <p className={signupText === "Registration successful!"? "valid" : "invalid"}>{signupText}</p> : ""}
                 <h2>Sign up</h2>
                 <h4>Fill the form to create your profile</h4>
                 <form onSubmit={handleSubmit}>
@@ -225,7 +231,7 @@ export default function Signup(){
                     onKeyUp={handleIdCheck}
                     required
                     />
-                    {idnumbercheck.idLengthCheck ?  <p className="password--notmatch">Input valid Id Number</p> : "" }
+                    {idnumbercheck.idLengthCheck ?  ""/**<p className="password--notmatch">Input valid Id Number</p>*/ : "" }
                     
                     <br /><br />
                     <label className="form--text" htmlFor="password">Password</label><br />

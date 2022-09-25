@@ -340,7 +340,8 @@ legend{
     border: 0px ;
 }
 .members-table{
-    width: 150%;
+    /* width: 150%; */
+    padding-right: 0px;
 }
 
 

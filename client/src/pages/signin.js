@@ -37,11 +37,13 @@ export default function Signin(){
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{
+            console.log(response.data[0]);
             
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
                 setLoginstatus(response.data[0].firstname);
+                window.localStorage.setItem("currentUserDetails", JSON.stringify(response.data[0]));
                 window.localStorage.setItem("username",response.data[0].firstname)
                 window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
