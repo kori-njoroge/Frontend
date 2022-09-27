@@ -62,6 +62,17 @@ export default function Signup(){
     function handleonFocusconfirmPassword(){
         setAdvice(false);
     }
+    //show Password Code
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [confirmpasswordShown, setConfirmPasswordShown] = useState(false);
+
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+    };
+    const toggleConfirmPasswordVisiblity = () => {
+        setConfirmPasswordShown(confirmpasswordShown ? false : true);
+    };
+    
 
     //ID check
 
@@ -121,7 +132,6 @@ export default function Signup(){
         if(confirmpassword !== password){
             setAdvice(true);
         }else{
-
         Axios.post('http://localhost:3001/signup',
         {
             firstname: singupData.firstname, 
@@ -148,7 +158,11 @@ export default function Signup(){
         }
     }
     console.log(signupText);
-    
+    ////confirm password on focus
+    function confirmFocus(){
+        setAdvice(false);
+    }
+
     return(
         <>
         <NavLink to={"/"}  ><h4 className="back">Home</h4></NavLink>
@@ -237,7 +251,7 @@ export default function Signup(){
                     <label className="form--text" htmlFor="password">Password</label><br />
                     <input 
                     id="password" 
-                    type="password" 
+                    type={passwordShown ? "text" : "password"} 
                     name="password"
                     value={singupData.password}
                     required
@@ -246,17 +260,20 @@ export default function Signup(){
                     onBlur ={handleOnBlur}
                     onKeyUp={handleOnKeyUp}
                     />
+                    <i onClick={togglePasswordVisiblity} id ="showpassword" className="fa fa-eye" aria-hidden="true"></i>
                     
                     <br /><br />
                     <label className="form--text" htmlFor="confirmpassword">Confirm Password</label><br />
                     <input 
                     id="confirmpassword" 
-                    type="password" 
+                    type={confirmpasswordShown ? "text" : "password"}
                     onChange={handleChange}
                     name="confirmpassword"
                     value={singupData.confirmpassword}
+                    onFocus={confirmFocus}
                     required
                     />
+                    <i onClick={toggleConfirmPasswordVisiblity} id="showpassword" className="fa fa-eye" aria-hidden="true"></i>
                     {advice? <p className="password--notmatch">Passwords do not match</p> : ""}
                     {PwdRequisite ? 
                     <PWDRequisite 

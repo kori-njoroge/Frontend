@@ -85,3 +85,13 @@ form>input{
     color: black;
     text-decoration-line: none;
 }
+
+#showpassword{
+    color:gray;
+    margin-left: -30px;
+}
+
+#showpassword:hover{
+    color: rgb(134, 87, 182);
+    cursor: pointer;
+}

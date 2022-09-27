@@ -286,6 +286,18 @@ legend{
 .details{
     border: 0px;
 }
+
+.details input{
+    font-size: 16px;
+    color:rgb(110, 107, 107);
+    /* margin: 75px; */
+    padding-left: 10px;
+}
+
+.details input[id = firstName],input[id =g1firstName],input[id =g2firstName]{
+    /* color: red; */
+    margin-right: 42px;
+}
 .loan--input{
     width: 35%;
     background-color: #ffffff;
@@ -387,3 +399,13 @@ legend{
 #logoutIcon{
     color:rgb(92, 19, 165);
 }
+
+input[type=number] {
+    -moz-appearance: textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }

@@ -63,6 +63,13 @@ export default function Signin(){
         })
     },[]);
 
+    ///show password code
+    const[showPass, setShowPass] = useState(false);
+
+    function showPassword(){
+        setShowPass(showPass ? false : true)
+    }
+
     return(
 
         <div>      
@@ -89,7 +96,7 @@ export default function Signin(){
             <br />
             <br />
             <input 
-            type='password' 
+            type={showPass ? "text" : "password"} 
             className="password" 
             placeholder="Password" 
             name="password"
@@ -97,6 +104,7 @@ export default function Signin(){
             onChange={handleChange}
             required
             />
+            <i onClick={showPassword} id ="showpassword" className="fa fa-eye" aria-hidden="true"></i>
 
             <br/>
             <br/>

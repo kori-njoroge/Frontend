@@ -6,7 +6,10 @@ import CurrentUser from "../components/user";
 
 export default function ApplyLoan(){
 
-
+    //User details fill
+    const userDetails = JSON.parse(window.localStorage.getItem("currentUserDetails"));
+    console.log(userDetails);
+    console.log(userDetails.firstname);
 
     const[applicationformData, setApplicationformData] = useState(
         {
@@ -44,16 +47,16 @@ export default function ApplyLoan(){
         function submitloanData(event){
             event.preventDefault();
             const confirmBox = window.confirm(
-                "Confirm to finish loan application!"
+                "Confirm Loan application!"
                 )
                 if (confirmBox === true) {
                     Axios.post('http://localhost:3001/applyloan',
                     {
                         
-                        firstName:applicationformData.firstName,
-                        lastName:applicationformData.lastName,
-                        IDnumber:applicationformData.IDnumber,
-                        phonenumber:applicationformData.phonenumber,
+                        firstName:userDetails.firstname,
+                        lastName:userDetails.lastname,
+                        IDnumber:userDetails.IDnumber,
+                        phonenumber:userDetails.phonenumber,
                         amount:applicationformData.amount,
                         duration:applicationformData.duration,
                         purpose:applicationformData.purpose,
@@ -64,10 +67,15 @@ export default function ApplyLoan(){
                         g2firstName:applicationformData.g2firstName,
                         g2lastName:applicationformData.g2lastName,
                         g2IDnumber:applicationformData.g2IDnumber,
-                        g2phoneNumber:applicationformData.g2phoneNumber
-                    },
-                    alert("Loan Application Successful!")
-                    );
+                        g2phoneNumber:applicationformData.g2phoneNumber,
+                        useridentity:userDetails.userId
+                    }).then(response =>{
+                        console.log(response.data.message);
+                        if(response){
+                            alert(response.data.message);
+                        }
+
+                    })
                 }else{
                     handlecancelLoan();
             }
@@ -97,14 +105,14 @@ export default function ApplyLoan(){
             <form className="form--loan" onSubmit={submitloanData}>
                 <h4>Fill the form below to apply for a loan</h4>
                 <fieldset className="details">
-                <legend>Personal details</legend>
+                <legend>Applicant Details</legend>
                 <label htmlFor="firstName">First Name*</label>
                 <input 
                 className="loan--input" 
                 id="firstName" 
                 type='text'
                 name="firstName"
-                value={applicationformData.firstName}
+                value={userDetails.firstname}
                 onChange={handlesChangeAppLoan}
                 required 
                 />
@@ -116,7 +124,7 @@ export default function ApplyLoan(){
                 id="lastName" 
                 type='text' 
                 name="lastName"
-                value={applicationformData.lastName}
+                value={userDetails.lastname}
                 onChange={handlesChangeAppLoan}
                 required 
                 />
@@ -128,7 +136,7 @@ export default function ApplyLoan(){
                 id="idNumber" 
                 type='number' 
                 name="IDnumber"
-                value={applicationformData.IDnumber}
+                value={userDetails.IDnumber}
                 onChange={handlesChangeAppLoan}
                 min="0"
                 required 
@@ -141,7 +149,7 @@ export default function ApplyLoan(){
                 type='tel' 
                 name="phonenumber"
                 min="0"
-                value={applicationformData.phonenumber}
+                value={`0${userDetails.phonenumber}`}
                 onChange={handlesChangeAppLoan}
                 required
                 />
