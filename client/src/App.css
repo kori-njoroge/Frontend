@@ -268,10 +268,8 @@ legend{
 }
 
 .form--loan{
-    /* margin: 42px; */
     border: 1px solid #ffffff;
     border-radius: 10px;
-    /* height: 100px; */
     height:400px;
     overflow-y:auto;
     padding-left: 35px;
@@ -354,6 +352,9 @@ legend{
 .members-table{
     /* width: 150%; */
     padding-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 30px;
+    margin-top: 30px;
 }
 
 
@@ -367,6 +368,7 @@ legend{
 
 .active{
     color:black;
+    
 }
 
 #eye{

@@ -11,6 +11,7 @@ export default function MyWallet(){
                 <fieldset className="mywallet--fields">
                     <legend style={{textDecoration:"underline"}}>Monthly contributions</legend>
                 <table>
+                    <tbody>
                     <tr>
                         <th>Item No.</th>
                         <th>Date</th>
@@ -41,11 +42,13 @@ export default function MyWallet(){
                         <td>08-06-2022</td>
                         <td>500.00</td>
                     </tr>
+                    </tbody>
                 </table>
                 </fieldset>
                 <fieldset className="mywallet--fields">
                     <legend style={{textDecoration:"underline"}}>Loan payment deposits</legend>
                 <table>
+                    <tbody>
                     <tr>
                         <th>Item No.</th>
                         <th>LoanId</th>
@@ -70,6 +73,7 @@ export default function MyWallet(){
                         <td>20-06-2022</td>
                         <td>1200.00</td>
                     </tr>
+                    </tbody>
                 </table>
                 </fieldset>
 

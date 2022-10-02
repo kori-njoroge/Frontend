@@ -17,6 +17,8 @@ import MyWallet from './pages/mywallet';
 import Loans from './pages/loans';
 import ApplyLoan from './pages/applyloan';
 import Members from './pages/members';
+import Admin from './pages/Admin/admin';
+import AdminMembers from './pages/Admin/adminInfo';
 
 
 function App() {
@@ -26,11 +28,17 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path='/' element ={loggedIn ? <UserDashboard/> :<Home />}/>
+          <Route path='admin' element ={<Admin />} > 
+          {/* <Route path='home' element={<Home />}/> */}
+          <Route path='adminmembers' element={<AdminMembers />}/>
+          <Route path='' element/>
+          <Route path='' element/>
+          </Route>
           <Route path='/signup' element ={<Signup/>}/>
           <Route path='/aboutus' element ={<Aboutus/>}/>
           <Route path='/contactus' element ={<ContactUs/>}/>
           {/* <Route path='/settings' element={<Settings />} /> */}
-            <Route path='signin' element ={<Signin/>}/>
+          <Route path='signin' element ={<Signin/>}/>
           <Route path='/dashboard' element ={<UserDashboard />}>
             <Route path='summary' element ={<Dashboard />}/> 
             <Route path='mywallet' element={<MyWallet/>}/>

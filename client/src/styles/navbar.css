@@ -1,13 +1,11 @@
-.project--nav{
+.project--nav,.admin--nav{
     display: flex;
     align-items: center;
     background-color: rgb(176, 142, 209);
-    /* background-color: #652377; */
     height: 80px;
     width: 100%;
     padding: 30px 25px;
     border-radius: 0px 0px 5px 5px;
-    /* position:fixed; */
 }
 
 * {
@@ -19,14 +17,12 @@ body {
     font-family: Inter, sans-serif;
 }
 #bars{
-    /* color: aqua; */
     color: #DEEBF8;
     padding: 0px 35px 0px 30px;
 }
 
 .nav--logo_text, .nav--title {
     margin: 0;
-    /* background-color: blue; */
 }
 
 .nav--logo_text {
@@ -40,9 +36,7 @@ body {
 .nav--title,.nav--home,.nav--aboutus{
     color: #DEEBF8;
     font-weight: 600;
-    /* background-color: blue; */
     padding-right: 23px;
-    /* margin-right: auto; */
 }
 
 .nav--icon {
@@ -52,7 +46,3 @@ body {
     border-radius: 50%;
 }
 
-/* .nav--home,.nav--aboutus{
-    margin-right: auto;
-    margin-left: auto;
-} */

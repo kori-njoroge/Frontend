@@ -9,9 +9,7 @@ export default function Members(){
 
     useEffect(() =>{
         Axios.post("http://localhost:3001/members").then(result =>{
-            // console.log(result.data);
-            setMembers(result.data);
-            
+            setMembers(result.data)
         }).catch(err =>{
             console.log(err);
         })
@@ -34,8 +32,9 @@ export default function Members(){
                         </tr>
                     </thead>
                     <tbody>
-                        {members? 
+                        {members?
                         members.map(member =>(
+                            (member.firstname === "Admin" ? "" :
                         <tr key={member.userId}>
                             <td>{member.userId}</td>
                             <td>{member.firstname}</td>
@@ -43,8 +42,10 @@ export default function Members(){
                             <td>0{member.phonenumber}</td>
                             <td>{member.IDnumber}</td>
                         </tr>
+                    )
                         ))
                         : ""}
+                        
                     </tbody>
                 </table>
             </div>

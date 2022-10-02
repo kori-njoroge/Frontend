@@ -1,120 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CurrentUser from "../components/user";
-import { NavLink } from "react-router-dom";
-
 
 
 export default function Loans(){
+
+    // const[loanData, setLoanData] = useState({loanData:[]});
+    const[userLoan, setUserLoan] = useState("Joaninah");
+    // const[userLoan, setUserLoan] = useState({userLoan:[]});
+    const[loanAdvice, setLoanAdvice] = useState("");
+    // const [rates, setRates] = useState({rates:[]});
+
+
+    useEffect(() =>{
+        const a = (JSON.parse(window.localStorage.getItem("currentUserDetails")));
+        if(a){
+            setUserLoan(a.ApplyLoan);
+        }else{
+            // setLoanAdvice("");
+        }
+        
+    },[])
+    console.log("***********************");
+    console.log(userLoan);
+    
+
+
+
     return(
         <div >
         <CurrentUser />
             <h3>My Loans</h3>
             {/* <input type='search'></input> */}
-                        <h4 style={{textDecoration:"underline", margin:"40px"}} >Processed loans</h4>
+                        <h4 style={{textDecoration:"underline", margin:"40px"}} >Applied loans</h4>
+                        {/* <button onClick={userData}>HEAD</button> */}
             <table className="loans--table">
                     <thead>
-                        <th>#</th>
-                        <th>Loan Id</th>
-                        <th>Amount(Ksh)</th>
-                        <th>Purpose</th>
-                        <th>Date Processed</th>
-                        <th>Due Date</th>
-                        <th>Payment Status</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Loan Id</th>
+                            <th>Amount(Ksh)</th>
+                            <th>Purpose</th>
+                            <th>Date Applied</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>6</td>
-                        <td>3000.00</td>
-                        <td>Fees</td>
-                        <td>01-04-2022 </td>
-                        <td>05-07-2022 </td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>23</td>
-                        <td>12000.00</td>
-                        <td>Business Capital</td>
-                        <td>10-09-2022 </td>
-                        <td>15-01-2023 </td>
-                        <td>Pending</td>
-                    </tr>
-                    {/* <tr>
-                        <td># No.</td>
-                        <td>Date</td>
-                        <td>Date</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    <tr>
-                        <td># No.</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    <tr>
-                        <td># No.</td>
-                        <td>Date</td>
-                        <td>Date</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    <tr>
-                        <td># No.</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    <tr>
-                        <td># No.</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    <tr>
-                        <td># No.</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr> */}
+                        <tr>
+                            <td>{userLoan.loanId}</td>
+                            <td>{userLoan.loanId}</td>
+                            <td>{userLoan.amount}</td>
+                            <td>{userLoan.purpose}</td>
+                            <td>{userLoan.createdAt}</td>
+                            <td>Rejected</td>
+                        </tr>
                     </tbody>
-                    {/* <tfoot>
-                    <tr>
-                        <td># No.</td>
-                        <td>Amount</td>
-                        <td>Amount</td>
-                        <td>Date</td>
-                        <td>Amount</td>
-                        <td>Purpose</td>
-                    </tr>
-                    </tfoot> */}
                 </table>
                 <fieldset className="pendingloan--field">
                     <legend style={{textDecoration:"underline"}}>Loan Approved and Disbursed</legend>
                     <table className="pending--loans">
                     <thead>
-                        <th>#</th>
-                        <th>Loan Id</th>
-                        <th>Amount(Ksh)</th>
-                        <th>Application Date</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Loan Id</th>
+                            <th>Amount(Ksh)</th>
+                            <th>Application Date</th>
+                            <th>Payment Status</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>2</td>
+                        <td>1</td>
                         <td>23</td>
                         <td>12000</td>
                         <td>20-03-2022</td>
+                        <td>InProgress</td>
                     </tr>
                     </tbody>
 
@@ -124,18 +83,20 @@ export default function Loans(){
                     <legend style={{textDecoration:"underline"}}>Loans Pending approval</legend>
                     <table className="pending--loans">
                     <thead>
-                        <th>#</th>
-                        <th>Loan Id</th>
-                        <th>Amount(Ksh)</th>
-                        <th>Application Date</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Loan Id</th>
+                            <th>Amount(Ksh)</th>
+                            <th>Application Date</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
                     </tbody>
 
                     </table>

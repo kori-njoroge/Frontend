@@ -100,6 +100,7 @@ export default function ApplyLoan(){
                     <li className="loan--item">You must have shares atleast amounting to Ksh.3000.</li>
                     <li className="loan--item">You must have 2 guarantors who must be members of st Andrews Group.</li>
                     <li className="loan--item">The maximum due time for any loan is  12months.</li>
+                    <li className="loan--item">Your loan guarantors must be members of the group.</li>
                 </ul>
             </fieldset>
             <form className="form--loan" onSubmit={submitloanData}>

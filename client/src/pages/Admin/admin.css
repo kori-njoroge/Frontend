@@ -1,0 +1,164 @@
+
+.admin--body{
+    display: flex;
+}
+.admin--nav{
+    height: 100px;
+    color: red;
+    position: fixed;
+}
+
+/* Admin Sidebar */
+.admin--sidebar{
+    margin-left: 10px;
+    margin-top: 7%;
+    width: 15%;
+    height: 20%;
+    position:fixed;
+}
+.sidebar--para{
+    color:black;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+.sidebar--para:hover{
+    color: rgb(150, 56, 245);
+}
+
+
+.admin--sideBar{
+    /* background-color: rgb(226, 202, 248); */
+    border-radius: 5px;
+}
+
+/* admin Outlet */
+.admin--outlet{
+    /* border: 1px solid black; */
+    width: 80%;
+    margin-left: 270px;
+    margin-bottom: 35px;
+    margin-top: 10%;
+}
+
+.admin--currentUser{
+    border: 0px solid;
+    padding-left: 30px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-bottom: 2%;
+    width: 15%;
+    height: 11%;
+    background-color: rgb(226, 202, 248);
+    border-radius: 10px;
+}
+.admin--sections{
+    /* border: 1px solid rgb(192, 190, 190); */
+    border-radius: 5px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+#drop--icon{
+    margin-left:84% ;
+    margin-top: -30px;
+}
+.admin--ids{
+    width: 2%;
+    align-items: center;
+}
+.admin--name{
+    width: 10%;
+}
+.adminphone--no{
+    width: 12%;
+}
+.admin--duration{
+    width: 8%;
+}
+.admin--table--big{
+    width: 15%;
+}
+.admin--purpose{
+    /* color: orange; */
+    height: 1px;
+    overflow-y:auto;
+}
+
+/* ADMIN MEMBERS SECTION */
+.members-section{
+    margin: 10px;
+}
+
+.admin--members--table{
+    width: 100%;
+    margin: 0px;
+    border: 0px;
+}
+/* .admin--table--head{ */
+    /* width: 20%; */
+/* } */
+.admin--email{
+    width: 21%;
+}
+.admin--table--date{
+    color: red;
+    width: 20%;
+}
+
+.button--moredetails{
+    border: 0px;
+}
+
+.admin--btn{
+    border-radius: 5px;
+    background-color: rgb(226, 202, 248);
+    margin-left: 5px;
+    height: 35px;
+    border-color:rgb(85, 12, 153);
+}
+.admin--btn:hover{
+    background-color: rgb(199, 161, 235);
+}
+
+#more--info--icon{
+    position: relative;
+    top: 10px;
+    left: 13px;
+    margin-right: -5px;
+}
+
+
+
+/* SAVINGS SECTION */
+.Savings{
+    margin: 10px;
+    background-color: aquamarine;
+}
+
+
+/* APPLIED LOANS */
+.applied--loansadmin{
+    margin: 10px;
+}
+
+.reject-approve-btn{
+    width:100px;
+    height: 25px;
+}
+
+
+/* APPROVED LOANS */
+.loans--approvedadmin{
+    background-color: rgb(195, 255, 127);
+}
+.Savings{
+    background-color: aquamarine;
+}
+
+.Savings{
+    background-color: aquamarine;
+}
+.Savings{
+    background-color: aquamarine;
+}

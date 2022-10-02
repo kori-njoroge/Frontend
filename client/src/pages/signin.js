@@ -36,9 +36,7 @@ export default function Signin(){
         {   
             phonenumber: signinData.phonenumber,
             password: signinData.password,
-        }).then(response =>{
-            console.log(response.data[0]);
-            
+        }).then(response =>{            
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
@@ -47,7 +45,11 @@ export default function Signin(){
                 window.localStorage.setItem("username",response.data[0].firstname)
                 window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
-                navigate('/dashboard/summary');
+                if(response.data[0].phonenumber=== 115834321 && response.data[0].email === "jeillannjoroge76@gmail.com"){
+                    navigate('/admin/adminMembers');
+                }else{
+                    navigate('/dashboard/summary');
+                }
             }
         });
     }
