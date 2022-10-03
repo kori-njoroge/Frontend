@@ -2,11 +2,11 @@ import React from "react";
 import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from 'axios'
-
 import '../styles/signup.css'
 import group from '../images/group_en.png'
 import axios from "axios";
 import PWDRequisite from "./pswRequiste";
+import PhoneRequisite from "./phoneRequisite";
 import { NavLink } from "react-router-dom";
 
 export default function Signup(){
@@ -46,15 +46,26 @@ export default function Signup(){
         PWDLengthCheck:false,
         specialCharCheck:false,
     })
+    //phone number checks
+    const[phoneNumberCheck, setNumberCheck] = useState(false);
 
 
     function handleOnfocus(){
         setPwdRequisite(true)
     }
+    //phone no
+    function handleOnfocusPhone(){
+        setPhoneRequisite(true)
+    }
 
     function handleOnBlur(){
         setPwdRequisite(false)
     }
+    //phone no
+    function handleOnBlurPhone(){
+        setPhoneRequisite(false)
+    }
+
     //confirmPassword
     function handleonBlurconfirmPassword(){
         setAdvice(false);
@@ -73,8 +84,8 @@ export default function Signup(){
         setConfirmPasswordShown(confirmpasswordShown ? false : true);
     };
     
-
-    //ID check
+    //  PHONE NUMBER VALIDATOR
+    const[phoneRequisite, setPhoneRequisite] = useState(false);
 
     //password
     function handleOnKeyUp(event){
@@ -92,6 +103,14 @@ export default function Signup(){
             specialCharCheck
         });
     };
+
+    //phone number validator
+    function handleOnKeyUpPhone(event){
+        const{value} = event.target;
+        const phoneNoCheck = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/.test(value);
+        setNumberCheck(phoneNoCheck);
+
+    }
 
     //validate ID number.
     // const[idValidity, setIdValidity] =useState(true);
@@ -218,6 +237,9 @@ export default function Signup(){
                     placeholder="07 or 01" 
                     onChange={handleChange}
                     name="phonenumber"
+                    onKeyUp={handleOnKeyUpPhone}
+                    onFocus={handleOnfocusPhone}
+                    onBlur={handleOnBlurPhone}
                     value={singupData.phonenumber}
                     maxLength ={10}
                     onInput={(e) => {
@@ -226,6 +248,13 @@ export default function Signup(){
                     }}
                     required
                     />
+                    {phoneRequisite ?
+                        <PhoneRequisite 
+                        // phoneNumberFlag =
+                        phoneNumberFlag={phoneNumberCheck ? "valid" :"invalid"}
+                        />
+                        : null
+                    }
                     
                     <br /><br />
                     <label className="form--text" htmlFor="idnumber">ID Number</label><br />
