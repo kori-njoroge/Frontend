@@ -10,6 +10,7 @@ export default function Members(){
     useEffect(() =>{
         Axios.post("http://localhost:3001/members").then(result =>{
             setMembers(result.data)
+            console.log(members)
         }).catch(err =>{
             console.log(err);
         })

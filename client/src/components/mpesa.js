@@ -13,6 +13,8 @@ export default function MpesaPay(){
             }
             )
         const[currentUser, setCurrentUser] = useState("")
+        const[deposit, setDeposit] = useState(false);
+        const[errorMessage, setError] = useState("");
             
         function handleFormData(event){
             const{name, value, type, checked} = event.target
@@ -39,12 +41,15 @@ export default function MpesaPay(){
                 Axios.post("http://localhost:3001/mywallet",{
                     firstname:currentUser.firstname,
                     lastname:currentUser.lastname,
-                    phonenumber :formData.phonenumber,
+                    phonenumber :currentUser.phonenumber,
                     amount:formData.amount,
                     purpose:formData.isChecked,
                     userid:currentUser.userId
                 }).then(response =>{
-                    console.log(response);
+                    if(response.data){
+                        setDeposit(true);
+                        setError(response.data)
+                    }
                 })
             }
             console.log(formData )
@@ -107,6 +112,7 @@ export default function MpesaPay(){
                     <button>Confirm</button>
                 </div>
             </form>
+            {deposit? <p className="invalid">{errorMessage}</p> : null}
         </div>
     )
 }

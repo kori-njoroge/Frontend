@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from "react";
 import CurrentUser from "../components/user";
+import Axios from "axios"
 
 
 export default function Loans(){
 
     // const[loanData, setLoanData] = useState({loanData:[]});
-    const[userLoan, setUserLoan] = useState("Joaninah");
+    const[userLoan, setUserLoan] = useState("");
     // const[userLoan, setUserLoan] = useState({userLoan:[]});
-    const[loanAdvice, setLoanAdvice] = useState("");
+    const[loanee, setLoanee] = useState("");
     // const [rates, setRates] = useState({rates:[]});
 
 
     useEffect(() =>{
         const a = (JSON.parse(window.localStorage.getItem("currentUserDetails")));
         if(a){
-            setUserLoan(a.ApplyLoan);
+            setUserLoan(a.userId);
         }else{
             // setLoanAdvice("");
         }
         
     },[])
-    console.log("***********************");
-    console.log(userLoan);
+    // console.log("***********************");
+    // console.log(userLoan);
+
+    useEffect(() =>{
+        Axios.post('http://localhost:3001/myloans',{
+            userId:userLoan
+        }).then(loaned =>{
+            setLoanee(loaned.data[0])
+            // console.log(loaned);
+            // console.log(loanee)
+        })
+    },[])
     
 
 
@@ -45,20 +56,20 @@ export default function Loans(){
                         </tr>
                     </thead>
                     <tbody>
-                        {userLoan ? 
+                        {loanee ? 
                         <tr>
-                            <td>{userLoan.loanId}</td>
-                            <td>{userLoan.loanId}</td>
-                            <td>{userLoan.amount}</td>
-                            <td>{userLoan.purpose}</td>
-                            <td>{userLoan.createdAt}</td>
-                            <td>Pending approval</td>
+                            <td>{loanee.loanId}</td>
+                            <td>{loanee.loanId}</td>
+                            <td>{loanee.amount}</td>
+                            <td>{loanee.purpose}</td>
+                            <td>{loanee.createdAt}</td>
+                            <td>{loanee.loanStatus}</td>
                         </tr>
-                        : "You have no applied loans"}
+                        : <tr><td>You have no applied loans"</td ></tr>}
                     </tbody>
                 </table>
                 <fieldset className="pendingloan--field">
-                    <legend style={{textDecoration:"underline"}}>Loan Approved and Disbursed</legend>
+                    <legend style={{textDecoration:"underline"}}>Loans Disbursed</legend>
                     <table className="pending--loans">
                     <thead>
                         <tr>
@@ -80,30 +91,7 @@ export default function Loans(){
                     </tbody>
 
                     </table>
-                </fieldset>
-                <fieldset className="pendingloan--field">
-                    <legend style={{textDecoration:"underline"}}>Loans Pending approval</legend>
-                    <table className="pending--loans">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Loan Id</th>
-                            <th>Amount(Ksh)</th>
-                            <th>Application Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                    </tbody>
-
-                    </table>
-                </fieldset>
-                
+                </fieldset>                
             {/* <NavLink to ={"applyloan"}  style={{textDecoration:"none"}} ><h4>Apply Loan</h4></NavLink> */}
         </div>
     )

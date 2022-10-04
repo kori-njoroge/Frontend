@@ -21,16 +21,18 @@ export default function Dashboard(){
         Axios.post("http://localhost:3001/dashboard/summary" ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
-            // console.log(reply.data[0]);
+            console.log(reply);
                 setdashboardInfo({
                     savings:100,
                     contribution:"",
-                    loanIssued:reply.data[0].amount,
+                    loanIssued:"",
                     loanPayed:2000,
                     toBePaid:"",
                     myLoanLimit:""
             
                 });
+                console.log(reply.data);
+        window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
         }).catch(err =>{
             setdashboardInfo(prevState => prevState);
         })

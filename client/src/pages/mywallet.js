@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MpesaPay from "../components/mpesa";
 import CurrentUser from "../components/user";
 
 
 export default function MyWallet(){
     const[transact, setTransact] = useState(false);
+    const[userSavings, setSavings] = useState([]);
+    const[loanPay, setLoanPay] = useState([]);
     
     function handleTransact(){
         // setTransact(prevState =>!prevState);
         setTransact(true);
     }
+
+
+
+useEffect(() =>{
+    const a = JSON.parse(window.localStorage.getItem("UserAll"));
+    setSavings(a[1].saver);
+    setLoanPay(a[2].loanPayer)
+    // console.log(userSavings);
+},[])
+
+console.log(userSavings);
+console.log(loanPay);
 
 
 
@@ -28,18 +42,24 @@ export default function MyWallet(){
                     <tbody>
                     <tr>
                         <th>#</th>
-                        <th>Date</th>
+                        <th>Deposit Date</th>
                         <th>Amount</th>
+                        <th>Purpose</th>
                     </tr>
+                    {userSavings ?
+                        userSavings.map(deposit =>(
+                            <tr key={deposit.savingDepositId}>
+                                <td>{deposit.savingDepositId}</td>
+                                <td>{deposit.createdAt}</td>
+                                <td>{deposit.savingsamount}</td>
+                                <td>{deposit.purpose}</td>
+                            </tr>
+                        ))
+                    : null}
                     <tr>
-                        <td>1</td>
-                        <td>08-02-2022</td>
-                        <td>500.00</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>08-03-2022</td>
-                        <td>500.00</td>
+                        <td></td>
+                        <td>Total</td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -50,28 +70,25 @@ export default function MyWallet(){
                     <tbody>
                     <tr>
                         <th >#</th>
-                        <th className="savings--grid">LoanId</th>
-                        <th className="savings--grid">Date</th>
+                        <th className="savings--grid">Deposit Date</th>
                         <th className="savings--grid">Amount(ksh)</th>
+                        <th>Purpose</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>6</td>
-                        <td>06-05-2022</td>
-                        <td>900.00</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>6</td>
-                        <td>28-05-2022</td>
-                        <td>1000.00</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>6</td>
-                        <td>20-06-2022</td>
-                        <td>1200.00</td>
-                    </tr>
+                        {loanPay? 
+                        loanPay.map(loanDepo =>(
+                            <tr key={loanDepo.savingDepositId}>
+                                <td>{loanDepo.savingDepositId}</td>
+                                <td>{loanDepo.createdAt}</td>
+                                <td>{loanDepo.savingsamount}</td>
+                                <td>{loanDepo.purpose}</td>
+                            </tr>
+                        ))
+                        : null}
+                        <tr>
+                        <td></td>
+                        <td>Total</td>
+                        <td></td>
+                        </tr>
                     </tbody>
                 </table>
                 </fieldset>
