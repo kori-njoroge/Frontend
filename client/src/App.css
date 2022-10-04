@@ -344,11 +344,7 @@ legend{
 .pending--loans{
     width: 500px;
 }
-/* my wallet */
-.mywallet--fields{
-    margin: 40px;
-    border: 0px ;
-}
+
 .members-table{
     /* width: 150%; */
     padding-right: 0px;
@@ -411,3 +407,77 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
     }
+
+/* My wallet styles */
+.mywallet{
+    display: flex;
+}
+
+.mywallet--head{
+    display: flex;
+}
+.contributions--title{
+    margin: auto;
+}
+
+.button--transact{
+    margin: auto;
+    height: 40px;
+    padding-top: -0px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+.mywallet--fields{
+    border: 1px solid white;
+    margin: 10px;
+    width: 50%;
+    border-radius: 10px;
+}
+.mywallet--fields table{
+    width:100%;
+    margin-bottom: 12%;
+
+}
+/* .savings--grid{ */
+    /* color: orange; */
+    /* width: px; */
+/* } */
+
+.mpesa--field{
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 40%;
+    margin-top: 0px;
+    margin: 10px;
+}
+
+.mpesa--labels{
+    font-size: 15px;
+}
+
+/* .amount--phone{
+    color: indianred;
+} */
+
+.deposit--purpose{
+    border-radius: 5px;
+    border: 0.5px solid white;
+
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.mpesaform--footer{
+    margin-top: 10px;
+    display: flex;
+}
+.mpesaform--footer button{
+    margin: auto;
+    border-radius: 4px;
+    height: 25px;
+}
+.mpesaform--footer button:hover{
+    background-color: rgb(176, 142, 209);
+    
+}

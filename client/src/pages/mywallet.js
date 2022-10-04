@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import MpesaPay from "../components/mpesa";
 import CurrentUser from "../components/user";
 
 
 export default function MyWallet(){
+    const[transact, setTransact] = useState(false);
+    
+    function handleTransact(){
+        // setTransact(prevState =>!prevState);
+        setTransact(true);
+    }
+
+
+
     return(
         <div>
             <CurrentUser/>
             <div>
-                <h3>My contributions</h3><br />
+                <div className="mywallet--head">
+                <h3 className="contributions--title">My contributions</h3>
+                <button className="button--transact" onClick={handleTransact}><h3>Make a transaction  <i className="fa-solid fa-chevron-down"></i></h3></button>
+                </div>
+                <div className="mywallet">
                 <fieldset className="mywallet--fields">
                     <legend style={{textDecoration:"underline"}}>Monthly contributions</legend>
                 <table>
                     <tbody>
                     <tr>
-                        <th>Item No.</th>
+                        <th>#</th>
                         <th>Date</th>
                         <th>Amount</th>
                     </tr>
@@ -27,33 +41,18 @@ export default function MyWallet(){
                         <td>08-03-2022</td>
                         <td>500.00</td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>08-04-2022</td>
-                        <td>500.00</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>08-05-2022</td>
-                        <td>500.00</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>08-06-2022</td>
-                        <td>500.00</td>
-                    </tr>
                     </tbody>
                 </table>
-                </fieldset>
-                <fieldset className="mywallet--fields">
+                {/* </fieldset> */}
+                {/* <fieldset className="mywallet--fields"> */}
                     <legend style={{textDecoration:"underline"}}>Loan payment deposits</legend>
                 <table>
                     <tbody>
                     <tr>
-                        <th>Item No.</th>
-                        <th>LoanId</th>
-                        <th>Date</th>
-                        <th>Amount(ksh)</th>
+                        <th >#</th>
+                        <th className="savings--grid">LoanId</th>
+                        <th className="savings--grid">Date</th>
+                        <th className="savings--grid">Amount(ksh)</th>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -76,7 +75,13 @@ export default function MyWallet(){
                     </tbody>
                 </table>
                 </fieldset>
-
+                {transact ? 
+                <fieldset className="mpesa--field">
+                    <legend>Mpesa Transaction</legend>
+                <MpesaPay /> 
+                </fieldset>
+                : null}
+                </div>
             </div>
             
         </div>

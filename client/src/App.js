@@ -19,6 +19,7 @@ import ApplyLoan from './pages/applyloan';
 import Members from './pages/members';
 import Admin from './pages/Admin/admin';
 import AdminMembers from './pages/Admin/adminInfo';
+import AppliedLoans from './pages/Admin/Admincomponents/AdminApplied';
 
 
 function App() {
@@ -29,9 +30,8 @@ function App() {
       <Routes>
           <Route path='/' element ={loggedIn ? <UserDashboard/> :<Home />}/>
           <Route path='admin' element ={<Admin />} > 
-          {/* <Route path='home' element={<Home />}/> */}
           <Route path='adminmembers' element={<AdminMembers />}/>
-          <Route path='' element/>
+          <Route path='appliedloans' element={<AppliedLoans />}/>
           <Route path='' element/>
           </Route>
           <Route path='/signup' element ={<Signup/>}/>

@@ -40,7 +40,7 @@ export default function AppliedLoans(){
                             <th className="admin--ids">Amount</th>
                             <th className="admin--table--big">Purpose</th>
                             <th className="admin--duration">Duration</th>
-                            <th className="admin--table--date">Application Date</th>
+                            <th className="admin--table--dte">Application Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>

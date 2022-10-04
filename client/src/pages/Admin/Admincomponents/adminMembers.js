@@ -35,7 +35,7 @@ export default function Members(){
                             <th className="admin--table--head">Phone Number</th>
                             <th className="admin--table--head">IDnumber</th>
                             <th className="admin--email">Email</th>
-                            <th className="admin--table--date">Joining Date</th>
+                            <th className="admin--table--dte">Joining Date</th>
                             {/* <th className="button--moredetails"></th> */}
                         </tr>
                     </thead>
@@ -53,7 +53,8 @@ export default function Members(){
                             <td>{member.createdAt}</td>
                             {/* <td>`${format(member.createdAt, 'yyyy/mm/dd')}`</td> */}
                             {/* check code please for err */}
-                            <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td>
+                            <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More Details</button></td>
+                            {/* <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td> */}
                         </tr>
                     )
                     ))

@@ -40,19 +40,21 @@ export default function Loans(){
                             <th>Loan Id</th>
                             <th>Amount(Ksh)</th>
                             <th>Purpose</th>
-                            <th>Date Applied</th>
+                            <th>Date of Application</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {userLoan ? 
                         <tr>
                             <td>{userLoan.loanId}</td>
                             <td>{userLoan.loanId}</td>
                             <td>{userLoan.amount}</td>
                             <td>{userLoan.purpose}</td>
                             <td>{userLoan.createdAt}</td>
-                            <td>Rejected</td>
+                            <td>Pending approval</td>
                         </tr>
+                        : "You have no applied loans"}
                     </tbody>
                 </table>
                 <fieldset className="pendingloan--field">
