@@ -68,10 +68,10 @@ export default function Loans(){
                         : <tr><td>You have no applied loans"</td ></tr>}
                     </tbody>
                 </table>
-                <fieldset className="pendingloan--field">
+                {/* <fieldset className="pendingloan--field">
                     <legend style={{textDecoration:"underline"}}>Loans Disbursed</legend>
-                    <table className="pending--loans">
-                    <thead>
+                    <table className="pending--loans"> */}
+                    {/* <thead>
                         <tr>
                             <th>#</th>
                             <th>Loan Id</th>
@@ -88,10 +88,10 @@ export default function Loans(){
                         <td>20-03-2022</td>
                         <td>InProgress</td>
                     </tr>
-                    </tbody>
+                    </tbody> */}
 
-                    </table>
-                </fieldset>                
+                    {/* </table>
+                </fieldset>                 */}
             {/* <NavLink to ={"applyloan"}  style={{textDecoration:"none"}} ><h4>Apply Loan</h4></NavLink> */}
         </div>
     )

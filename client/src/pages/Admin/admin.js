@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import AdminNav from "./adminnav";
 import AdminSideBar from "./adminsidebar";
 import './admin.css'
+import CurrentUser from "../../components/user";
+import Adminmembers from "./Admincomponents/adminMembers";
 
 
 
@@ -15,6 +17,10 @@ export default function Admin(){
                     <AdminSideBar />
                 </div>
                 <div className="admin--outlet">
+                    <div className="current--user--position">
+                    <CurrentUser />
+                    </div>
+                    <Adminmembers />
                     <Outlet />
                 </div>
             </div>

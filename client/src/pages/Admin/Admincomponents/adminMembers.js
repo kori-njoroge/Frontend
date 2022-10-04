@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Axios  from "axios";
-import {format} from "date-fns"
 import New from "./new";
 
 
 
-export default function Members(){
+export default function Adminmembers(){
 
     const[members, setMembers] = useState("");
     const[more, setMore] = useState(false);

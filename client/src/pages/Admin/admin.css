@@ -130,13 +130,6 @@
 
 
 
-/* SAVINGS SECTION */
-.Savings{
-    margin: 10px;
-    background-color: aquamarine;
-}
-
-
 /* APPLIED LOANS */
 .applied--loansadmin{
     margin: 10px;
@@ -148,17 +141,16 @@
 }
 
 
-/* APPROVED LOANS */
-.loans--approvedadmin{
-    background-color: rgb(195, 255, 127);
-}
-.Savings{
-    background-color: aquamarine;
-}
 
-.Savings{
-    background-color: aquamarine;
-}
-.Savings{
-    background-color: aquamarine;
+/*  WOW STYLES*/
+.current--user--position{
+    background-color: rgb(210, 179, 240);
+    margin:20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    /* padding-left: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px; */
+    padding: 15px;
 }
