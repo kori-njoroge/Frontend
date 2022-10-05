@@ -24,6 +24,7 @@ import ApprovedLoans from './pages/Admin/Admincomponents/ApprovedAdmin';
 import DisbursedLoans from './pages/Admin/Admincomponents/disbursedLoans';
 import AdminSaving from './pages/Admin/Admincomponents/adminSavings';
 import Evaluation from './pages/Admin/Admincomponents/evaluation';
+import MoreDetails from './pages/Admin/Admincomponents/moredetails';
 
 
 function App() {
@@ -34,7 +35,9 @@ function App() {
       <Routes>
           <Route path='/' element ={loggedIn ? <UserDashboard/> :<Home />}/>
           <Route path='admin' element ={<Admin />} > 
-          <Route path='adminmembers' element={<AdminMembers />}/>
+          <Route path='adminmembers' element={<AdminMembers />}>
+          <Route path='moredetails' element={<MoreDetails />}/>
+          </Route>
           <Route path='appliedloans' element={<AppliedLoans />}>
           <Route path='evaluation' element ={<Evaluation />}/>
           </Route>

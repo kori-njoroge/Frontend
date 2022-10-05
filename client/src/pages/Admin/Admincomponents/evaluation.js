@@ -3,6 +3,8 @@ import React from "react";
 
 export default function Evaluation(props){
     console.log(props.userid)
+    const loanID= props.loanid
+
     const [evaluationData, setFormData] = React.useState(
         {
             memberage: "", 
@@ -28,7 +30,8 @@ function handleapprove(){
     const a = window.confirm("Confirm Loan Approval!");
     if(a){
         Axios.post('http://localhost:3001/admin/appliedloans/evaluation',{
-            approved:"Yaay!"
+            status:"Yaay!",
+            loanid:loanID
         }).then(response =>{
             console.log(response);
         })
@@ -39,7 +42,8 @@ function handlerejection(){
     const a = window.confirm("Confirm loan rejection!");
     if(a){
         Axios.post("http://localhost:3001/admin/appliedloans/evaluation",{
-            rejected:"Boo!"
+            status:"Boo!",
+            loanid:loanID
         }).then(response =>{
             console.log(response);
         })

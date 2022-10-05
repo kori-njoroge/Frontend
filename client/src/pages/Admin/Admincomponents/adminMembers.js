@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Axios  from "axios";
 import New from "./new";
+import { NavLink } from "react-router-dom";
+import MoreDetails from "./moredetails";
 
 
 
@@ -8,24 +10,19 @@ export default function Adminmembers(){
 
     const[members, setMembers] = useState("");
     const[more, setMore] = useState(false);
-    const[userId, setUserId] = useState(0);
+    const[userId, setuserId] = useState("");
 
 
     useEffect(() =>{
         Axios.post("http://localhost:3001/admin/adminMembers").then(members =>{
-            // console.log(members);
+            console.log(members);
             setMembers(members.data[0].User)
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
         })
     },[])
-    
-    function Guesswho(){
-    setMore(true);
-    }
+    console.log(userId)
 
-    function handleMoreOnblur(){
-        setMore(false)
-    }
+    
 
 
     return(
@@ -57,14 +54,13 @@ export default function Adminmembers(){
                             <td>{member.createdAt}</td>
                             {/* <td>`${format(member.createdAt, 'yyyy/mm/dd')}`</td> */}
                             {/* check code please for err */}
-                            <td className="button--moredetails"><button 
-                            onBlur={handleMoreOnblur}
+                            <td className="button--moredetails"><NavLink to={'moredetails'}><button 
                             onClick={() =>{
-                                setUserId(member.userid)
-                                console.log(userId)
+                                setuserId(member.userId)
+                                setMore(true)
                             }} 
                             className="admin--btn"
-                            >More Details</button></td>
+                            >More Details</button></NavLink></td>
                             {/* <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td> */}
                         </tr>
                     )
@@ -72,7 +68,11 @@ export default function Adminmembers(){
                     : ""}
                     </tbody>
                 </table>
-                {more? <p><New /></p> : ""}
+                {more ? 
+                <MoreDetails  
+                    userid={userId}
+                /> 
+                : null}
         </div>
     )
 }

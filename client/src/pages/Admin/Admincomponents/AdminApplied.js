@@ -25,17 +25,6 @@ export default function AppliedLoans(){
         })
     },[])
 
-    function getConfirmed(){
-        
-        const confirmation = window.confirm(`Wanna approve the loneth! for ${clickedUserid} amount ${loanAmount}`)
-        if(confirmation){
-            Axios.get("http://localhost:3001/admin/adminMembers",{
-                selectedUserId: clickedUserid
-            })
-        } else{
-            console.log("Iza meehn")
-        }
-    }
 
 
     return(

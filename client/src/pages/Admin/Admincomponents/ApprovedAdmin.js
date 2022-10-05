@@ -26,6 +26,7 @@ export default function ApprovedLoans(){
                         <th>purpose</th>
                         <th>Duration</th>
                         <th>Application Date</th>
+                        <th>Status</th>
                     </tr>
                     {approvedloan ?
                         approvedloan.map(apploan =>(
@@ -36,6 +37,7 @@ export default function ApprovedLoans(){
                                 <td>{apploan.purpose}</td>
                                 <td>{apploan.purpose}</td>
                                 <td>{apploan.createdAt}</td>
+                                <td>{apploan.loanStatus}</td>
                             </tr>
                         ))
                     : null}
