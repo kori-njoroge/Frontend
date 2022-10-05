@@ -20,7 +20,8 @@ export default function Admin(){
                     <div className="current--user--position">
                     <CurrentUser />
                     </div>
-                    <Adminmembers />
+                    {/* <Adminmembers /> */}
+                    <hr width="95%" size="2" color="white"/>
                     <Outlet />
                 </div>
             </div>

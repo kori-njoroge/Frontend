@@ -154,3 +154,40 @@
     padding-bottom: 10px; */
     padding: 15px;
 }
+.savings--table--admin{
+    width:70%;
+}
+
+.date--savings--admin{
+    width: 30%;
+}
+
+/* //EVALUTIONSECTION */
+.member--inquestion{
+    margin: 20px;
+    border: 1px solid white;
+    width: 20%;
+    background-color: rgb(224, 209, 238);
+    border-radius: 10px;
+    
+}
+.loan--radios{
+    /* color: blue; */
+    margin: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.bottom--buttons{
+    /* background-color: red; */
+    margin-left: 15%;
+}
+
+.bottom--buttons button{
+    margin: 10px;
+    border-radius: 5px;
+    height: 25px;
+}
+.bottom--buttons button:hover{
+    background-color: rgb(150, 56, 245);
+}

@@ -23,7 +23,7 @@ export default function Dashboard(){
             ).then(reply =>{
             console.log(reply);
                 setdashboardInfo({
-                    savings:100,
+                    savings:"",
                     contribution:"",
                     loanIssued:"",
                     loanPayed:"",

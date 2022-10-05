@@ -1,11 +1,20 @@
 import React  from "react";
 import Axios from 'axios'
 import { useEffect, useState } from 'react';
+import { NavLink } from "react-router-dom";
+import Evaluation from "./evaluation";
+
 
 export default function AppliedLoans(){
     const[loans, setLoans] = useState("");
-    const[clickedUserid, setCLickedUserid] = useState(5);
+    const[clickedUserid, setCLickedUserid] = useState(0);
+    const[firstnameLoanee, setfirstName] = useState("");
     const[loanAmount, setLoanAMount] = useState("");
+    const[loanId, setLoanid] = useState("");
+    const[lastnameLoanee, setlastname] = useState("");
+    const[duration, setduration] = useState("");
+    const[purpose, setpurpose] = useState("");
+    const[userloandetails, setUserloandetails] = useState(false)
 
 
     useEffect(() =>{
@@ -27,6 +36,7 @@ export default function AppliedLoans(){
             console.log("Iza meehn")
         }
     }
+
 
     return(
         <div className="Admin--applied--loans">
@@ -57,25 +67,37 @@ export default function AppliedLoans(){
                             <td>{loanee.duration}</td>
                             <td>{loanee.createdAt}</td>
                             <td>{loanee.loanStatus}</td>
-                            <td><button onClick={() =>{
+                            <td><NavLink to={'evaluation'}><button onClick={() =>{
                                 setCLickedUserid(loanee.UserUserId)
+                                setfirstName(loanee.firstname)
                                 setLoanAMount(loanee.amount)
-                                console.log(clickedUserid)
-                                if(clickedUserid){
-                                    getConfirmed();
-                                }else{
-                                    console.log("Dead ass");
-                                }
+                                setLoanid(loanee.loanId)
+                                setlastname(loanee.lastname)
+                                setduration(loanee.duration)
+                                setpurpose(loanee.purpose)
+                                setUserloandetails(true);
+                                console.log(clickedUserid);
                                 }
                                 } 
-                                className="reject-approve-btn">Approve</button></td>
-                            <td><button className="reject-approve-btn">Reject</button></td>
+                                className="reject-approve-btn">Evaluate</button></NavLink></td>
+                                
                         </tr>
                     )
                     ))
                     : <tr>"No Loans!"</tr>}
                     </tbody>
                 </table>
+                {userloandetails ? 
+                <Evaluation 
+                    userid= {clickedUserid}
+                    loanid={loanId}
+                    firstname ={firstnameLoanee}
+                    lastname ={lastnameLoanee}
+                    amount ={loanAmount}
+                    duration={duration}
+                    purpose={purpose}
+
+                /> : null}
         </div>
     )
 }

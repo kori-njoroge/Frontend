@@ -8,6 +8,7 @@ export default function Adminmembers(){
 
     const[members, setMembers] = useState("");
     const[more, setMore] = useState(false);
+    const[userId, setUserId] = useState(0);
 
 
     useEffect(() =>{
@@ -19,7 +20,11 @@ export default function Adminmembers(){
     },[])
     
     function Guesswho(){
-    setMore(prevState => !prevState);
+    setMore(true);
+    }
+
+    function handleMoreOnblur(){
+        setMore(false)
     }
 
 
@@ -52,7 +57,14 @@ export default function Adminmembers(){
                             <td>{member.createdAt}</td>
                             {/* <td>`${format(member.createdAt, 'yyyy/mm/dd')}`</td> */}
                             {/* check code please for err */}
-                            <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More Details</button></td>
+                            <td className="button--moredetails"><button 
+                            onBlur={handleMoreOnblur}
+                            onClick={() =>{
+                                setUserId(member.userid)
+                                console.log(userId)
+                            }} 
+                            className="admin--btn"
+                            >More Details</button></td>
                             {/* <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td> */}
                         </tr>
                     )

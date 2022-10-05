@@ -22,6 +22,8 @@ import AdminMembers from './pages/Admin/Admincomponents/adminMembers';
 import AppliedLoans from './pages/Admin/Admincomponents/AdminApplied';
 import ApprovedLoans from './pages/Admin/Admincomponents/ApprovedAdmin';
 import DisbursedLoans from './pages/Admin/Admincomponents/disbursedLoans';
+import AdminSaving from './pages/Admin/Admincomponents/adminSavings';
+import Evaluation from './pages/Admin/Admincomponents/evaluation';
 
 
 function App() {
@@ -33,10 +35,12 @@ function App() {
           <Route path='/' element ={loggedIn ? <UserDashboard/> :<Home />}/>
           <Route path='admin' element ={<Admin />} > 
           <Route path='adminmembers' element={<AdminMembers />}/>
-          <Route path='appliedloans' element={<AppliedLoans />}/>
+          <Route path='appliedloans' element={<AppliedLoans />}>
+          <Route path='evaluation' element ={<Evaluation />}/>
+          </Route>
           <Route path='approvedloans' element ={<ApprovedLoans />}/>
           <Route path='disbursedloans' element = {<DisbursedLoans />}/>
-          <Route path='' element/>
+          <Route path='adminsavings' element ={<AdminSaving />}/>
           </Route>
           <Route path='/signup' element ={<Signup/>}/>
           <Route path='/aboutus' element ={<Aboutus/>}/>

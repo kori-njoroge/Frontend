@@ -46,7 +46,7 @@ export default function Signin(){
                 window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
                 if(response.data[0].phonenumber=== 115834321 && response.data[0].email === "jeillannjoroge76@gmail.com"){
-                    navigate('/admin');
+                    navigate('/admin/adminmembers');
                 }else{
                     navigate('/dashboard/summary');
                 }
