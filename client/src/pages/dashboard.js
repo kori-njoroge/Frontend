@@ -21,9 +21,10 @@ export default function Dashboard(){
         Axios.post("http://localhost:3001/dashboard/summary" ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
-            console.log(reply);
+                const saver = reply.data[1].saver
+            console.log(reply.data);
                 setdashboardInfo({
-                    savings:"",
+                    savings:saver[1].savingsamount,
                     contribution:"",
                     loanIssued:"",
                     loanPayed:"",
@@ -31,7 +32,6 @@ export default function Dashboard(){
                     myLoanLimit:""
             
                 });
-                console.log(reply.data);
         window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
         }).catch(err =>{
             setdashboardInfo(prevState => prevState);

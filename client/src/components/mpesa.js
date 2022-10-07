@@ -42,6 +42,7 @@ export default function MpesaPay(){
                     firstname:currentUser.firstname,
                     lastname:currentUser.lastname,
                     phonenumber :currentUser.phonenumber,
+                    phonepay:formData.phonenumber,
                     amount:formData.amount,
                     purpose:formData.isChecked,
                     userid:currentUser.userId
@@ -84,19 +85,19 @@ export default function MpesaPay(){
                 />
                 <fieldset className="deposit--purpose">
                     <legend>Purpose</legend>
-                    <input 
+                    {/* <input 
                         type='radio'
                         name="isChecked"
                         value="Registration Fee"
                         onChange={handleFormData}
-                        checked = {formData.isChecked === "Registration fee"}
-                    /> Registration Fee<br/>
+                        checked = {formData.isChecked === "Registration Fee"}
+                    /> Registration Fee<br/> */}
                     <input 
                         type='radio'
                         name="isChecked"
                         value="Monthly Contribution"
                         onChange={handleFormData}
-                        checked ={formData.isChecked === "Monthly Contibution"}
+                        checked ={formData.isChecked === "Monthly Contribution"}
                     /> Monthly Contribution<br/>
 
                     <input 
@@ -104,7 +105,7 @@ export default function MpesaPay(){
                         name="isChecked"
                         value="Loan Service Fee"
                         onChange={handleFormData}
-                        checked ={formData.isChecked === "Loan Service fee"}
+                        checked ={formData.isChecked === "Loan Service Fee"}
                     /> Loan Service fee<br/>
                 </fieldset>
                 <div className="mpesaform--footer">
