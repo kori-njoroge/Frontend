@@ -6,24 +6,17 @@ import Axios from "axios"
 export default function Loans(){
 
     // const[loanData, setLoanData] = useState({loanData:[]});
-    const[userLoan, setUserLoan] = useState("");
+    const[userLoan, setUserLoan] = useState(window.localStorage.getItem("userId"));
     // const[userLoan, setUserLoan] = useState({userLoan:[]});
     const[loanee, setLoanee] = useState("");
     // const [rates, setRates] = useState({rates:[]});
 
-
-    useEffect(() =>{
-        const a = (JSON.parse(window.localStorage.getItem("currentUserDetails")));
-        if(a){
-            setUserLoan(a.userId);
-        }else{
-            // setLoanAdvice("");
-        }
-        
-    },[])
+    
     // console.log("***********************");
     // console.log(userLoan);
-
+    // const koriDate = joaninahDate.split('T')[0];                     IMPORTANTTTTTTTTTTTTTTTT.
+    // console.log("Joanina", koriDate)
+    
     useEffect(() =>{
         Axios.post('http://localhost:3001/myloans',{
             userId:userLoan
@@ -31,6 +24,8 @@ export default function Loans(){
             setLoanee(loaned.data[0])
             // console.log(loaned);
             // console.log(loanee)
+        }).catch(err =>{
+            console.log(err);
         })
     },[])
     
@@ -57,12 +52,13 @@ export default function Loans(){
                     </thead>
                     <tbody>
                         {loanee ? 
+                        
                         <tr>
                             <td>{loanee.loanId}</td>
                             <td>{loanee.loanId}</td>
                             <td>{loanee.amount}</td>
                             <td>{loanee.purpose}</td>
-                            <td>{loanee.createdAt}</td>
+                            <td>{(loanee.createdAt).split('T')[0]}</td>
                             <td>{loanee.loanStatus}</td>
                         </tr>
                         : <tr><td>You have no applied loans"</td ></tr>}

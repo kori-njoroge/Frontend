@@ -96,11 +96,12 @@ export default function ApplyLoan(){
                 <ul >
                     <li className="loan--item">You must be a Kenya citizen with verifiable documents.</li>
                     <li className="loan--item">You must be an active member of st Andrews Women Group.</li>
-                    <li className="loan--item">You must be a member of our group for atleast 3months.</li>
+                    <li className="loan--item">You must be a member of our group for atleast 3 months.</li>
                     <li className="loan--item">You must have shares atleast amounting to Ksh.3000.</li>
                     <li className="loan--item">You must have 2 guarantors who must be members of st Andrews Group.</li>
-                    <li className="loan--item">The maximum due time for any loan is  12months.</li>
+                    <li className="loan--item">The maximum due time for any loan is  12 months.</li>
                     <li className="loan--item">Your loan guarantors must be members of the group.</li>
+                    <li className="loan--item">We currently offer loans up to Ksh.500,000.</li>
                 </ul>
             </fieldset>
             <form className="form--loan" onSubmit={submitloanData}>

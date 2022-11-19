@@ -42,6 +42,7 @@ export default function Signin(){
             }else{
                 setLoginstatus(response.data[0].firstname);
                 window.localStorage.setItem("currentUserDetails", JSON.stringify(response.data[0]));
+                window.localStorage.setItem("userId", response.data[0].userId);
                 window.localStorage.setItem("username",response.data[0].firstname)
                 window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);

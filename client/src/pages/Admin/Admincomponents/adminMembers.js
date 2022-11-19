@@ -12,6 +12,11 @@ export default function Adminmembers(){
     const[more, setMore] = useState(false);
     const[userId, setuserId] = useState("");
 
+    // TO MORE DETAILS PROPS
+    const[userDetails, setUserDetails]= useState(null)
+    const[savingsdetails, setSavingsDetails]= useState(null)
+    const[loandetails, setLoanDetails]= useState(null)
+
 
     useEffect(() =>{
         Axios.post("http://localhost:3001/admin/adminMembers").then(members =>{
@@ -20,7 +25,41 @@ export default function Adminmembers(){
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
         })
     },[])
-    console.log(userId)
+    // console.log(userId)
+
+    function GetUserDetails(){
+        // useEffect(() =>{
+            if (userId){
+            // Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
+            //     userid:userId
+            // }).then(response =>{
+                // console.log(response.data)
+                ShareUserdetails();
+            //     setUserDetails(response.data[0].User)
+            //     setSavingsDetails(response.data[1].Savings)
+            //     setLoanDetails(response.data[2].loans) 
+            
+            // })
+        }
+        else{
+            console.log("No user id assigned no axios action executed!");
+        }
+        // },[])
+    }
+
+    function ShareUserdetails(){
+        Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
+            userid:userId
+        }).then(response =>{
+            // console.log(response.data)
+            ShareUserdetails();
+            setUserDetails(response.data[0].User)
+            setSavingsDetails(response.data[1].Savings)
+            setLoanDetails(response.data[2].loans) 
+            return;
+        
+        })
+    }
 
     
 
@@ -51,17 +90,18 @@ export default function Adminmembers(){
                             <td>0{member.phonenumber}</td>
                             <td>{member.IDnumber}</td>
                             <td>{member.email}</td>
-                            <td>{member.createdAt}</td>
-                            {/* <td>`${format(member.createdAt, 'yyyy/mm/dd')}`</td> */}
-                            {/* check code please for err */}
+                            <td>{(member.createdAt).split('T')[0]}</td>
                             <td className="button--moredetails"><NavLink to={'moredetails'}><button 
                             onClick={() =>{
+                                // window.location.reload(false);
                                 setuserId(member.userId)
                                 setMore(true)
+                                GetUserDetails();
+                                
                             }} 
                             className="admin--btn"
                             >More Details</button></NavLink></td>
-                            {/* <td className="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td> */}
+                            {/* <td cla.split('T')[0]ssName="button--moredetails"><button onClick={Guesswho} className="admin--btn">More<i className="fa fa-chevron-right" id="more--info--icon"></i> <i className="fa fa-chevron-right" id="more--info--icon"></i>Details</button></td> */}
                         </tr>
                     )
                     ))
@@ -71,6 +111,9 @@ export default function Adminmembers(){
                 {more ? 
                 <MoreDetails  
                     userid={userId}
+                    userdetails={userDetails}
+                    savingsdetails={savingsdetails}
+                    loandetails={loandetails}
                 /> 
                 : null}
         </div>

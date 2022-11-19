@@ -44,15 +44,15 @@ console.log(loanPay);
                         <th>#</th>
                         <th>Deposit Date</th>
                         <th>Amount</th>
-                        <th>Purpose</th>
+                        {/* <th>Purpose</th> */}
                     </tr>
                     {userSavings ?
                         userSavings.map(deposit =>(
                             <tr key={deposit.savingDepositId}>
                                 <td>{deposit.savingDepositId}</td>
-                                <td>{deposit.createdAt}</td>
+                                <td>{(deposit.createdAt).split('T')[0]}</td>
                                 <td>{deposit.savingsamount}</td>
-                                <td>{deposit.purpose}</td>
+                                {/* <td>{deposit.purpose}</td> */}
                             </tr>
                         ))
                     : null}
@@ -72,15 +72,15 @@ console.log(loanPay);
                         <th >#</th>
                         <th className="savings--grid">Deposit Date</th>
                         <th className="savings--grid">Amount(ksh)</th>
-                        <th>Purpose</th>
+                        {/* <th>Purpose</th> */}
                     </tr>
                         {loanPay? 
                         loanPay.map(loanDepo =>(
                             <tr key={loanDepo.savingDepositId}>
                                 <td>{loanDepo.savingDepositId}</td>
-                                <td>{loanDepo.createdAt}</td>
+                                <td>{(loanDepo.createdAt).split('T')[0]}</td>
                                 <td>{loanDepo.savingsamount}</td>
-                                <td>{loanDepo.purpose}</td>
+                                {/* <td>{loanDepo.purpose}</td> */}
                             </tr>
                         ))
                         : null}

@@ -20,10 +20,10 @@ export default function ApprovedLoans(){
             <table className="savings--table--admin">
                 <tbody>
                     <tr>
-                        <th>loanId</th>
-                        <th>name</th>
-                        <th>amount</th>
-                        <th>purpose</th>
+                        <th>LoanId</th>
+                        <th className="date--savings--admin">Name</th>
+                        <th>Amount(Ksh)</th>
+                        <th className="admin--purpose">Purpose</th>
                         <th>Duration</th>
                         <th>Application Date</th>
                         <th>Status</th>
@@ -33,10 +33,10 @@ export default function ApprovedLoans(){
                             <tr key={apploan.loanId}>
                                 <td>{apploan.loanId}</td>
                                 <td>{apploan.firstname} {apploan.lastname}</td>
-                                <td>{apploan.amount}</td>
+                                <td>{apploan.amount}.00</td>
                                 <td>{apploan.purpose}</td>
-                                <td>{apploan.purpose}</td>
-                                <td>{apploan.createdAt}</td>
+                                <td>{apploan.duration}</td>
+                                <td>{(apploan.createdAt).split('T')[0]}</td>
                                 <td>{apploan.loanStatus}</td>
                             </tr>
                         ))

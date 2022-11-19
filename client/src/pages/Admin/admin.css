@@ -83,6 +83,7 @@
     /* color: orange; */
     height: 1px;
     overflow-y:auto;
+    width: 25%;
 }
 
 /* ADMIN MEMBERS SECTION */
@@ -101,9 +102,9 @@
 .admin--email{
     width: 21%;
 }
+
 .admin--table--date{
-    color: red;
-    width: 20%;
+    width: 15%;
 }
 
 .button--moredetails{
@@ -146,20 +147,17 @@
 .current--user--position{
     background-color: rgb(210, 179, 240);
     margin:20px;
-    width: 120px;
+    width: 12%;
     height: 120px;
     border-radius: 5px;
-    /* padding-left: 13px;
-    padding-top: 10px;
-    padding-bottom: 10px; */
     padding: 15px;
 }
 .savings--table--admin{
-    width:70%;
+    width:85%;
 }
 
 .date--savings--admin{
-    width: 30%;
+    width: 20%;
 }
 
 /* //EVALUTIONSECTION */

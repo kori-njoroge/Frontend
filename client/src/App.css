@@ -346,12 +346,15 @@ legend{
 }
 
 .members-table{
-    /* width: 150%; */
-    padding-right: 0px;
+    padding-right: -10px;
     margin-bottom: 40px;
     margin-left: 30px;
     margin-top: 30px;
 }
+.members-table >table{
+    width: 70%;
+}
+
 
 
 
@@ -480,4 +483,11 @@ input::-webkit-inner-spin-button {
 .mpesaform--footer button:hover{
     background-color: rgb(176, 142, 209);
     
+}
+/* ERROR PAGE */
+
+.error--section{
+    /* color: red; */
+    margin: 13%;
+    margin-left: 35%;
 }

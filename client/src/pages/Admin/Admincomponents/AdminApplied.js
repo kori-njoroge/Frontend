@@ -36,10 +36,10 @@ export default function AppliedLoans(){
                             <th className="admin--ids">UserId</th>
                             <th className="admin--ids">LoanId</th>
                             <th className="admin--name">Name</th>
-                            <th className="admin--ids">Amount</th>
+                            <th className="admin--ids">Amount(Ksh)</th>
                             <th className="admin--table--big">Purpose</th>
                             <th className="admin--duration">Duration</th>
-                            <th className="admin--table--dte">Application Date</th>
+                            <th className="admin--table--date">Application Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -51,10 +51,10 @@ export default function AppliedLoans(){
                             <td >{loanee.UserUserId}</td>
                             <td >{loanee.loanId}</td>
                             <td>{loanee.firstname} {loanee.lastname}</td>
-                            <td>{loanee.amount}</td>
+                            <td>{loanee.amount}.00</td>
                             <td className="admin--purpose">{loanee.purpose}</td>
                             <td>{loanee.duration}</td>
-                            <td>{loanee.createdAt}</td>
+                            <td>{(loanee.createdAt).split('T')[0]}</td>
                             <td>{loanee.loanStatus}</td>
                             <td><NavLink to={'evaluation'}><button onClick={() =>{
                                 setCLickedUserid(loanee.UserUserId)

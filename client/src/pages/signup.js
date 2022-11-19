@@ -167,7 +167,7 @@ export default function Signup(){
                 if(resres.data.message === "Registration successful!"){
                     setTimeout(() => {
                     navigate('/signin');                
-                    }, 2000)
+                    }, 1500)
                 }
                 setUserAdvice(true);
                 return;

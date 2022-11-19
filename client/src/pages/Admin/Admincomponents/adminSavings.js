@@ -26,21 +26,21 @@ export default function AdminSaving(){
                     <th>#</th>
                     <th>Deposit Id</th>
                     <th>UserId</th>
-                    <th>Name</th>
+                    <th className="date--savings--admin">Name</th>
                     <th>Phone Number</th>
-                    <th className="date--savings--admin">Date made</th>
-                    <th>Amount</th>
+                    <th >Deposit Date</th>
+                    <th>Amount(Ksh)</th>
                 </tr>
             {memberSavers ?
                 memberSavers.map(savee =>(
                     <tr key={savee.savingDepositId}>
-                        <td>{savee.savingDepositId}</td>
+                        <td>{savee.UserUserId}</td>
                         <td>{savee.savingDepositId}</td>
                         <td>{savee.UserUserId}</td>
                         <td>{savee.firstname} {savee.lastname}</td>
-                        <td>{savee.phonenumber}</td>
-                        <td>{savee.createdAt}</td>
-                        <td>{savee.savingsamount}</td>
+                        <td>0{savee.phonenumber}</td>
+                        <td>{(savee.createdAt).split('T')[0]}</td>
+                        <td>{savee.savingsamount}.00</td>
                     </tr>
                 ))
             : null}
