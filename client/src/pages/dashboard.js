@@ -18,7 +18,7 @@ export default function Dashboard(){
     
     useEffect(() =>{
         const currentUserPhoneNumber  = window.localStorage.getItem("phonenumber");
-        Axios.post("http://localhost:3001/dashboard/summary" ,{
+        Axios.post("http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/dashboard/summary" ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
                 const saver = reply.data[1].saver
