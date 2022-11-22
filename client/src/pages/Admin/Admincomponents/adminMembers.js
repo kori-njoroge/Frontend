@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios  from "axios";
-import New from "./new";
+// import New from "./new";
 import { NavLink } from "react-router-dom";
 import MoreDetails from "./moredetails";
 
@@ -10,7 +10,6 @@ export default function Adminmembers(){
 
     const[members, setMembers] = useState("");
     const[more, setMore] = useState(false);
-    const[userId, setuserId] = useState("");
 
     // TO MORE DETAILS PROPS
     const[userDetails, setUserDetails]= useState(null)
@@ -25,43 +24,6 @@ export default function Adminmembers(){
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
         })
     },[])
-    // console.log(userId)
-
-    function GetUserDetails(){
-        // useEffect(() =>{
-            if (userId){
-            // Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
-            //     userid:userId
-            // }).then(response =>{
-                // console.log(response.data)
-                ShareUserdetails();
-            //     setUserDetails(response.data[0].User)
-            //     setSavingsDetails(response.data[1].Savings)
-            //     setLoanDetails(response.data[2].loans) 
-            
-            // })
-        }
-        else{
-            console.log("No user id assigned no axios action executed!");
-        }
-        // },[])
-    }
-
-    function ShareUserdetails(){
-        Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
-            userid:userId
-        }).then(response =>{
-            // console.log(response.data)
-            ShareUserdetails();
-            setUserDetails(response.data[0].User)
-            setSavingsDetails(response.data[1].Savings)
-            setLoanDetails(response.data[2].loans) 
-            return;
-        
-        })
-    }
-
-    
 
 
     return(
@@ -93,11 +55,15 @@ export default function Adminmembers(){
                             <td>{(member.createdAt).split('T')[0]}</td>
                             <td className="button--moredetails"><NavLink to={'moredetails'}><button 
                             onClick={() =>{
-                                // window.location.reload(false);
-                                setuserId(member.userId)
-                                setMore(true)
-                                GetUserDetails();
-                                
+                                setMore(true);
+                                Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
+                                    userid:member.userId
+                                }).then(response =>{
+                                    console.log(response.data)
+                                    setUserDetails(response.data[0].User)
+                                    setSavingsDetails(response.data[1].Savings)
+                                    setLoanDetails(response.data[2].loans) 
+                                })
                             }} 
                             className="admin--btn"
                             >More Details</button></NavLink></td>
@@ -110,7 +76,6 @@ export default function Adminmembers(){
                 </table>
                 {more ? 
                 <MoreDetails  
-                    userid={userId}
                     userdetails={userDetails}
                     savingsdetails={savingsdetails}
                     loandetails={loandetails}

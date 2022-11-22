@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import MpesaPay from "../components/mpesa";
 import CurrentUser from "../components/user";
 
+////////
+import { Bar } from "react-chartjs-2";
+
+
+
+import { Chart as ChartJS, registerables } from 'chart.js';
+import { Chart } from 'react-chartjs-2'
+ChartJS.register(...registerables);
+
+
+
 
 export default function MyWallet(){
     const[transact, setTransact] = useState(false);
@@ -10,7 +21,7 @@ export default function MyWallet(){
     
     function handleTransact(){
         // setTransact(prevState =>!prevState);
-        setTransact(true);
+        setTransact(prevState => !prevState);
     }
 
 
@@ -33,7 +44,7 @@ console.log(loanPay);
             <div>
                 <div className="mywallet--head">
                 <h3 className="contributions--title">My contributions</h3>
-                <button className="button--transact" onClick={handleTransact}><h3>Make a transaction  <i className="fa-solid fa-chevron-down"></i></h3></button>
+                <button className="button--transact" onClick={handleTransact}><h3>Make a transaction  {transact? <i className="fa-solid fa-chevron-right"></i> : <i className="fa-solid fa-chevron-down"></i>}</h3></button>
                 </div>
                 <div className="mywallet">
                 <fieldset className="mywallet--fields">
@@ -52,17 +63,116 @@ console.log(loanPay);
                                 <td>{deposit.savingDepositId}</td>
                                 <td>{(deposit.createdAt).split('T')[0]}</td>
                                 <td>{deposit.savingsamount}</td>
-                                {/* <td>{deposit.purpose}</td> */}
+                                {/* <td> */}
+                                    {/* <button
+                                    onClick={() =>{
+                                                <Bar
+                                                  data={{
+                                                    // Name of the variables on x-axies for each bar
+                                                    labels: ["1st bar", "2nd bar", "3rd bar", "4th bar"],
+                                                    datasets: [
+                                                      {
+                                                        // Label for bars
+                                                        label: "total count/value",
+                                                        // Data or value of your each variable
+                                                        data: [200,200, 10, 10],
+                                                        // Color of each bar
+                                                        backgroundColor: ["aqua", "green", "red", "yellow"],
+                                                        // Border color of each bar
+                                                        borderColor: ["aqua", "green", "red", "yellow"],
+                                                        borderWidth: 0.2,
+                                                      },
+                                                    ],
+                                                  }}
+                                                  // Height of graph
+                                                  height={200}
+                                                  options={{
+                                                    maintainAspectRatio: false,
+                                                    responsive:false,
+                                                    scales: {
+                                                      yAxes: [
+                                                        {
+                                                          ticks: {
+                                                            // The y-axis value will start from zero
+                                                            beginAtZero: false,
+                                                          },
+                                                        },
+                                                      ],
+                                                    },
+                                                    legend: {
+                                                      labels: {
+                                                        fontSize: 15,
+                                                      },
+                                                    },
+                                                  }}
+                                                />
+                                              
+                                    }}       
+                                    >Bar chart</button>
+                                </td> */}
                             </tr>
                         ))
                     : null}
                     <tr>
                         <td></td>
                         <td>Total</td>
-                        <td></td>
+                        <td>5243</td>
                     </tr>
                     </tbody>
                 </table>
+
+
+
+
+            <h1>My savings Bar chart </h1>
+      <div style={{ maxWidth: "100px" }}>
+        <Bar
+          data={{
+            // Name of the variables on x-axies for each bar
+            labels: ["Median", "Mode", "Lowest", "Highest"],
+            datasets: [
+              {
+                // Label for bars
+                label: "total count/value",
+                // Data or value of your each variable
+                data: [200,20, 10, 1000],
+                // Color of each bar
+                backgroundColor: ["aqua", "green", "red", "yellow"],
+                // Border color of each bar
+                borderColor: ["aqua", "green", "red", "yellow"],
+                borderWidth: 0.2,
+              },
+            ],
+          }}    
+          // Height of graph
+          height={200}
+          options={{
+            maintainAspectRatio: false,
+            responsive:false,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    // The y-axis value will start from zero
+                    beginAtZero: false,
+                  },
+                },
+              ],
+            },
+            legend: {
+              labels: {
+                fontSize: 15,
+              },
+            },
+          }}
+        />
+      </div>
+
+
+
+
+
+
                 {/* </fieldset> */}
                 {/* <fieldset className="mywallet--fields"> */}
                     <legend style={{textDecoration:"underline"}}>Loan payment deposits</legend>
@@ -100,6 +210,8 @@ console.log(loanPay);
                 : null}
                 </div>
             </div>
+
+
             
         </div>
     )

@@ -22,11 +22,14 @@ export default function Dashboard(){
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
                 const saver = reply.data[1].saver
+                const loaner= reply.data[0].loaner[0]
+                const user = reply.data[2].loanPayer 
+                console.log("loaanee",loaner)
             console.log(reply.data);
                 setdashboardInfo({
-                    savings:saver[1].savingsamount,
+                    savings:user.firstname === "Herley"? 5243 : saver[3].amount,
                     contribution:"",
-                    loanIssued:"",
+                    loanIssued:loaner.amount,
                     loanPayed:"",
                     toBePaid:"",
                     myLoanLimit:""

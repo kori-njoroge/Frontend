@@ -63,7 +63,7 @@ export default function MpesaPay(){
                 <input 
                 className="amount--phone" 
                 type ="tel" 
-                placeholder="254(7/1)xxxxxxxx" 
+                placeholder="2547/1xxxxxxxx" 
                 id="PhoneNumberMpesa"
                 name="phonenumber"
                 value={formData.phonenumber}
@@ -109,11 +109,21 @@ export default function MpesaPay(){
                     /> Loan Service fee<br/>
                 </fieldset>
                 <div className="mpesaform--footer">
-                    <button type="button">Cancel</button>
+                    <button 
+                    type="button"
+                    onClick={() =>{
+                        window.alert("Transaction Cancelled!")
+                        setFormData({
+                            phonenumber: "",
+                            amount: "",
+                            isChecked:false,
+                            });
+                    }}
+                    >Cancel</button>
                     <button>Confirm</button>
                 </div>
             </form>
-            {deposit? <p className="invalid">{errorMessage}</p> : null}
+            {deposit? <p className={errorMessage.length > 25? "invalid" : "valid"}>{errorMessage}</p> : null}
         </div>
     )
 }

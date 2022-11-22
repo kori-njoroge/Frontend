@@ -1,10 +1,5 @@
-import  Axios  from "axios";
-import React, { useEffect, useState } from "react";
 
 export default function MoreDetails(props){
-    const[savingsData,setSavingsData] = useState("");
-    const[loanData,setloanData]= useState("");
-    const[user, setUser] = useState("");
     
     console.log("props",props.userid)
     console.log("props",props.userdetails)
@@ -12,16 +7,7 @@ export default function MoreDetails(props){
     console.log("props",props.loandetails)
 
 
-    // useEffect(() =>{
-    //     Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
-    //         userid:props.userid
-    //     }).then(response =>{
-    //         console.log(response.data)
-    //         setUser(response.data[0].User);
-    //         setSavingsData(response.data[1].Savings);
-    //         setloanData(response.data[2].loans);
-    //     })
-    // },[])
+
 
     return(
         <div>
@@ -42,8 +28,8 @@ export default function MoreDetails(props){
                         </tr>
                     </thead>
                     <tbody>
-                        {user?
-                        user.map(member =>(
+                        {props.userdetails?
+                        props.userdetails.map(member =>(
                             (member.firstname === "Admin" ?  "":
                         <tr key={member.userId}>
                             <td>{member.userId}</td>
@@ -61,20 +47,19 @@ export default function MoreDetails(props){
                 </table>
             </fieldset>
             {/* <hr width="95%" size="2" color="white"/> */}
-            <fieldset>
+            <fieldset className="moredetails--savings">
                 <legend>Savings Details</legend>
                 <table className="admin--memers--table">
                     <thead>
                     <tr>
-                    {/* <th>#</th> */}
                     <th>Deposit Id</th>
                     <th >Deposit Date</th>
                     <th>Amount(Ksh)</th>
                 </tr>
                     </thead>
                     <tbody>
-                        {savingsData.length > 0?
-                        savingsData.map(savee =>(
+                        {props.savingsdetails === null?  "No savings" :
+                        props.savingsdetails.map(savee =>(
                             (savee.firstname === "Admin" ?  "":
                             <tr key={savee.savingDepositId}>
                             <td>{savee.savingDepositId}</td>
@@ -83,7 +68,7 @@ export default function MoreDetails(props){
                         </tr>
                     )
                     ))
-                    : "No savings"}
+                    }
                     </tbody>
                 </table>
             </fieldset>
@@ -100,12 +85,14 @@ export default function MoreDetails(props){
                             <th className="admin--table--big">Purpose</th>
                             <th className="admin--duration">Duration</th>
                             <th className="admin--table--date">Application Date</th>
+                            <th className="admin--name">Guarantor 1</th>
+                            <th className="admin--name">Guarantor 2</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {loanData.length > 0?
-                        loanData.map(loanee =>(
+                        {props.loandetails === null?  "No loan!" :
+                        props.loandetails.map(loanee =>(
                         (loanee.firstname === "Admin" ?  "":
                         <tr key={loanee.UserUserId}>
                             <td >{loanee.UserUserId}</td>
@@ -115,11 +102,13 @@ export default function MoreDetails(props){
                             <td className="admin--purpose">{loanee.purpose}</td>
                             <td>{loanee.duration}</td>
                             <td>{(loanee.createdAt).split('T')[0]}</td>
+                            <td>{loanee.g1firstname} {loanee.g1lastname}</td>
+                            <td>{loanee.g2firstname} {loanee.g2lastname}</td>
                             <td>{loanee.loanStatus}</td>
                         </tr>
                     )
                     ))
-                    : "No loans!"}
+                    }
                     </tbody>
                 </table>
             </fieldset>

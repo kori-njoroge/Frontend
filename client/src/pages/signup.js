@@ -151,7 +151,8 @@ export default function Signup(){
         if(confirmpassword !== password){
             setAdvice(true);
         }else{
-        Axios.post('http://localhost:3001/signup',
+        Axios.post('http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/signup',
+        
         {
             firstname: singupData.firstname, 
             lastname: singupData.lastname, 
