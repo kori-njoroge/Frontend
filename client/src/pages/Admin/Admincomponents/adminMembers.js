@@ -3,6 +3,7 @@ import Axios  from "axios";
 // import New from "./new";
 import { NavLink } from "react-router-dom";
 import MoreDetails from "./moredetails";
+import Link from "../../../components/link";
 
 
 
@@ -18,7 +19,7 @@ export default function Adminmembers(){
 
 
     useEffect(() =>{
-        Axios.post("http://localhost:3001/admin/adminMembers").then(members =>{
+        Axios.post(`${Link}/admin/adminMembers`).then(members =>{
             console.log(members);
             setMembers(members.data[0].User)
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
@@ -56,7 +57,7 @@ export default function Adminmembers(){
                             <td className="button--moredetails"><NavLink to={'moredetails'}><button 
                             onClick={() =>{
                                 setMore(true);
-                                Axios.post('http://localhost:3001/admin/adminMembers/moredetails',{
+                                Axios.post(`${Link}/admin/adminMembers/moredetails`,{
                                     userid:member.userId
                                 }).then(response =>{
                                     console.log(response.data)

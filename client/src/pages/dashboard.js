@@ -2,6 +2,8 @@ import  Axios  from "axios";
 import React from "react";
 import CurrentUser from "../components/user";
 import {useEffect,useState } from "react";
+import ApiLink from '../components/link'
+
 
 
 export default function Dashboard(){
@@ -18,9 +20,10 @@ export default function Dashboard(){
     
     useEffect(() =>{
         const currentUserPhoneNumber  = window.localStorage.getItem("phonenumber");
-        Axios.post("http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/dashboard/summary" ,{
+        Axios.post(`${ApiLink}/dashboard/summary` ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
+                window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
                 const saver = reply.data[1].saver
                 const loaner= reply.data[0].loaner[0]
                 const user = reply.data[2].loanPayer 
@@ -35,7 +38,7 @@ export default function Dashboard(){
                     myLoanLimit:""
             
                 });
-        window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
+        // window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
         }).catch(err =>{
             setdashboardInfo(prevState => prevState);
         })

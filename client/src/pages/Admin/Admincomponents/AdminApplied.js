@@ -3,6 +3,7 @@ import Axios from 'axios'
 import { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import Evaluation from "./evaluation";
+import Link from "../../../components/link";
 
 
 export default function AppliedLoans(){
@@ -18,7 +19,7 @@ export default function AppliedLoans(){
 
 
     useEffect(() =>{
-        Axios.post("http://localhost:3001/admin/adminMembers").then(members =>{
+        Axios.post(`${Link}/admin/adminMembers`).then(members =>{
             // console.log(members.data);
             setLoans(members.data[1].Loans)
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));

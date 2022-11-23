@@ -1,12 +1,13 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import Link from "../../../components/link";
 
 export default function ApprovedLoans(){
 
     const[approvedloan, setApprovedLoan] = useState()
 
     useEffect(() =>{
-        Axios.post("http://localhost:3001/approvedloans").then(loansapproved =>{
+        Axios.post(`${Link}/approvedloans`).then(loansapproved =>{
             console.log(loansapproved);
             setApprovedLoan(loansapproved.data)
         })

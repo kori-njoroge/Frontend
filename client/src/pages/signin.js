@@ -2,10 +2,12 @@ import React from "react";
 import {useState, useEffect} from "react"
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
+import ApiLink from "../components/link";
 
 
 import '../styles/signin.css'
 import pic from '../images/Cafebord-2-COLOURBOX23980354-1024x1024-1.jpg'
+
 
 
 export default function Signin(){
@@ -32,7 +34,7 @@ export default function Signin(){
 
     function SigninFunc(event){
         event.preventDefault();
-        Axios.post('http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/signin',
+        Axios.post(`${ApiLink}/signin`,
         {   
             phonenumber: signinData.phonenumber,
             password: signinData.password,

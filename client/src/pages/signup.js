@@ -8,6 +8,7 @@ import axios from "axios";
 import PWDRequisite from "./pswRequiste";
 import PhoneRequisite from "./phoneRequisite";
 import { NavLink } from "react-router-dom";
+import ApiLink from "../components/link";
 
 export default function Signup(){
     
@@ -151,7 +152,7 @@ export default function Signup(){
         if(confirmpassword !== password){
             setAdvice(true);
         }else{
-        Axios.post('http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/signup',
+        Axios.post(`${ApiLink}/signup`,
         
         {
             firstname: singupData.firstname, 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CurrentUser from "../components/user";
 import Axios from "axios"
+import Link from "../components/link";
 
 
 export default function Loans(){
@@ -18,7 +19,7 @@ export default function Loans(){
     // console.log("Joanina", koriDate)
     
     useEffect(() =>{
-        Axios.post('http://localhost:3001/myloans',{
+        Axios.post(`${Link}/myloans`,{
             userId:userLoan
         }).then(loaned =>{
             setLoanee(loaned.data[0])

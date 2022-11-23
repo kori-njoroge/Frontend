@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import Link from "../../../components/link";
 
 export default function AdminSaving(){
 
     const[memberSavers, setSavers] = useState();
 
     useEffect(() =>{
-        Axios.post('http://localhost:3001/adminsavings').then(savers =>{
+        Axios.post(`${Link}/adminsavings`).then(savers =>{
             // console.log(savers.data);
             if(savers){
                 setSavers(savers.data)

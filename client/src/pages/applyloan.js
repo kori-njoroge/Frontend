@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Axios from 'axios'
 import CurrentUser from "../components/user";
+import Link from "../components/link";
 
 
 export default function ApplyLoan(){
@@ -22,11 +23,11 @@ export default function ApplyLoan(){
             purpose:"",
             g1firstName:"",
             g1lastName:"",
-            g1IDnumber:"",
+            // g1IDnumber:"",
             g1phoneNumber:"",
             g2firstName:"",
             g2lastName:"",
-            g2IDnumber:"",
+            // g2IDnumber:"",
             g2phoneNumber:""
         }
         )
@@ -50,7 +51,7 @@ export default function ApplyLoan(){
                 "Confirm Loan application!"
                 )
                 if (confirmBox === true) {
-                    Axios.post('http://localhost:3001/applyloan',
+                    Axios.post(`${Link}/applyloan`,
                     {
                         
                         firstName:userDetails.firstname,
@@ -62,11 +63,11 @@ export default function ApplyLoan(){
                         purpose:applicationformData.purpose,
                         g1firstName:applicationformData.g1firstName,
                         g1lastName:applicationformData.g1lastName,
-                        g1IDnumber:applicationformData.g1IDnumber,
+                        // g1IDnumber:applicationformData.g1IDnumber,
                         g1phoneNumber:applicationformData.g1phoneNumber,
                         g2firstName:applicationformData.g2firstName,
                         g2lastName:applicationformData.g2lastName,
-                        g2IDnumber:applicationformData.g2IDnumber,
+                        // g2IDnumber:applicationformData.g2IDnumber,
                         g2phoneNumber:applicationformData.g2phoneNumber,
                         useridentity:userDetails.userId
                     }).then(response =>{
@@ -101,7 +102,7 @@ export default function ApplyLoan(){
                     <li className="loan--item">You must have 2 guarantors who must be members of st Andrews Group.</li>
                     <li className="loan--item">The maximum due time for any loan is  12 months.</li>
                     <li className="loan--item">Your loan guarantors must be members of the group.</li>
-                    <li className="loan--item">We currently offer loans up to Ksh.500,000.</li>
+                    <li className="loan--item">We currently offer loans up to <b>Ksh.500,000</b>.</li>
                 </ul>
             </fieldset>
             <form className="form--loan" onSubmit={submitloanData}>
@@ -226,7 +227,7 @@ export default function ApplyLoan(){
 
                     <br />
                     <br />
-                    <label htmlFor="g1idNumber">ID Number*</label>
+                    {/* <label htmlFor="g1idNumber">ID Number*</label>
                     <input 
                     className="loan--input" 
                     id="g1idNumber" 
@@ -235,7 +236,7 @@ export default function ApplyLoan(){
                     value={applicationformData.g1IDnumber}
                     onChange={handlesChangeAppLoan} 
                     required 
-                    />
+                    /> */}
 
                     <label htmlFor="g1phoneNumber">Phone Number*:</label>
                     <input 
@@ -276,7 +277,7 @@ export default function ApplyLoan(){
 
                     <br />
                     <br />
-                    <label htmlFor="g2idNumber">ID Number*</label>
+                    {/* <label htmlFor="g2idNumber">ID Number*</label>
                     <input 
                     className="loan--input" 
                     id="g2idNumber" 
@@ -285,7 +286,7 @@ export default function ApplyLoan(){
                     value={applicationformData.g2IDnumber}
                     onChange={handlesChangeAppLoan} 
                     required
-                    />
+                    /> */}
 
                     <label htmlFor="g2phoneNumber">Phone Number*:</label>
                     <input 

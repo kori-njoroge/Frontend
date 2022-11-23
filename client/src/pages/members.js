@@ -1,6 +1,7 @@
 import React, { useEffect,useState} from "react";
 import CurrentUser from "../components/user";
 import Axios from "axios";
+import Link from "../components/link";
 
 
 export default function Members(){
@@ -8,7 +9,7 @@ export default function Members(){
     const[members, setMembers] = useState([]);
 
     useEffect(() =>{
-        Axios.post("http://localhost:3001/members").then(result =>{
+        Axios.post(`${Link}/members`).then(result =>{
             setMembers(result.data)
             console.log(members)
         }).catch(err =>{

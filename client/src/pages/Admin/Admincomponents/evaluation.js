@@ -1,5 +1,6 @@
 import  Axios  from "axios";
 import React from "react";
+import Link from "../../../components/link";
 
 export default function Evaluation(props){
     console.log(props.userid)
@@ -29,7 +30,7 @@ export default function Evaluation(props){
 function handleapprove(){
     const a = window.confirm("Confirm Loan Approval!");
     if(a){
-        Axios.post('http://localhost:3001/admin/appliedloans/evaluation',{
+        Axios.post(`${Link}/admin/appliedloans/evaluation`,{
             status:"Yaay!",
             loanid:loanID
         }).then(response =>{
@@ -41,7 +42,7 @@ function handleapprove(){
 function handlerejection(){
     const a = window.confirm("Confirm loan rejection!");
     if(a){
-        Axios.post("http://localhost:3001/admin/appliedloans/evaluation",{
+        Axios.post(`${Link}/admin/appliedloans/evaluation`,{
             status:"Boo!",
             loanid:loanID
         }).then(response =>{
