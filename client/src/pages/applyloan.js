@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Axios from 'axios'
 import CurrentUser from "../components/user";
@@ -19,7 +19,7 @@ export default function ApplyLoan(){
             IDnumber:"",
             phonenumber:"",
             amount:"",
-            duration:"3 months",
+            duration:"",
             purpose:"",
             g1firstName:"",
             g1lastName:"",
@@ -31,6 +31,14 @@ export default function ApplyLoan(){
             g2phoneNumber:""
         }
         )
+
+        const[wrongAmount, setWrong]= useState(false);
+        const[members, setMembers]= useState("");
+
+        useEffect( () =>{
+            const k = JSON.parse(window.localStorage.getItem("AllMembers"));
+            setMembers(k);
+        },[])
 
 
         function handlesChangeAppLoan(event){
@@ -47,10 +55,18 @@ export default function ApplyLoan(){
         
         function submitloanData(event){
             event.preventDefault();
-            const confirmBox = window.confirm(
-                "Confirm Loan application!"
-                )
-                if (confirmBox === true) {
+                if((applicationformData.g1phoneNumber=== userDetails.phonenumber) || (applicationformData.g2phoneNumber=== userDetails.phonenumber)){
+                    window.alert("You cant be your own Guarantor!")
+                    
+                }else{
+                
+                if (applicationformData.amount > 500000) {
+                    window.alert('Check your amount!')
+                    }else{
+                    const confirmBox = window.confirm(
+                        "Confirm Loan application!"
+                        )
+                    if(confirmBox === true){
                     Axios.post(`${Link}/applyloan`,
                     {
                         
@@ -74,11 +90,36 @@ export default function ApplyLoan(){
                         console.log(response.data.message);
                         if(response){
                             alert(response.data.message);
-                        }
+                            if(response.data.message === "You already applied for a loan"){
+                            setApplicationformData(
+                                {
+                                    firstName:"",
+                                    lastName:"",
+                                    IDnumber:"",
+                                    phonenumber:"",
+                                    amount:"",
+                                    duration:"3 months",
+                                    purpose:"",
+                                    g1firstName:"",
+                                    g1lastName:"",
+                                    // g1IDnumber:"",
+                                    g1phoneNumber:"",
+                                    g2firstName:"",
+                                    g2lastName:"",
+                                    // g2IDnumber:"",
+                                    g2phoneNumber:""
+                                }
+                                )
+                            }else{
 
+                            }
+                        }
+                        
                     })
                 }else{
                     handlecancelLoan();
+                }
+            }
             }
         }
 
@@ -88,6 +129,15 @@ export default function ApplyLoan(){
             setApplicationformData(prevState => prevState);
             return alert("Loan application aborted!");
         }
+
+
+        function HandlesOnkeyupAmount(){
+            const value = applicationformData.amount
+            const amountCheck = value>500001;
+            setWrong(amountCheck);
+            // console.log(amountCheck);
+        }
+
 
     return(
         <div>
@@ -170,8 +220,10 @@ export default function ApplyLoan(){
                     name="amount"
                     value={applicationformData.amount}
                     onChange={handlesChangeAppLoan} 
+                    onKeyUp={HandlesOnkeyupAmount}
                     required
                     />
+                    {wrongAmount? <h3 className="invalid">The amount ({applicationformData.amount}) is above the limit</h3>: ""}
 
                     <label>Payment duration: </label>
                     <select
@@ -203,6 +255,35 @@ export default function ApplyLoan(){
                 <fieldset className="guarantors--section">
                     <legend>Input your guarantors details</legend>
                     <h4>Guarantor 1:</h4>
+
+
+                    
+
+
+                <label>Guarantor 1: </label>
+
+                    <select
+                        name="g1firstName"
+                        value={applicationformData.g1firstName}
+                        onChange={handlesChangeAppLoan}
+                        required
+                    >
+                        {members?
+                        members.map(member =>(
+                            (member.firstname === "Admin" ? "" :
+                        <>
+                        <option value={member.firstname}>{member.firstname}</option>
+                        </>
+                    )
+                        ))
+                        : ""}
+
+
+                    </select>
+
+                    <br />
+                    <br />
+
                     <label htmlFor="g1firstName">First Name*</label>
                     <input 
                     className="loan--input" 
@@ -253,6 +334,30 @@ export default function ApplyLoan(){
                     <br />
 
                     <h4>Guarantor 2:</h4>
+
+                    <label>Guarantor 2: </label>
+
+                    <select
+                        name="g2firstName"
+                        value={applicationformData.g2firstName}
+                        onChange={handlesChangeAppLoan}
+                        required
+                    >
+                        {members?
+                        members.map(member =>(
+                            (member.firstname === "Admin" ? "" :
+                        <>
+                        <option value={member.firstname}>{member.firstname}</option>
+                        </>
+                    )
+                        ))
+                        : ""}
+
+
+                    </select>
+
+                    <br />
+                    <br />
                     <label htmlFor="g2firstName">First Name*</label>
                     <input 
                     className="loan--input" 

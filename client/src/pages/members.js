@@ -11,6 +11,7 @@ export default function Members(){
     useEffect(() =>{
         Axios.post(`${Link}/members`).then(result =>{
             setMembers(result.data)
+            window.localStorage.setItem("AllMembers",JSON.stringify(result.data));
             console.log(members)
         }).catch(err =>{
             console.log(err);
