@@ -21,10 +21,10 @@ import Admin from './pages/Admin/admin';
 import AdminMembers from './pages/Admin/Admincomponents/adminMembers';
 import AppliedLoans from './pages/Admin/Admincomponents/AdminApplied';
 import ApprovedLoans from './pages/Admin/Admincomponents/ApprovedAdmin';
-import DisbursedLoans from './pages/Admin/Admincomponents/disbursedLoans';
 import AdminSaving from './pages/Admin/Admincomponents/adminSavings';
 import Evaluation from './pages/Admin/Admincomponents/evaluation';
 import MoreDetails from './pages/Admin/Admincomponents/moredetails';
+import GroupAccounts from './pages/Admin/Admincomponents/groupaccounts';
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           <Route path='evaluation' element ={<Evaluation />}/>
           </Route>
           <Route path='approvedloans' element ={<ApprovedLoans />}/>
-          <Route path='disbursedloans' element = {<DisbursedLoans />}/>
+          <Route path='groupaccounts' element = {<GroupAccounts />}/>
           <Route path='adminsavings' element ={<AdminSaving />}/>
           </Route>
           <Route path='/signup' element ={<Signup/>}/>

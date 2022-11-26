@@ -9,7 +9,10 @@ import { Bar } from "react-chartjs-2";
 
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart } from 'react-chartjs-2'
+import Axios  from "axios";
+import ApiLink from "../components/link";
 ChartJS.register(...registerables);
+
 
 
 
@@ -18,6 +21,9 @@ export default function MyWallet(){
     const[transact, setTransact] = useState(false);
     const[userSavings, setSavings] = useState([]);
     const[loanPay, setLoanPay] = useState([]);
+    const[total, setTotal]= useState("");
+    const[loantotal, setLoanTotal]= useState("");
+
     
     function handleTransact(){
         // setTransact(prevState =>!prevState);
@@ -27,14 +33,21 @@ export default function MyWallet(){
 
 
 useEffect(() =>{
-    const a = JSON.parse(window.localStorage.getItem("UserAll"));
-    setSavings(a[1].saver);
-    setLoanPay(a[2].loanPayer)
+    const a = JSON.parse(window.localStorage.getItem("userId"));
+    Axios.post(`${ApiLink}/mywallet`,{
+        userId: a
+    }).then(reply =>{
+        console.log(reply.data);
+        setTotal(reply.data[0].total[0].total)
+        setSavings(reply.data[1].saver);
+        setLoanTotal(reply.data[2].loantotal[0].total)
+        setLoanPay(reply.data[3].loanPayer)
+    })
     // console.log(userSavings);
 },[])
 
-console.log(userSavings);
-console.log(loanPay);
+// console.log(userSavings);
+console.log(total);
 
 
 
@@ -115,8 +128,8 @@ console.log(loanPay);
                     : null}
                     <tr>
                         <td></td>
-                        <td>Total</td>
-                        <td>5243</td>
+                        <td><b>Total</b></td>
+                        <td><b>{total? total : 0}.00</b></td>
                     </tr>
                     </tbody>
                 </table>
@@ -196,8 +209,8 @@ console.log(loanPay);
                         : null}
                         <tr>
                         <td></td>
-                        <td>Total</td>
-                        <td></td>
+                        <td><b>Total</b></td>
+                        <td><b>{loantotal? loantotal : 0}.00</b></td>
                         </tr>
                     </tbody>
                 </table>

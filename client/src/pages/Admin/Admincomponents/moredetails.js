@@ -5,6 +5,8 @@ export default function MoreDetails(props){
     console.log("props",props.userdetails)
     console.log("props",props.savingsdetails)
     console.log("props",props.loandetails)
+    console.log("props/savings",props.savingsTotal)
+
 
 
 
@@ -69,6 +71,11 @@ export default function MoreDetails(props){
                     )
                     ))
                     }
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td><b></b></td>
+                        <td><b>{props.savingsTotal}.00</b></td>
+                    </tr>
                     </tbody>
                 </table>
             </fieldset>

@@ -16,7 +16,7 @@ export default function AdminSideBar(){
             <hr width="90%" size="1" color="white"/>
             <NavLink to={'approvedloans'} style={{textDecoration:"none"}} ><h3 ><i className="fa-solid fa-hand-holding-dollar"></i>  Approved Loans </h3></NavLink>
             <hr width="90%" size="1" color="white"/>
-            <NavLink to={'disbursedloans'} style={{textDecoration:"none"}} ><h3 ><i className="fa-solid fa-money-check-dollar"></i>  Disbursed Loans </h3></NavLink>
+            <NavLink to={'groupaccounts'} style={{textDecoration:"none"}} ><h3 ><i className="fa-solid fa-money-check-dollar"></i>  Group Accounts </h3></NavLink>
             <hr width="90%" size="1" color="white"/>
         </div>
     )

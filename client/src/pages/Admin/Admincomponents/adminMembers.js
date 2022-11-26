@@ -16,6 +16,7 @@ export default function Adminmembers(){
     const[userDetails, setUserDetails]= useState(null)
     const[savingsdetails, setSavingsDetails]= useState(null)
     const[loandetails, setLoanDetails]= useState(null)
+    const[savingsTotal, setsavingsTotal]= useState(null)
 
 
     useEffect(() =>{
@@ -63,7 +64,12 @@ export default function Adminmembers(){
                                     console.log(response.data)
                                     setUserDetails(response.data[0].User)
                                     setSavingsDetails(response.data[1].Savings)
-                                    setLoanDetails(response.data[2].loans) 
+                                    setLoanDetails(response.data[2].loans)
+                                    if(response.data[3].total[0].total){
+                                        setsavingsTotal(response.data[3].total[0].total)
+                                    }else{
+                                        setsavingsTotal(0);
+                                    }
                                 })
                             }} 
                             className="admin--btn"
@@ -80,6 +86,7 @@ export default function Adminmembers(){
                     userdetails={userDetails}
                     savingsdetails={savingsdetails}
                     loandetails={loandetails}
+                    savingsTotal={savingsTotal}
                 /> 
                 : null}
         </div>

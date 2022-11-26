@@ -5,18 +5,20 @@ import Link from "../../../components/link";
 export default function AdminSaving(){
 
     const[memberSavers, setSavers] = useState();
+    const[savingsTotal, setTotalSavings] = useState();
 
     useEffect(() =>{
         Axios.post(`${Link}/adminsavings`).then(savers =>{
-            // console.log(savers.data);
+            console.log(savers.data);
             if(savers){
-                setSavers(savers.data)
+                setSavers(savers.data[0].savers);
+                setTotalSavings(savers.data[1].total[0].total)
             }else{
                 console.log("Sorry No Savers!")
             }
         })
     },[2])
-    // console.log(memberSavers);
+    console.log(savingsTotal);
 
     return(
         <div>
@@ -45,6 +47,15 @@ export default function AdminSaving(){
                     </tr>
                 ))
             : null}
+                    <tr>
+                        <td></td>
+                        <td><b>Total</b></td>
+                        <td><b></b></td>
+                        <td><b></b></td>
+                        <td><b></b></td>
+                        <td><b></b></td>
+                        <td><b>{savingsTotal}.00</b></td>
+                    </tr>
             </tbody>
             </table>
         </div>

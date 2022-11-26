@@ -58,7 +58,7 @@ export default function Signin(){
     }
 
     useEffect (() =>{
-        Axios.get('http://ec2-3-80-209-220.compute-1.amazonaws.com:3000/signin').then((response) =>{
+        Axios.get(`${ApiLink}/signin`).then((response) =>{
             if(response){
                 // setLoginstatus(true);
                 setLoginstatus(response.data.user);

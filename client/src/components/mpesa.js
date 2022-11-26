@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import ApiLink from "./link";
 
 
 export default function MpesaPay(){
@@ -38,7 +39,7 @@ export default function MpesaPay(){
             event.preventDefault()
             const success = window.confirm("Complete the transaction!")
             if(success){
-                Axios.post("http://localhost:3001/mywallet",{
+                Axios.post(`${ApiLink}/mywallet/mpesa`,{
                     firstname:currentUser.firstname,
                     lastname:currentUser.lastname,
                     phonenumber :currentUser.phonenumber,
@@ -98,6 +99,7 @@ export default function MpesaPay(){
                         value="Monthly Contribution"
                         onChange={handleFormData}
                         checked ={formData.isChecked === "Monthly Contribution"}
+                        required
                     /> Monthly Contribution<br/>
 
                     <input 
@@ -106,6 +108,7 @@ export default function MpesaPay(){
                         value="Loan Service Fee"
                         onChange={handleFormData}
                         checked ={formData.isChecked === "Loan Service Fee"}
+                        required
                     /> Loan Service fee<br/>
                 </fieldset>
                 <div className="mpesaform--footer">

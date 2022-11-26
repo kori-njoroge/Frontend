@@ -19,7 +19,7 @@ export default function ApplyLoan(){
             IDnumber:"",
             phonenumber:"",
             amount:"",
-            duration:"",
+            duration:"3 Months",
             purpose:"",
             g1firstName:"",
             g1lastName:"",
