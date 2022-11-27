@@ -23,29 +23,25 @@ export default function Dashboard(){
         Axios.post(`${ApiLink}/dashboard/summary` ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
-                window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
+                console.log(reply.data);
                 const loaner= reply.data[0].loaner[0]
                 const saver = reply.data[1].saver
                 const loanpaid = reply.data[2].loanPayer[0].total
                 const total = reply.data[3].total[0].total
-                console.log("loaanee",loaner)
-            console.log(reply.data);
                 setdashboardInfo({
-                    savings:total,
-                    contribution:"",
-                    loanIssued:loaner.amount,
-                    loanPayed:loanpaid,
-                    toBePaid:"",
-                    myLoanLimit:""
-            
-                });
-        // window.localStorage.setItem("UserAll",JSON.stringify(reply.data));
+                    savings:`${total ? total : 0}`,
+                    loanIssued:`${loaner ? loaner.amount : 0}`,
+                    loanPayed:`${loanpaid ? loanpaid : 0}`,
+                })
+                
+
         }).catch(err =>{
             setdashboardInfo(prevState => prevState);
         })
-        console.log(currentUserPhoneNumber);
     },[])
 
+    console.log("savings",dashboardInfo.savings);
+    console.log("Dashbaordinfo",dashboardInfo)
 
 
 
@@ -60,7 +56,7 @@ export default function Dashboard(){
                 {/* <i  id ="eye"className="fa fa-eye" aria-hidden="true"></i> */}
                 <h4>Total Savings</h4><br />
                 <h2 className="card--amount">
-                <i className="fa-solid fa-wallet fa-2x"/> Ksh  {dashboardInfo.savings * 1}.00</h2>
+                <i className="fa-solid fa-wallet fa-2x"/> Ksh  {dashboardInfo.savings ? dashboardInfo.savings : 0}.00</h2>
                 
             </span>
             <span className="mycontributions--card">

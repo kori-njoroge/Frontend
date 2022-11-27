@@ -20,6 +20,7 @@ useEffect(() =>{
         setTotalSavings(response.data[0].TotalSavings[0].total)
         setLoanIssued(response.data[1].loanIssued[0].total)
         setLoanPaid(response.data[2].LoanPaid[0].total)
+        setRegAccount(response.data[3].regAccount[0])
     })
 
 },[])
@@ -30,7 +31,7 @@ useEffect(() =>{
     return(
         <div className="group--account">
         <div className="admin--cards">
-            <h3>Total Savings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i 
+            <h3>Total Savings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i 
             id={showBalance1? "eye--accounts" : ""}  
             onClick={() =>{
                 setShowBalance1(prevState => !prevState)
@@ -45,7 +46,7 @@ useEffect(() =>{
             Ksh:{totalSavings ? totalSavings : 0}.00</p>
         </div>
         <div className="admin--cards">
-            <h3>Total Loan Issued&nbsp;&nbsp;&nbsp;<i 
+            <h3>Total Loan Issued&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i 
             id={showBalance2? "eye--accounts" : ""}  
             onClick={() =>{
                 setShowBalance2(prevState => !prevState)
@@ -60,7 +61,7 @@ useEffect(() =>{
             Ksh:{totalLoanIssued ? totalLoanIssued : 0}.00</p>   
         </div>
         <div className="admin--cards">
-            <h3>Total Loan Paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h3>Total Loan Paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i 
                 id={showBalance3? "eye--accounts" : ""} 
                 onClick={() =>{
@@ -76,7 +77,7 @@ useEffect(() =>{
             Ksh:{totalLoanPaid ? totalLoanPaid : 0}.00</p>  
         </div>
         <div className="admin--cards">
-            <h3>Regstrations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h3>Registrations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i
                 id={showBalance4? "eye--accounts" : ""} 
                 onClick={() =>{
@@ -92,7 +93,7 @@ useEffect(() =>{
             id={showBalance4? "": "total--value"}
             className="total--balance"
             >
-            Ksh:{totalSavings ? totalLoanIssued : 0}.00</p>  
+            Ksh:{regAccount? regAccount : 0}.00</p>  
         </div>
         </div>
     )
