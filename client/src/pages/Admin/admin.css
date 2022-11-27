@@ -212,4 +212,18 @@
     height: 170px;
     width: 270px;
     margin-right: 3%;
+    padding-left: 15px;
+}
+
+#eye--accounts{
+    color: rgb(173, 172, 172);
+    /* text-decoration: line-through; */
+}
+
+.total--balance{
+    font-size: 25px;
+}
+
+#total--value{
+filter: blur(6px);
 }
