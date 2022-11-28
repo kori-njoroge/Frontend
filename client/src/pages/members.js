@@ -40,12 +40,14 @@ export default function Members(){
                         members.map(member =>(
                             (member.firstname === "Admin" ? "" :
                         <tr key={member.userId}>
+                            
                             <td>{member.userId}</td>
                             <td>{member.firstname}</td>
                             <td>{member.lastname}</td>
                             <td>0{member.phonenumber}</td>
                             <td>{(member.createdAt).split('T')[0]}</td>
                             <td>{member.IDnumber}</td>
+                            
                         </tr>
                     )
                         ))

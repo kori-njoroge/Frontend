@@ -25,6 +25,7 @@ import AdminSaving from './pages/Admin/Admincomponents/adminSavings';
 import Evaluation from './pages/Admin/Admincomponents/evaluation';
 import MoreDetails from './pages/Admin/Admincomponents/moredetails';
 import GroupAccounts from './pages/Admin/Admincomponents/groupaccounts';
+import Register from './pages/register';
 
 
 function App() {
@@ -48,12 +49,15 @@ function App() {
           <Route path='/signup' element ={<Signup/>}/>
           <Route path='/aboutus' element ={<Aboutus/>}/>
           <Route path='/contactus' element ={<ContactUs/>}/>
+          <Route path='/register' element={<Register />}/>
           {/* <Route path='/settings' element={<Settings />} /> */}
           <Route path='signin' element ={<Signin/>}/>
           <Route path='/dashboard' element ={<UserDashboard />}>
             <Route path='summary' element ={<Dashboard />}/> 
             <Route path='mywallet' element={<MyWallet/>}/>
-            {/* <Route path='loans' element={<Home />}/> */}
+            {/*  */}
+            <Route path='register' element={<Register />}/>
+            {/*  */}
             <Route path='applyloan' element={<ApplyLoan />}/>
             <Route path='myloans' element={<Loans />} >
             <Route path='applyloan' element={<ApplyLoan />}/>

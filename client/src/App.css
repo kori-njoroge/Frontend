@@ -491,3 +491,56 @@ input::-webkit-inner-spin-button {
     margin: 13%;
     margin-left: 35%;
 }
+
+/* MPESA REGISTRATION PAGE */
+.register--mpesa{
+    background-color: rgb(212, 224, 228);
+    margin: 15%; 
+    margin-top:5% ;
+    margin-bottom: 0;
+    height: 550px;
+    width: 70%;
+}
+
+.heading--register{
+    /* margin: 5%; */
+    padding-top:5%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.registration--section{
+    display: flex;
+}
+
+.statement-section{
+    margin: 2%;
+    margin-top: 0%;
+}
+
+.reg--mpesa--section{
+    margin: 2%;
+    margin-left: auto;
+    margin-right: 10%;
+    margin-top: 0%;
+    /* background-color: blue; */
+}
+
+.home--btn-reg{
+    margin-right: 200px;
+    margin-left: 2px;
+}
+.reg--submit{
+    margin-right: 20px;
+}
+
+.reg--submit,.home--btn-reg{
+    /* color: red; */
+    height: 30px;
+    margin-bottom: 10px;
+}
+.reg--fieldset{
+    border-radius: 5px;
+    height: 350px;
+}

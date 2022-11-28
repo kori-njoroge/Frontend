@@ -19,6 +19,8 @@ export default function Signin(){
             password:""
         }
     )
+    const[reg, setReg] = useState(false)
+    const[regStatus, setRegStatus] = useState("")
 
     function handleChange(event){
         const{name,value} = event.target;
@@ -38,18 +40,27 @@ export default function Signin(){
         {   
             phonenumber: signinData.phonenumber,
             password: signinData.password,
-        }).then(response =>{            
+        }).then(response =>{    
+            console.log("signedin",response.data)        
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
-                setLoginstatus(response.data[0].firstname);
-                window.localStorage.setItem("currentUserDetails", JSON.stringify(response.data[0]));
-                window.localStorage.setItem("userId", response.data[0].userId);
-                window.localStorage.setItem("username",response.data[0].firstname)
-                window.localStorage.setItem("phonenumber",response.data[0].phonenumber)
+                setLoginstatus(response.data[0].result[0].firstname);
+                const log = response.data[0].result[0]
+                const reg = response.data[1].resut[0].total
+                window.localStorage.setItem("currentUserDetails", JSON.stringify(log));
+                window.localStorage.setItem("userId", log.userId);
+                window.localStorage.setItem("username",log.firstname)
+                window.localStorage.setItem("phonenumber",log.phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
-                if(response.data[0].phonenumber=== 115834321 && response.data[0].email === "jeillannjoroge76@gmail.com"){
+                if(log.phonenumber=== 115834321 && log.email === "jeillannjoroge76@gmail.com"){
                     navigate('/admin/adminmembers');
+                }else if(reg === null){
+                    setReg(true)
+                    setRegStatus("Please pay the registration fee to access your account")
+                    setTimeout(() => {
+                        navigate('/register');
+                    }, 6000)
                 }else{
                     navigate('/dashboard/summary');
                 }
@@ -75,6 +86,10 @@ export default function Signin(){
         setShowPass(showPass ? false : true)
     }
 
+    function handleonFocus(){
+        setReg(false)
+    }
+
     return(
 
         <div>      
@@ -91,6 +106,7 @@ export default function Signin(){
             value={signinData.phonenumber}
             onChange={handleChange}
             maxLength ={12}
+            onFocus={handleonFocus}
             onInput={(e) => {
                 if (e.target.value.length > e.target.maxLength)
                 e.target.value = e.target.value.slice(0,e.target.maxLength);
@@ -107,6 +123,7 @@ export default function Signin(){
             name="password"
             value={signinData.password}
             onChange={handleChange}
+            onFocus={handleonFocus}
             required
             />
             <i onClick={showPassword} id ="showpassword" className="fa fa-eye" aria-hidden="true"></i>
@@ -125,10 +142,11 @@ export default function Signin(){
             <br/>
             <br />
             <button className="signin-btn" type="submit"> Sign in</button>
-            <p className="wrong--credentials">{loginStatus}</p>
+            {/* <p className="wrong--credentials">{loginStatus}</p> */}
         <div>
             <p className="no--account">Dont have an account  <Link to={'/signup'}>Sign Up</Link></p>
         </div>
+            {reg? <p className="invalid"><Link className="invalid"  style={{textdecoration: 'node'}} to = {'/register'}>{regStatus}</Link></p> : ""}
         </form>
         </div>
         

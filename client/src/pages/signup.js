@@ -163,12 +163,14 @@ export default function Signup(){
             password: singupData.password,
             confirmpassword: singupData.confirmpassword
         }).then(resres =>{
-            // console.log(resres);
-            if(resres.data.message){
-                setsignupText(resres.data.message);
-                if(resres.data.message === "Registration successful!"){
+            console.log(resres.data);
+            window.localStorage.setItem("signer",JSON.stringify(resres.data[1].user[0]));
+            if(resres.data[0].message){
+                setsignupText(resres.data[0].message);
+                if(resres.data[0].message === "Registration successful!"){
                     setTimeout(() => {
-                    navigate('/signin');                
+                        // navigate('/signin');                
+                        navigate('/register');                
                     }, 1500)
                 }
                 setUserAdvice(true);
