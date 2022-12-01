@@ -142,13 +142,13 @@ console.log(total);
         <Bar
           data={{
             // Name of the variables on x-axies for each bar
-            labels: ["Median", "Mode", "Lowest", "Highest"],
+            labels: ["Median", "Mean", "Lowest", "Highest"],
             datasets: [
               {
                 // Label for bars
                 label: "total count/value",
                 // Data or value of your each variable
-                data: [200,20, 10, 1000],
+                data: [1000,20, 1, 3000],
                 // Color of each bar
                 backgroundColor: ["aqua", "green", "red", "yellow"],
                 // Border color of each bar

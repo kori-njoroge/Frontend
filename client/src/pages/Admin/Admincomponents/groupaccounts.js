@@ -20,7 +20,7 @@ useEffect(() =>{
         setTotalSavings(response.data[0].TotalSavings[0].total)
         setLoanIssued(response.data[1].loanIssued[0].total)
         setLoanPaid(response.data[2].LoanPaid[0].total)
-        setRegAccount(response.data[3].regAccount[0])
+        setRegAccount(response.data[3].regAccount[0].total)
     })
 
 },[])

@@ -28,6 +28,7 @@ export default function Dashboard(){
                 const saver = reply.data[1].saver
                 const loanpaid = reply.data[2].loanPayer[0].total
                 const total = reply.data[3].total[0].total
+                window.localStorage.setItem(JSON.stringify("loaner",loaner));
                 setdashboardInfo({
                     savings:`${total ? total : 0}`,
                     loanIssued:`${loaner ? loaner.amount : 0}`,

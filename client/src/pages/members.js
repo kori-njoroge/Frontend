@@ -32,7 +32,6 @@ export default function Members(){
                             <th>Last Name</th>
                             <th>Phone Number</th>
                             <th>Date Joined</th>
-                            <th>Position</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +45,6 @@ export default function Members(){
                             <td>{member.lastname}</td>
                             <td>0{member.phonenumber}</td>
                             <td>{(member.createdAt).split('T')[0]}</td>
-                            <td>{member.IDnumber}</td>
                             
                         </tr>
                     )

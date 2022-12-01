@@ -12,7 +12,7 @@ export default function Register() {
     const[sucess, setSuccess] = useState(false)
     const[formDataReg, setFormDataReg] = useState({
         phonenumber: "",
-        amount: 500
+        amount: 1
     });
 
 
@@ -20,11 +20,6 @@ export default function Register() {
         setRegister(JSON.parse(window.localStorage.getItem("signer")));
     },[])
 
-    // console.log("emptiest",register)
-    // console.log("emptiest",register.firstname)
-    // console.log("emptiest",register.lastname)
-    // console.log("emptiest",register.phonenumber)
-    // console.log("emptiest",register.userId)
 
     function handleFormData(event){
         const{name, value, type, checked} = event.target
@@ -51,7 +46,7 @@ export default function Register() {
             lastname:register.lastname,
             phonenumber :register.phonenumber,
             phonepay:formDataReg.phonenumber,
-            amount:500,
+            amount:formDataReg.amount,
             purpose:"Registration Fee",
             userid:register.userId
         }).then(response =>{

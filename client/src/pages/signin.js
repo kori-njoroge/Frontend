@@ -41,7 +41,7 @@ export default function Signin(){
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{    
-            console.log("signedin",response.data)        
+            console.log("signedin",response.data.message)        
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
@@ -142,7 +142,7 @@ export default function Signin(){
             <br/>
             <br />
             <button className="signin-btn" type="submit"> Sign in</button>
-            {/* <p className="wrong--credentials">{loginStatus}</p> */}
+            <p className="wrong--credentials">{loginStatus}</p>
         <div>
             <p className="no--account">Dont have an account  <Link to={'/signup'}>Sign Up</Link></p>
         </div>

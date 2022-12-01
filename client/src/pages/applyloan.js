@@ -224,7 +224,6 @@ export default function ApplyLoan(){
                     required
                     />
                     {wrongAmount? <h3 className="invalid">The amount ({applicationformData.amount}) is above the limit</h3>: ""}
-
                     <label>Payment duration: </label>
                     <select
                         name="duration"
@@ -236,6 +235,9 @@ export default function ApplyLoan(){
                         <option value="9 months">9 months</option>
                         <option value="12months">12 months</option>
                     </select>
+                    <br />
+                    <br />
+                    <input />
                     <br />
                     <br />
                     <label htmlFor="loanPurpose">Purpose for loan application:</label><br />

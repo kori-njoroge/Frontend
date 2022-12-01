@@ -37,8 +37,15 @@ export default function MpesaPay(){
 
             function submitFormData(event){
             event.preventDefault()
+            const rr = currentUser.ApplyLoan
+            console.log("iam",currentUser.ApplyLoan)
             const success = window.confirm("Complete the transaction!")
-            if(success){
+            if(rr === null && formData.isChecked === "Loan Service Fee"){
+                window.alert("No loans to service! Please update the purpose")
+            }else{
+
+            // }
+            // if(success){
                 Axios.post(`${ApiLink}/mywallet/mpesa`,{
                     firstname:currentUser.firstname,
                     lastname:currentUser.lastname,
@@ -56,6 +63,10 @@ export default function MpesaPay(){
             }
             console.log(formData )
             }
+
+
+
+
     return(
         <div>
             <h5>Fill the details </h5>
