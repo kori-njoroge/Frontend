@@ -41,7 +41,7 @@ export default function Signin(){
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{    
-            console.log("signedin",response.data.message)        
+            console.log("signedin",response.data)        
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
@@ -53,6 +53,7 @@ export default function Signin(){
                 window.localStorage.setItem("username",log.firstname)
                 window.localStorage.setItem("phonenumber",log.phonenumber)
                 window.localStorage.setItem("isLoggedIn",true);
+                window.localStorage.setItem("resut",reg);
                 if(log.phonenumber=== 115834321 && log.email === "jeillannjoroge76@gmail.com"){
                     navigate('/admin/adminmembers');
                 }else if(reg === null){

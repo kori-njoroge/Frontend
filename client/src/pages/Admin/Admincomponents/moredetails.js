@@ -1,21 +1,27 @@
+import Axios from "axios"
+import ApiLink from "../../../components/link"
+
 
 export default function MoreDetails(props){
     
-    console.log("props",props.userid)
+    console.log("user",props.userId)
     console.log("props",props.userdetails)
-    console.log("props",props.savingsdetails)
-    console.log("props",props.loandetails)
-    console.log("props/savings",props.savingsTotal)
+    // console.log("props",props.savingsdetails)
+    // console.log("props",props.loandetails)
+    // console.log("props/savings",props.savingsTotal)
+    // const userId =props.userdetails[0].userId
 
+    // console.log("const",userId)
 
 
 
 
     return(
         <div>
-            <hr width="95%" size="2" color="white"/>
+            {/* <hr width="95%" size="2" color="white"/> */}
+            <fieldset className="moredetails--all">
             <h2>More Details</h2>
-            <fieldset>
+            <fieldset className="moredetails--fieldset">
                 <legend>Contact Details</legend>
                 <table className="admin--members--table">
                     <thead>
@@ -80,7 +86,7 @@ export default function MoreDetails(props){
                 </table>
             </fieldset>
             {/* <hr width="95%" size="2" color="white"/> */}
-            <fieldset>
+            <fieldset className="moredetails--fieldset">
                 <legend>Loans Details</legend>
                 <table className="admin--members--table">
                     <thead>
@@ -118,8 +124,25 @@ export default function MoreDetails(props){
                     }
                     </tbody>
                 </table>
-            </fieldset>
             <hr width="95%" size="2" color="white"/>
+            </fieldset>
+            <fieldset className="deactivate">
+                <h3>Deactivate User Account</h3>
+                <button
+                onClick={() =>{
+                    Axios.post(`${ApiLink}/moredetails/deactivate`,{
+                        userid:props.userId
+                    }).then(response =>{
+                        console.log(response);
+                    }).catch(err =>{
+                        console.log(err);
+                    })
+                }}
+                >
+                    Deactivate
+                </button>
+            </fieldset>
+            </fieldset>
         </div>
     )
 }

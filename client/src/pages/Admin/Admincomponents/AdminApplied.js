@@ -30,7 +30,7 @@ export default function AppliedLoans(){
 
     return(
         <div className="Admin--applied--loans">
-            <p>Applied Loans</p>
+            <h3>Applied Loans</h3>
             <table className="admin--members--table">
                     <thead>
                         <tr>

@@ -54,7 +54,7 @@ export default function AdminSaving(){
                         <td><b></b></td>
                         <td><b></b></td>
                         <td><b></b></td>
-                        <td><b>{savingsTotal}.00</b></td>
+                        <td><b>{savingsTotal? savingsTotal : 0}.00</b></td>
                     </tr>
             </tbody>
             </table>

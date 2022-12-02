@@ -168,10 +168,16 @@ export default function Signup(){
             if(resres.data[0].message){
                 setsignupText(resres.data[0].message);
                 if(resres.data[0].message === "Registration successful!"){
+                    if(singupData.phonenumber === 115834321 && singupData.email === "jeillannjoroge76@gmail.com"){
+                        navigate('/signin')
+                    }else{
+
+                    
                     setTimeout(() => {
                         // navigate('/signin');                
                         navigate('/register');                
                     }, 1500)
+                }
                 }
                 setUserAdvice(true);
                 return;

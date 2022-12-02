@@ -21,11 +21,12 @@ export default function Adminmembers(){
 
     useEffect(() =>{
         Axios.post(`${Link}/admin/adminMembers`).then(members =>{
-            console.log(members);
+            // console.log(members);
             setMembers(members.data[0].User)
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
         })
     },[])
+
 
 
     return(
@@ -40,6 +41,7 @@ export default function Adminmembers(){
                             <th className="admin--table--head">IDnumber</th>
                             <th className="admin--email">Email</th>
                             <th className="admin--table--dte">Joining Date</th>
+                            <th >Status</th>
                             {/* <th className="button--moredetails"></th> */}
                         </tr>
                     </thead>
@@ -55,13 +57,14 @@ export default function Adminmembers(){
                             <td>{member.IDnumber}</td>
                             <td>{member.email}</td>
                             <td>{(member.createdAt).split('T')[0]}</td>
+                            <td>{member.accountStatus}</td>
                             <td className="button--moredetails"><NavLink to={'moredetails'}><button 
                             onClick={() =>{
                                 setMore(true);
                                 Axios.post(`${Link}/admin/adminMembers/moredetails`,{
                                     userid:member.userId
                                 }).then(response =>{
-                                    console.log(response.data)
+                                    console.log("response",response.data[0].User[0])
                                     setUserDetails(response.data[0].User)
                                     setSavingsDetails(response.data[1].Savings)
                                     setLoanDetails(response.data[2].loans)
@@ -83,6 +86,7 @@ export default function Adminmembers(){
                 </table>
                 {more ? 
                 <MoreDetails  
+                    userId ={userDetails? userDetails[0].userId : 0}
                     userdetails={userDetails}
                     savingsdetails={savingsdetails}
                     loandetails={loandetails}
