@@ -7,8 +7,8 @@ export default function CurrentUser(){
     const currentUser = window.localStorage.getItem("username")
 
     return(
+        <div className="user--componentt">
         <div className="user--component">
-        <div>
             <h4>Welcome</h4>
             <h2>{currentUser}!</h2>
         </div>
@@ -16,7 +16,7 @@ export default function CurrentUser(){
         
             className="openModalBtn"
             onClick={() => {
-            setModalOpen(true);
+            setModalOpen(prevState => !prevState);
             }}
             >
                 {/* Open */}

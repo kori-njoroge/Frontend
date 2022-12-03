@@ -4,7 +4,7 @@ import AdminNav from "./adminnav";
 import AdminSideBar from "./adminsidebar";
 import './admin.css'
 import Adminmembers from "./Admincomponents/adminMembers";
-import CurrentAdminUser from "./adminuser";
+import CurrentAdminUser from "./Admincomponents/adminuser";
 
 
 
@@ -17,7 +17,7 @@ export default function Admin(){
                     <AdminSideBar />
                 </div>
                 <div className="admin--outlet">
-                    <div className="current--user--position">
+                    <div className="curret--user--position">
                     <CurrentAdminUser />
                     </div>
                     {/* <Adminmembers /> */}

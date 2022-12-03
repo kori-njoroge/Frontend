@@ -251,3 +251,37 @@
 #total--value{
 filter: blur(6px);
 }
+
+.admin--user--component{
+    display: flex;
+    width: 95%;
+}
+.user--component{
+    background-color: rgb(210, 179, 240);
+    margin:20px;
+    margin-right: auto;
+    width: 12%;
+    height: 120px;
+    border-radius: 5px;
+    padding: 15px;
+}
+.notif--btn{
+    background-color: rgb(210, 179, 240);
+    border-radius: 5px;
+    margin-left: auto;
+    height: 40px;
+    margin: 20px;
+    margin-right: 0px;
+}
+.notif--btn:hover{
+    border: 1px solid black;
+    background-color: none;
+}
+
+.search--members{
+    color:black;
+    font-size: 15px;
+    border: 1px solid purple;
+    height: 35px;
+    margin-bottom: 5px;
+}

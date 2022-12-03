@@ -606,7 +606,6 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.user--component{
-    /* color:red; */
+.user--componentt{
     display: flex;
 }

@@ -1,0 +1,53 @@
+
+.adminmodalContainer {
+    position: fixed;
+    width: 45%;
+    height: 75%;   
+    border-radius: 10px;
+    background-color: #dae2e2;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 50px 105px;
+    border: 1px solid black;
+    margin-left: -60%;
+    margin-top: -6%;
+    padding-left: 20px;
+    padding-right: -40px;
+
+}
+
+/* .Adminmodal--fieldset{
+    height: 50%;
+    width: 50%;
+    margin-left: -70px;
+} */
+
+datalist {
+    display: none;
+}
+
+.small-text{
+    font-weight: bold;
+    font-size: 10px;
+    margin-left: 30px;
+}
+
+.message--textarea{
+    margin-left: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 70%;
+}
+
+.modal--footer{
+    display: flex;
+    margin-top: 10px ;
+    /* justify-content:center  ;  */
+    justify-content: space-evenly;
+}
+
+.admin--modalbtn{
+    height: 35px;
+    font-size: 15px;
+    justify-self: left;
+    /* margin-left: 10px; */
+    width: 15%;
+}

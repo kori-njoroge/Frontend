@@ -11,6 +11,7 @@ export default function Adminmembers(){
 
     const[members, setMembers] = useState("");
     const[more, setMore] = useState(false);
+    const[search,setSearch] = useState('')
 
     // TO MORE DETAILS PROPS
     const[userDetails, setUserDetails]= useState(null)
@@ -29,8 +30,21 @@ export default function Adminmembers(){
 
 
 
+    console.log(search)
+
     return(
         <div >
+            <h3>Members</h3>
+            <form>
+                <input 
+                className="search--members" 
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach members"
+                />
+            </form>
             <table className="admin--members--table">
                     <thead>
                         <tr>
@@ -47,7 +61,9 @@ export default function Adminmembers(){
                     </thead>
                     <tbody>
                         {members?
-                        members.map(member =>(
+                        members.filter((member) =>{
+                            return search.toLowerCase() === ''? member :member.firstname.toLowerCase().includes(search)
+                        }).map(member =>(
                             (member.firstname === "Admin" ?  "":
                         <tr key={member.userId}>
                             <td>{member.userId}</td>
