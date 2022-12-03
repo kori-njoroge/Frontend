@@ -23,12 +23,11 @@ export default function ApplyLoan(){
             purpose:"",
             g1firstName:"",
             g1lastName:"",
-            // g1IDnumber:"",
             g1phoneNumber:"",
             g2firstName:"",
             g2lastName:"",
-            // g2IDnumber:"",
-            g2phoneNumber:""
+            g2phoneNumber:"",
+            interest:""
         }
         )
 
@@ -79,13 +78,12 @@ export default function ApplyLoan(){
                         purpose:applicationformData.purpose,
                         g1firstName:applicationformData.g1firstName,
                         g1lastName:applicationformData.g1lastName,
-                        // g1IDnumber:applicationformData.g1IDnumber,
                         g1phoneNumber:applicationformData.g1phoneNumber,
                         g2firstName:applicationformData.g2firstName,
                         g2lastName:applicationformData.g2lastName,
-                        // g2IDnumber:applicationformData.g2IDnumber,
                         g2phoneNumber:applicationformData.g2phoneNumber,
-                        useridentity:userDetails.userId
+                        useridentity:userDetails.userId,
+                        interest:totalinterest
                     }).then(response =>{
                         console.log(response.data.message);
                         if(response){
@@ -102,12 +100,11 @@ export default function ApplyLoan(){
                                     purpose:"",
                                     g1firstName:"",
                                     g1lastName:"",
-                                    // g1IDnumber:"",
                                     g1phoneNumber:"",
                                     g2firstName:"",
                                     g2lastName:"",
-                                    // g2IDnumber:"",
-                                    g2phoneNumber:""
+                                    g2phoneNumber:"",
+                                    interest:""
                                 }
                                 )
                             }else{
@@ -138,6 +135,13 @@ export default function ApplyLoan(){
             // console.log(amountCheck);
         }
 
+        //interest calclations
+        const duration = Number((applicationformData.duration).split('')[0])
+        const interest = applicationformData.amount * 0.03 
+        const totalinterest = interest * duration
+        const total = Number(totalinterest) + Number(applicationformData.amount)
+        console.log("eat",typeof(Number((applicationformData.duration).split('')[0])))
+
 
     return(
         <div>
@@ -153,6 +157,7 @@ export default function ApplyLoan(){
                     <li className="loan--item">The maximum due time for any loan is  12 months.</li>
                     <li className="loan--item">Your loan guarantors must be members of the group.</li>
                     <li className="loan--item">We currently offer loans up to <b>Ksh.500,000</b>.</li>
+                    <li className="loan--item">Loan interest at 3% per Month.</li>
                 </ul>
             </fieldset>
             <form className="form--loan" onSubmit={submitloanData}>
@@ -237,7 +242,16 @@ export default function ApplyLoan(){
                     </select>
                     <br />
                     <br />
-                    <input />
+                    
+                    <fieldset className="member--inquestion">
+                        <h4>Interest Section</h4>
+                    Amount:{applicationformData.amount}<br />
+                    Duration:{applicationformData.duration}<br />
+                    interest(p.m):{interest}<br />
+                    Total interest:{totalinterest}<br />
+                    <b>Total:{total}</b><br />
+                    </fieldset>
+
                     <br />
                     <br />
                     <label htmlFor="loanPurpose">Purpose for loan application:</label><br />

@@ -197,6 +197,34 @@ word-spacing: 3px;
 }
 
 
+.dashcards--all{
+    display: flex;
+    margin: 2%;
+    margin-left: 6%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .mycontributions--card,.myLoans--card{
     background-color: #E5E5E5;
     border: 1px solid black;
@@ -246,11 +274,14 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 /* my loans styles */
 
 .loans--table{
-        width:80%;
+        width:99%;
         border: 1px solid;
         border-collapse: collapse;
-        margin: 40px;
+        /* margin: 20px; */
+        margin-right: 0px;
+        border: 0px;
 }
+
 
 /* Apply loans page styles */
 .qualifications{
@@ -400,7 +431,7 @@ legend{
 #logoutIcon{
     color:rgb(92, 19, 165);
 }
-
+/* 
 input[type=number] {
     -moz-appearance: textfield;
     }
@@ -409,7 +440,7 @@ input[type=number] {
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-    }
+    } */
 
 /* My wallet styles */
 .mywallet{
@@ -573,4 +604,9 @@ input::-webkit-inner-spin-button {
     to{
         transform: rotate(360deg);
     }
+}
+
+.user--component{
+    /* color:red; */
+    display: flex;
 }

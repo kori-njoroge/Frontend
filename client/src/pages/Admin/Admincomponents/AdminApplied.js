@@ -86,7 +86,6 @@ export default function AppliedLoans(){
                     amount ={loanAmount}
                     duration={duration}
                     purpose={purpose}
-
                 /> : null}
         </div>
     )

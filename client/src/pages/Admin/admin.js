@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 import AdminNav from "./adminnav";
 import AdminSideBar from "./adminsidebar";
 import './admin.css'
-import CurrentUser from "../../components/user";
 import Adminmembers from "./Admincomponents/adminMembers";
+import CurrentAdminUser from "./adminuser";
 
 
 
@@ -18,7 +18,7 @@ export default function Admin(){
                 </div>
                 <div className="admin--outlet">
                     <div className="current--user--position">
-                    <CurrentUser />
+                    <CurrentAdminUser />
                     </div>
                     {/* <Adminmembers /> */}
                     <hr width="95%" size="2" color="white"/>

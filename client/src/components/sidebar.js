@@ -14,10 +14,14 @@ function Signout(){
 
 
 
+
+
     return(
         <div className="sidebar">
             <h3>Services</h3>
             <br />
+            
+
             <NavLink to ={"summary"}  style={{textDecoration:"none"}} ><h4><i className="fa-solid fa-layer-group"></i>  Dashboard</h4></NavLink>
             <NavLink to ={"mywallet"}   style={{textDecoration:"none"}} ><h4><i className="fa-solid fa-wallet"></i>  My Wallet</h4></NavLink>
             <NavLink to ={"applyloan"}  style={{textDecoration:"none"}} ><h4><i className="fa-solid fa-hand-holding-dollar"></i>  Apply Loan</h4></NavLink>

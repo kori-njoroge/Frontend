@@ -45,9 +45,11 @@ export default function Loans(){
                         <tr>
                             <th>#</th>
                             <th>Loan Id</th>
-                            <th>Amount(Ksh)</th>
                             <th>Purpose</th>
                             <th>Date of Application</th>
+                            <th>Amount(Ksh)</th>
+                            <th>interest</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total<small><br />(amount + total)</small></th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -57,10 +59,29 @@ export default function Loans(){
                         <tr>
                             <td>{loanee.loanId}</td>
                             <td>{loanee.loanId}</td>
-                            <td>{loanee.amount}</td>
                             <td>{loanee.purpose}</td>
                             <td>{(loanee.createdAt).split('T')[0]}</td>
+                            <td>{loanee.amount}</td>
+                            <td>{loanee.interest}</td>
+                            <td>{loanee.interest + loanee.amount}</td>
                             <td>{loanee.loanStatus}</td>
+                            <td className="button--moredetails">
+                                {loanee.loanStatus === "Pending Approval" ? 
+                                <button 
+                                id ="cancel--loan" 
+                                className="admin--btn" 
+                                onClick={() =>{
+                                    Axios.post(`${ApiLink}/cancelloan`,
+                                    {
+                                        loanid:loanee.loanId
+                                    }).then(responsey =>{
+                                        console.log(responsey);
+                                    }).catch(err =>{
+                                        console.log(err);
+                                    })
+                                }}
+                                > Cancel Loan</button> : ""}
+                            </td>
                         </tr>
                         : <tr><td>You have no applied loans"</td ></tr>}
                     </tbody>
