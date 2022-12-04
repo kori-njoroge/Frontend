@@ -51,3 +51,23 @@ datalist {
     /* margin-left: 10px; */
     width: 15%;
 }
+.error--reply{
+    background-color: rgb(231, 138, 138);
+    height: 40px;
+    margin-left:15%;
+    padding: 8px;
+    margin-right: 25%;
+    border-radius: 5px;
+    text-align: center;
+}
+.good--reply{
+    color: green;
+    /* border: 1px solid black; */
+    height: 40px;
+    margin-left:15%;
+    padding: 8px;
+    margin-right: 25%;
+    border-radius: 5px;
+    text-align: center;
+    
+}

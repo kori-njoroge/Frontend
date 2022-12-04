@@ -18,6 +18,7 @@ export default function AdminSideBar(){
             <hr width="90%" size="1" color="white"/>
             <NavLink to={'groupaccounts'} style={{textDecoration:"none"}} ><h3 ><i className="fa-solid fa-money-check-dollar"></i>  Group Accounts </h3></NavLink>
             <hr width="90%" size="1" color="white"/>
+            <NavLink to={'sentmessages'} style={{textDecoration:"none"}} ><h3 ><i className="fa-solid fa-message"></i>  Sent Messages </h3></NavLink>
         </div>
     )
 }

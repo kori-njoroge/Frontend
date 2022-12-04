@@ -24,7 +24,7 @@ export default function CurrentAdminUser(){
             setModalOpen(prevstate => !prevstate);
             }}
             >
-                Send Something
+                Send Message
             </button> 
             {modalOpen && <Adminmodal setOpenModal={setModalOpen} />}
             </div>

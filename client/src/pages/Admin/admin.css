@@ -285,3 +285,16 @@ filter: blur(6px);
     height: 35px;
     margin-bottom: 5px;
 }
+
+.messages--component{
+    margin-left: 2%;
+    /* border: 1px solid black; */
+}
+
+.messages--table{
+    width: 90%;
+}
+
+.message--col{
+    width: 30%;
+}

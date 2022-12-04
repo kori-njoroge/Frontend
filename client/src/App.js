@@ -26,6 +26,7 @@ import Evaluation from './pages/Admin/Admincomponents/evaluation';
 import MoreDetails from './pages/Admin/Admincomponents/moredetails';
 import GroupAccounts from './pages/Admin/Admincomponents/groupaccounts';
 import Register from './pages/register';
+import Messages from './pages/Admin/Admincomponents/sentmessages';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           </Route>
           <Route path='approvedloans' element ={<ApprovedLoans />}/>
           <Route path='groupaccounts' element = {<GroupAccounts />}/>
+          <Route path='sentmessages' element = {<Messages />}/>
           <Route path='adminsavings' element ={<AdminSaving />}/>
           </Route>
           <Route path='/signup' element ={<Signup/>}/>
