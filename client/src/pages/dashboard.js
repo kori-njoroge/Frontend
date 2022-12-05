@@ -56,7 +56,11 @@ export default function Dashboard(){
 
     return(
         <>
-        <CurrentUser />        
+        <CurrentUser />   
+        {/* {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                    : ""}      */}
         <div>
 
             <div className="dashcards--all">

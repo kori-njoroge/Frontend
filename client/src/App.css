@@ -609,3 +609,9 @@ input::-webkit-inner-spin-button {
 .user--componentt{
     display: flex;
 }
+
+#members--searchbtn{
+    width: 40%;
+    height: 25px;
+    border: 1px solid black;
+}

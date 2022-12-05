@@ -6,6 +6,8 @@ export default function ApprovedLoans(){
 
     const[approvedloan, setApprovedLoan] = useState()
     const[disbursedLoan, setDisbursedLoan] = useState()
+    const[search, setSearch] = useState('')
+    const[searchloan, setSearchloan] = useState('')
 
     useEffect(() =>{
         Axios.post(`${ApiLink}/approvedloans`).then(reply =>{
@@ -20,8 +22,27 @@ export default function ApprovedLoans(){
     return(
         <div>
             <h3>Approved Loans</h3>
+            <form>
+                <input 
+                className="search--members" 
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach by name"
+                />
+            </form>
             <table className="approved--loan">
-                <tbody>
+                <tbody><form>
+                <input 
+                className="search--members" 
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach by name"
+                />
+            </form>
                     <tr>
                         <th>LoanId</th>
                         <th className="date--savings--admin">Name</th>
@@ -32,7 +53,9 @@ export default function ApprovedLoans(){
                         <th>Status</th>
                     </tr>
                     {approvedloan ?
-                        approvedloan.map(apploan =>(
+                        approvedloan.filter(apploan =>{
+                            return search.toLowerCase() === ''? apploan : apploan.firstname.toLowerCase().includes(search)
+                        }).map(apploan =>(
                             <tr key={apploan.loanId}>
                                 <td>{apploan.loanId}</td>
                                 <td>{apploan.firstname} {apploan.lastname}</td>
@@ -62,6 +85,18 @@ export default function ApprovedLoans(){
             <hr width="95%" size="2" color="white"/> 
 
             <h3>Disbursed Loans</h3>
+            {disbursedLoan ?
+            <form>
+            <input 
+            className="search--members" 
+            type="text" 
+            onChange={(event) =>{
+                setSearchloan(event.target.value)
+            }}
+            placeholder="seach by name"
+            />
+            </form>
+            : ''}
             <table className="approved--loan">
                 <tbody>
                     <tr>
@@ -74,7 +109,9 @@ export default function ApprovedLoans(){
                         <th>Status</th>
                     </tr>
                     {disbursedLoan ?
-                        disbursedLoan.map(apploan =>(
+                        disbursedLoan.filter(apploan =>{
+                            return searchloan.toLowerCase() === ''?apploan : apploan.firstname.toLowerCase().includes(searchloan)
+                        }).map(apploan =>(
                             <tr key={apploan.loanId}>
                                 <td>{apploan.loanId}</td>
                                 <td>{apploan.firstname} {apploan.lastname}</td>

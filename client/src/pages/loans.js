@@ -6,18 +6,11 @@ import ApiLink from "../components/link";
 
 export default function Loans(){
 
-    // const[loanData, setLoanData] = useState({loanData:[]});
     const[userLoan, setUserLoan] = useState(window.localStorage.getItem("userId"));
-    // const[userLoan, setUserLoan] = useState({userLoan:[]});
     const[loanee, setLoanee] = useState("");
-    // const [rates, setRates] = useState({rates:[]});
+    // const[search, setSearch] = useState('')
+    
 
-    
-    // console.log("***********************");
-    // console.log(userLoan);
-    // const koriDate = joaninahDate.split('T')[0];                     IMPORTANTTTTTTTTTTTTTTTT.
-    // console.log("Joanina", koriDate)
-    
     useEffect(() =>{
         Axios.post(`${ApiLink}/myloans`,{
             userId:userLoan
@@ -37,9 +30,18 @@ export default function Loans(){
         <div >
         <CurrentUser />
             <h3>My Loans</h3>
-            {/* <input type='search'></input> */}
-                        <h4 style={{textDecoration:"underline", margin:"40px"}} >Applied loans</h4>
-                        {/* <button onClick={userData}>HEAD</button> */}
+                <h4 style={{textDecoration:"underline", margin:"40px"}} >Applied loans</h4>
+                {/* <form> */}
+                {/* <input 
+                className="search--members" 
+                id="members--searchbtn"
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach by loan purpose"
+                />
+            </form> */}
             <table className="loans--table">
                     <thead>
                         <tr>
@@ -48,8 +50,8 @@ export default function Loans(){
                             <th>Purpose</th>
                             <th>Date of Application</th>
                             <th>Amount(Ksh)</th>
-                            <th>interest</th>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total<small><br />(amount + total)</small></th>
+                            <th>Interest</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total<small><br />(amount + interest)</small></th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -61,9 +63,9 @@ export default function Loans(){
                             <td>{loanee.loanId}</td>
                             <td>{loanee.purpose}</td>
                             <td>{(loanee.createdAt).split('T')[0]}</td>
-                            <td>{loanee.amount}</td>
-                            <td>{loanee.interest}</td>
-                            <td>{loanee.interest + loanee.amount}</td>
+                            <td>{loanee.amount}.00</td>
+                            <td>{loanee.interest}.00</td>
+                            <td>{loanee.interest + loanee.amount}.00</td>
                             <td>{loanee.loanStatus}</td>
                             <td className="button--moredetails">
                                 {loanee.loanStatus === "Pending Approval" ? 

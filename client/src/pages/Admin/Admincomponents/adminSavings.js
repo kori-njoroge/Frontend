@@ -6,6 +6,7 @@ export default function AdminSaving(){
 
     const[memberSavers, setSavers] = useState();
     const[savingsTotal, setTotalSavings] = useState();
+    const[search, setSearch]= useState('')
 
     useEffect(() =>{
         Axios.post(`${Link}/adminsavings`).then(savers =>{
@@ -23,6 +24,16 @@ export default function AdminSaving(){
     return(
         <div>
             <h3>Savings</h3>
+            <form>
+                <input 
+                className="search--members" 
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach by name"
+                />
+            </form>
             <table className="savings--table--admin">
                 <tbody>
                 <tr>
@@ -35,7 +46,9 @@ export default function AdminSaving(){
                     <th>Amount(Ksh)</th>
                 </tr>
             {memberSavers ?
-                memberSavers.map(savee =>(
+                memberSavers.filter((savee) =>{
+                    return search.toLowerCase() === ''? savee :savee.firstname.toLowerCase().includes(search)
+                }).map(savee =>(
                     <tr key={savee.savingDepositId}>
                         <td>{savee.UserUserId}</td>
                         <td>{savee.savingDepositId}</td>

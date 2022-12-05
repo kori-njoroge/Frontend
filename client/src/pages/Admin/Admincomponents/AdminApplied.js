@@ -16,6 +16,7 @@ export default function AppliedLoans(){
     const[duration, setduration] = useState("");
     const[purpose, setpurpose] = useState("");
     const[userloandetails, setUserloandetails] = useState(false)
+    const[search, setSearch] = useState('')
 
 
     useEffect(() =>{
@@ -31,13 +32,25 @@ export default function AppliedLoans(){
     return(
         <div className="Admin--applied--loans">
             <h3>Applied Loans</h3>
+            <form>
+                <input 
+                className="search--members" 
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach by name"
+                />
+            </form>
             <table className="admin--members--table">
                     <thead>
                         <tr>
                             <th className="admin--ids">UserId</th>
                             <th className="admin--ids">LoanId</th>
                             <th className="admin--name">Name</th>
-                            <th className="admin--ids">Amount(Ksh)</th>
+                            <th className="admin--ids">Amount<br />Borrowed(Ksh)</th>
+                            <th className="dmin--table--big">Interest</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total<small><br />(amount + interest)</small></th>
                             <th className="admin--table--big">Purpose</th>
                             <th className="admin--duration">Duration</th>
                             <th className="admin--table--date">Application Date</th>
@@ -46,13 +59,17 @@ export default function AppliedLoans(){
                     </thead>
                     <tbody>
                         {loans ?
-                        loans.map(loanee =>(
+                        loans.filter(loanee =>{
+                            return search.toLowerCase() === ''? loanee : loanee.firstname.toLowerCase().includes(search)
+                        }).map(loanee =>(
                         (loanee.firstname === "Admin" ?  "":
                         <tr key={loanee.UserUserId}>
                             <td >{loanee.UserUserId}</td>
                             <td >{loanee.loanId}</td>
                             <td>{loanee.firstname} {loanee.lastname}</td>
                             <td>{loanee.amount}.00</td>
+                            <td>{loanee.interest}.00</td>
+                            <td>{loanee.amount + loanee.interest}.00</td>
                             <td className="admin--purpose">{loanee.purpose}</td>
                             <td>{loanee.duration}</td>
                             <td>{(loanee.createdAt).split('T')[0]}</td>

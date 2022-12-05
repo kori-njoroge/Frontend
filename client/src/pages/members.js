@@ -7,6 +7,9 @@ import Link from "../components/link";
 export default function Members(){
 
     const[members, setMembers] = useState([]);
+    const[more, setMore] = useState(false);
+    const[search,setSearch] = useState('')
+
 
     useEffect(() =>{
         Axios.post(`${Link}/members`).then(result =>{
@@ -23,7 +26,19 @@ export default function Members(){
     return(
         <div>
             <CurrentUser />
-            <div className="members-table">
+            <h2>Members</h2>
+                <div className="members-table">
+            <form>
+                <input 
+                className="search--members" 
+                id="members--searchbtn"
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="seach members"
+                />
+            </form>
                 <table>
                     <thead>
                         <tr>
@@ -36,7 +51,9 @@ export default function Members(){
                     </thead>
                     <tbody>
                         {members?
-                        members.map(member =>(
+                        members.filter((member) =>{
+                            return search.toLowerCase() === ''? member :member.firstname.toLowerCase().includes(search)
+                        }).map(member =>(
                             (member.firstname === "Admin" ? "" :
                         <tr key={member.userId}>
                             

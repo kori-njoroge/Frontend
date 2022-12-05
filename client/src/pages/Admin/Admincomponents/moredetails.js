@@ -1,17 +1,22 @@
 import Axios from "axios"
+import { useState } from "react"
 import ApiLink from "../../../components/link"
 
 
 export default function MoreDetails(props){
     
     console.log("user",props.userId)
+    console.log("user",props.username)
     console.log("props",props.userdetails)
+    console.log("props",props.accountStatus)
     // console.log("props",props.savingsdetails)
     // console.log("props",props.loandetails)
     // console.log("props/savings",props.savingsTotal)
     // const userId =props.userdetails[0].userId
 
     // console.log("const",userId)
+    const[reply, setReply] = useState('')
+    const[loading, setLoading] =useState(false)
 
 
 
@@ -33,6 +38,7 @@ export default function MoreDetails(props){
                             <th >IDnumber</th>
                             <th className="admin--email">Email</th>
                             <th >Joining Date</th>
+                            <th > Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +53,7 @@ export default function MoreDetails(props){
                             <td>{member.IDnumber}</td>
                             <td>{member.email}</td>
                             <td>{(member.createdAt).split('T')[0]}</td>
+                            <td>{member.accountStatus}</td>
                         </tr>
                     )
                     ))
@@ -86,6 +93,7 @@ export default function MoreDetails(props){
                 </table>
             </fieldset>
             {/* <hr width="95%" size="2" color="white"/> */}
+            
             <fieldset className="moredetails--fieldset">
                 <legend>Loans Details</legend>
                 <table className="admin--members--table">
@@ -126,22 +134,97 @@ export default function MoreDetails(props){
                 </table>
             <hr width="95%" size="2" color="white"/>
             </fieldset>
+            {props.accountStatus === 'Deactivated'? 
+                <fieldset className="activate">
+                <h3>Activate User Account</h3>
+                <button
+                onClick={() =>{
+                    const yes =window.confirm(`Activate user ${props.username}?` )
+                    if(yes){
+                        setLoading(true)
+                        Axios.post(`${ApiLink}/moredetails/activate`,{
+                            userid:props.userId
+                        }).then(response =>{
+                            setLoading(false)
+                            console.log(response);
+                            setReply(response.data)
+                        }).catch(err =>{
+                            setLoading(false)
+                            console.log(err);
+                            setReply('Error! try again later')
+                        })
+                    }else{
+
+                    }
+                }}
+                >
+                    Activate
+                </button>
+            </fieldset>
+            :
+
             <fieldset className="deactivate">
                 <h3>Deactivate User Account</h3>
                 <button
                 onClick={() =>{
-                    Axios.post(`${ApiLink}/moredetails/deactivate`,{
-                        userid:props.userId
-                    }).then(response =>{
-                        console.log(response);
-                    }).catch(err =>{
-                        console.log(err);
-                    })
+                    const yes =window.confirm(`Deactivate user ${props.username}?` )
+                    if(yes){
+                        setLoading(true)
+                        Axios.post(`${ApiLink}/moredetails/deactivate`,{
+                            userid:props.userId
+                        }).then(response =>{
+                            setLoading(false)
+                            console.log(response);
+                            setReply(response.data)
+                        }).catch(err =>{
+                            console.log(err);
+                            setLoading(false)
+                            setReply('Error! try again later')
+                        })
+                    }else{
+
+                    }
                 }}
                 >
                     Deactivate
                 </button>
             </fieldset>
+            }
+            {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                : ""}
+            {/* <fieldset className="activate">
+                <h3>Activate User Account</h3>
+                <button
+                onClick={() =>{
+                    const yes =window.confirm(`Activate user ${props.username}?` )
+                    if(yes){
+                        setLoading(true)
+                        Axios.post(`${ApiLink}/moredetails/activate`,{
+                            userid:props.userId
+                        }).then(response =>{
+                            setLoading(false)
+                            console.log(response);
+                            setReply(response.data)
+                        }).catch(err =>{
+                            setLoading(false)
+                            console.log(err);
+                            setReply('Error! try again later')
+                        })
+                    }else{
+
+                    }
+                }}
+                >
+                    Activate
+                </button>
+            </fieldset>
+                 */}
+                {reply? <p className={ reply === "Message sent successfully!"?  "good--reply":"error--deactivate"}>{reply}</p> : ''}
+                {reply? setTimeout(() => {
+                    setReply('')
+                    }, 3000): ''}
             </fieldset>
         </div>
     )

@@ -136,11 +136,11 @@ export default function ApplyLoan(){
         }
 
         //interest calclations
-        const duration = Number((applicationformData.duration).split('')[0])
-        const interest = applicationformData.amount * 0.03 
-        const totalinterest = interest * duration
-        const total = Number(totalinterest) + Number(applicationformData.amount)
-        console.log("eat",typeof(Number((applicationformData.duration).split('')[0])))
+        const duration = Number((applicationformData.duration).split('m')[0])
+        const interest = Math.floor(applicationformData.amount * 0.03 )
+        const totalinterest = Math.floor(interest * duration)
+        const total = Math.floor(Number(totalinterest) + Number(applicationformData.amount))
+        // console.log("eat",typeof(Number((applicationformData.duration).split('')[0])))
 
 
     return(
@@ -155,7 +155,6 @@ export default function ApplyLoan(){
                     <li className="loan--item">You must have shares atleast amounting to Ksh.3000.</li>
                     <li className="loan--item">You must have 2 guarantors who must be members of st Andrews Group.</li>
                     <li className="loan--item">The maximum due time for any loan is  12 months.</li>
-                    <li className="loan--item">Your loan guarantors must be members of the group.</li>
                     <li className="loan--item">We currently offer loans up to <b>Ksh.500,000</b>.</li>
                     <li className="loan--item">Loan interest at 3% per Month.</li>
                 </ul>

@@ -23,7 +23,7 @@ export default function MyWallet(){
     const[loanPay, setLoanPay] = useState([]);
     const[total, setTotal]= useState("");
     const[loantotal, setLoanTotal]= useState("");
-
+    const[search,setSearch] = useState('')
     
     function handleTransact(){
         // setTransact(prevState =>!prevState);
@@ -62,6 +62,17 @@ console.log(total);
                 <div className="mywallet">
                 <fieldset className="mywallet--fields">
                     <legend style={{textDecoration:"underline"}}>Monthly contributions</legend>
+                    <form>
+                <input 
+                className="search--members" 
+                id="members--searchbtn"
+                type="text" 
+                onChange={(event) =>{
+                    setSearch(event.target.value)
+                }}
+                placeholder="search by amount"
+                />
+            </form>
                 <table>
                     <tbody>
                     <tr>
@@ -71,7 +82,9 @@ console.log(total);
                         {/* <th>Purpose</th> */}
                     </tr>
                     {userSavings ?
-                        userSavings.map(deposit =>(
+                        userSavings.filter((deposit) =>{
+                            return search === ''? deposit :(deposit.savingsamount.toString()).includes(search)
+                        }).map(deposit =>(
                             <tr key={deposit.savingDepositId}>
                                 <td>{deposit.savingDepositId}</td>
                                 <td>{(deposit.createdAt).split('T')[0]}</td>

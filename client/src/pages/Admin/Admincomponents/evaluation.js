@@ -1,17 +1,18 @@
 import  Axios  from "axios";
-import React from "react";
+import React, { useState } from "react";
 import Link from "../../../components/link";
 
 export default function Evaluation(props){
     console.log(props.userid)
     const loanID= props.loanid
+    const[reply, setReply] = useState('')
 
     const [evaluationData, setFormData] = React.useState(
         {
-            memberage: "", 
-            membersavings: "", 
-            guarantormembers: "", 
-            selectedtime: "", 
+            memberage: 'yes', 
+            membersavings: 'yes',   
+            guarantormembers: 'yes', 
+            // selectedtime: "", 
             guarantorsavings: "",
             loanshistory: ""
         }
@@ -35,6 +36,9 @@ function handleapprove(){
             loanid:loanID
         }).then(response =>{
             console.log(response);
+            setReply(response.data)
+        }).catch(err =>{
+            console.log(err)
         })
     }
 }
@@ -47,11 +51,22 @@ function handlerejection(){
             loanid:loanID
         }).then(response =>{
             console.log(response);
+            setReply(response.data)
+        }).catch(err =>{
+            console.log(err)
         })
     }
 }
 
+if(evaluationData.memberage !== '' && evaluationData.membersavings  !== '' && evaluationData.guarantormembers !== '' && evaluationData.loanshistory !== ''){
+if(evaluationData.memberage === 'yes' && evaluationData.membersavings  === 'yes' && evaluationData.guarantormembers === 'yes' && evaluationData.loanshistory === 'yes'){
+    handleapprove()
+}else{
+    handlerejection()
+}
+}else{
 
+}
 
     return(
         <div>
@@ -80,6 +95,7 @@ function handlerejection(){
             {/* <form> */}
             <fieldset className="loan--radios">
                 <h4>Admin Loan Evaluation</h4>
+            <form onSubmit={handleapprove}>
             <ul>
                 <li><label htmlFor="memberAge">Is the Applicant atleast 3 months old active members of st Andrews self-help Group?</label></li><br/>
                 Yes:
@@ -90,6 +106,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.memberage === "yes"}
                 onChange={handleChange} 
+                required
                 /> No:
                 <input
                 id="memberAge"
@@ -98,6 +115,7 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.memberage === "no"}
                 onChange={handleChange} 
+                required
                 />
                 <br/>
                 <br/>
@@ -110,6 +128,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.membersavings === "yes"}
                 onChange={handleChange} 
+                required
                 />
                 No:
                 <input
@@ -119,6 +138,7 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.membersavings === "no"}
                 onChange={handleChange} 
+                required
                 />
                 <br/>
                 <br/>
@@ -131,6 +151,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.guarantormembers === "yes"}
                 onChange={handleChange} 
+                required
                 />
                 No:
                 <input
@@ -140,11 +161,12 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.guarantormembers === "no"}
                 onChange={handleChange} 
+                required
                 />
                 
                 <br/>
                 <br/>
-                <li><label htmlFor="memberAge">Is the loan amount borrowed repayable in the selected time according to applicants financial history?</label></li><br/>
+                {/* <li><label htmlFor="memberAge">Is the loan amount borrowed repayable in the selected time according to applicants financial history?</label></li><br/>
                 Yes:
                 <input
                 id="memberAge"
@@ -153,6 +175,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.selectedtime === "yes"}
                 onChange={handleChange} 
+                required
                 />
                 No:
                 <input
@@ -162,9 +185,10 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.selectedtime === "no"}
                 onChange={handleChange} 
+                required
                 />
                 <br/>
-                <br/>
+                <br/> */}
                 <li><label htmlFor="memberAge">Do both guarators have savings each amounting to atleast ksh 3000?</label></li><br/>
                 Yes:
                 <input
@@ -174,6 +198,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.guarantorsavings === "yes"}
                 onChange={handleChange} 
+                required
                 />
                 No:
                 <input
@@ -183,6 +208,7 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.guarantorsavings === "no"}
                 onChange={handleChange} 
+                required
                 />
                 <br/>
                 <br/>
@@ -195,6 +221,7 @@ function handlerejection(){
                 value="yes"
                 checked={evaluationData.loanshistory === "yes"}
                 onChange={handleChange} 
+                required
                 />
                 No:
                 <input
@@ -204,13 +231,15 @@ function handlerejection(){
                 value="no"
                 checked={evaluationData.loanshistory=== "no"}
                 onChange={handleChange} 
+                required
                 />
                 <br/>
             </ul>
             <div className="bottom--buttons">
-                <button onClick={handleapprove}>Approve</button>
-                <button onClick={handlerejection}>Reject</button>
+                <button  >Approve</button>
+                <button type = 'button' onClick={handlerejection}>Reject</button>
             </div>
+            </form>
             </fieldset>
             {/* </form> */}
         </div>

@@ -222,6 +222,13 @@
 
 }
 
+.activate{
+    border-radius: 5px;
+    border: 1px solid rgb(0, 255, 149);
+    margin: 2%;
+    width: 22%;
+}
+
 /* GROUP ACCOUNTS STYLING */
 .group--account{
     margin: 2%;
@@ -297,4 +304,16 @@ filter: blur(6px);
 
 .message--col{
     width: 30%;
+}
+
+.error--deactivate{
+    background-color: rgb(231, 138, 138);
+    height: 40px;
+    margin-left:40%;
+    margin-right: 40%;
+    margin-top: -6%;
+    margin-bottom: 4%;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
 }

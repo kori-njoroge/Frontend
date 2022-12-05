@@ -4,6 +4,8 @@ import Axios  from "axios";
 import { NavLink } from "react-router-dom";
 import MoreDetails from "./moredetails";
 import Link from "../../../components/link";
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 
 
 
@@ -27,8 +29,36 @@ export default function Adminmembers(){
             window.localStorage.setItem("allUsers",JSON.stringify(members.data));
         })
     },[])
+    
+    // function savePdf() {
+    //         let DATA  = document.getElementById('report');
+    //         html2canvas(DATA).then((canvas) => {
+    //         let fileWidth = 208;
+    //         let fileHeight = (canvas.height * fileWidth) / canvas.width;
+    //         const FILEURI = canvas.toDataURL('image/*');
+    //         let PDF = new jsPDF('p', 'mm', 'a4');
+    //         let position = 0;
+    //         PDF.addImage(FILEURI, 'image/*', 0, position, fileWidth, fileHeight);
+    //         PDF.save('report.pdf');
+    //         });
+        
+        
+    //     }
 
+    function generatePDF(){
+        const element = document.getElementById('report');
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'in',
+            format: [4, 2],
+        });
+        doc.html(element, {
+            async callback(doc) {
+                await doc.save('pdf_name');
+            },
+        });
 
+    }
 
     console.log(search)
 
@@ -100,9 +130,13 @@ export default function Adminmembers(){
                     : ""}
                     </tbody>
                 </table>
+                
+
                 {more ? 
                 <MoreDetails  
                     userId ={userDetails? userDetails[0].userId : 0}
+                    username ={userDetails? userDetails[0].firstname : ''}
+                    accountStatus ={userDetails? userDetails[0].accountStatus : ''}
                     userdetails={userDetails}
                     savingsdetails={savingsdetails}
                     loandetails={loandetails}

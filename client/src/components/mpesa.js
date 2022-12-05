@@ -16,6 +16,7 @@ export default function MpesaPay(){
         const[currentUser, setCurrentUser] = useState("")
         const[deposit, setDeposit] = useState(false);
         const[errorMessage, setError] = useState("");
+        const[loading, setLoading] = useState(false)
             
         function handleFormData(event){
             const{name, value, type, checked} = event.target
@@ -43,7 +44,7 @@ export default function MpesaPay(){
             if(rr === null && formData.isChecked === "Loan Service Fee"){
                 window.alert("No loans to service! Please update the purpose")
             }else{
-
+                setLoading(true)
             // }
             // if(success){
                 Axios.post(`${ApiLink}/mywallet/mpesa`,{
@@ -55,6 +56,7 @@ export default function MpesaPay(){
                     purpose:formData.isChecked,
                     userid:currentUser.userId
                 }).then(response =>{
+                    setLoading(false)
                     if(response.data){
                         setDeposit(true);
                         setError(response.data)
@@ -137,6 +139,10 @@ export default function MpesaPay(){
                     <button>Confirm</button>
                 </div>
             </form>
+        {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                    : ""}
             {deposit? <p className={errorMessage.length > 25? "invalid" : "valid"}>{errorMessage}</p> : null}
         </div>
     )
