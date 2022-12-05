@@ -28,11 +28,12 @@ export default function Dashboard(){
         Axios.post(`${ApiLink}/dashboard/summary` ,{
             UserPhoneNumber: currentUserPhoneNumber}
             ).then(reply =>{
-                console.log(reply.data);
+                console.log("usiiing",reply.data[4].users);
                 const loaner= reply.data[0].loaner[0]
                 const saver = reply.data[1].saver
                 const loanpaid = reply.data[2].loanPayer[0].total
                 const total = reply.data[3].total[0].total
+            window.localStorage.setItem("AllMembers",JSON.stringify(reply.data[4].users));
                 // console.log(total)
                 setdashboardInfo({
                     savings:`${total ? total : 0}`,

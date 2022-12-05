@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Axios from 'axios'
 import CurrentUser from "../components/user";
-import Link from "../components/link";
+import ApiLink from "../components/link";
 
 
 export default function ApplyLoan(){
 
     //User details fill
+    const[search, setSearch] = useState('')
     const userDetails = JSON.parse(window.localStorage.getItem("currentUserDetails"));
     console.log(userDetails);
     console.log(userDetails.firstname);
+    const username = window.localStorage.getItem("username")
 
     const[applicationformData, setApplicationformData] = useState(
         {
@@ -21,18 +23,29 @@ export default function ApplyLoan(){
             amount:'',
             duration:'3months',
             purpose:"",
+            g1search:'',
             g1firstName:"",
             g1lastName:"",
             g1phoneNumber:"",
+            g2search:'',
             g2firstName:"",
             g2lastName:"",
             g2phoneNumber:"",
             interest:""
         }
         )
+        const[g1name, setG1name] = useState()
+        const[g1lname, setG1lname] = useState()
+        const[g1phone, setG1phone] = useState()
+
+        const[g2name, setG2name] = useState()
+        const[g2lname, setG2lname] = useState()
+        const[g2phone, setG2phone] = useState()
 
         const[wrongAmount, setWrong]= useState(false);
         const[members, setMembers]= useState("");
+        const[breakcondition,setbreakcondition] =useState(false)
+        const[breakcondition2,setbreakcondition2] =useState(false)
 
         useEffect( () =>{
             const k = JSON.parse(window.localStorage.getItem("AllMembers"));
@@ -61,12 +74,14 @@ export default function ApplyLoan(){
                 
                 if (applicationformData.amount > 500000) {
                     window.alert('Check your amount!')
+                    }else if(g1phone === g2phone){
+                        window.alert('Please check guarator details!')
                     }else{
                     const confirmBox = window.confirm(
                         "Confirm Loan application!"
                         )
                     if(confirmBox === true){
-                    Axios.post(`${Link}/applyloan`,
+                    Axios.post(`${ApiLink}/applyloan`,
                     {
                         
                         firstName:userDetails.firstname,
@@ -76,12 +91,12 @@ export default function ApplyLoan(){
                         amount:applicationformData.amount,
                         duration:applicationformData.duration,
                         purpose:applicationformData.purpose,
-                        g1firstName:applicationformData.g1firstName,
-                        g1lastName:applicationformData.g1lastName,
-                        g1phoneNumber:applicationformData.g1phoneNumber,
-                        g2firstName:applicationformData.g2firstName,
-                        g2lastName:applicationformData.g2lastName,
-                        g2phoneNumber:applicationformData.g2phoneNumber,
+                        g1firstName:applicationformData.g1search? applicationformData.g1search.split(' ')[0]: '' ,
+                        g1lastName:applicationformData.g1search? applicationformData.g1search.split(' ')[1]: '' ,
+                        g1phoneNumber:applicationformData.g1search? applicationformData.g1search.split(' ')[2]: '' ,
+                        g2firstName:applicationformData.g2search? applicationformData.g2search.split(' ')[0]: '' ,
+                        g2lastName:applicationformData.g2search? applicationformData.g2search.split(' ')[1]: '' ,
+                        g2phoneNumber:applicationformData.g2search? applicationformData.g2search.split(' ')[2]: '' ,
                         useridentity:userDetails.userId,
                         interest:totalinterest
                     }).then(response =>{
@@ -144,6 +159,25 @@ export default function ApplyLoan(){
         // console.log('duration',duration)
         // const animal = Number(applicationformData.amount)
         // console.log("typeof",typeof(animal))
+
+
+        if(applicationformData.g1search && !breakcondition){
+            setG1name(applicationformData.g1search.split(' ')[0])
+            setG1lname(applicationformData.g1search.split(' ')[1])
+            setG1phone(applicationformData.g1search.split(' ')[2])
+            setbreakcondition(true)
+        }
+
+        
+        if(applicationformData.g2search && !breakcondition2){
+            setG2name(applicationformData.g2search.split(' ')[0])
+            setG2lname(applicationformData.g2search.split(' ')[1])
+            setG2phone(applicationformData.g2search.split(' ')[2])
+            setbreakcondition2(true)
+        }
+
+        console.log(applicationformData)
+
 
 
     return(
@@ -246,7 +280,7 @@ export default function ApplyLoan(){
                     <br />
                     
                     <fieldset className="member--inquestion--loan">
-                        <h4>Interest Calculator</h4>
+                    <h4>Interest Calculator</h4>
                     Amount:{applicationformData.amount}<br />
                     Duration:{applicationformData.duration}<br />
                     interest(p.m):{interest}<br />
@@ -279,25 +313,30 @@ export default function ApplyLoan(){
 
 
                 <label>Guarantor 1: </label>
-
-                    <select
-                        name="g1firstName"
-                        value={applicationformData.g1firstName}
-                        onChange={handlesChangeAppLoan}
-                        required
-                    >
-                        {members?
+                    <input 
+                    className="search--members" 
+                    id="members--searchbtn"
+                    type="text" 
+                    list="g1"
+                    name="g1search"
+                    value={applicationformData.g1search}
+                    onChange={
+                    //     (event) =>{
+                    //     setSearch(event.target.value)
+                    // } 
+                    handlesChangeAppLoan
+                }
+                    placeholder="search guarantor by name"
+                    />
+                    <datalist id="g1" className="data--list">
+                        {members? 
                         members.map(member =>(
                             (member.firstname === "Admin" ? "" :
-                        <>
-                        <option value={member.firstname}>{member.firstname}</option>
-                        </>
-                    )
-                        ))
-                        : ""}
-
-
-                    </select>
+                            (member.firstname === username? '' :
+                            member.phonenumber === g2phone ? '':
+                            <option value={`${member.firstname} ${member.lastname} ${member.phonenumber} `} >{`  ${member.firstname} ${member.lastname}    |       ${member.email}`}</option>
+                            )))) : 'Nothing'}
+                    </datalist>
 
                     <br />
                     <br />
@@ -308,7 +347,7 @@ export default function ApplyLoan(){
                     id="g1firstName" 
                     type='text' 
                     name="g1firstName"
-                    value={applicationformData.g1firstName}
+                    value={applicationformData.g1search? applicationformData.g1search.split(' ')[0]: '' }
                     onChange={handlesChangeAppLoan} 
                     required 
                     />
@@ -319,7 +358,7 @@ export default function ApplyLoan(){
                     id="g1lastName" 
                     type='text' 
                     name="g1lastName"
-                    value={applicationformData.g1lastName}
+                    value={applicationformData.g1search? applicationformData.g1search.split(' ')[1]: '' }
                     onChange={handlesChangeAppLoan} 
                     required 
                     />
@@ -343,7 +382,7 @@ export default function ApplyLoan(){
                     id="g1phoneNumber" 
                     type='tel' 
                     name="g1phoneNumber"
-                    value={applicationformData.g1phoneNumber}
+                    value={applicationformData.g1search? applicationformData.g1search.split(' ')[2]: '' }
                     onChange={handlesChangeAppLoan} 
                     required 
                     />
@@ -354,25 +393,30 @@ export default function ApplyLoan(){
                     <h4>Guarantor 2:</h4>
 
                     <label>Guarantor 2: </label>
-
-                    <select
-                        name="g2firstName"
-                        value={applicationformData.g2firstName}
-                        onChange={handlesChangeAppLoan}
-                        required
-                    >
-                        {members?
+                    <input 
+                    className="search--members" 
+                    id="members--searchbtn"
+                    type="text" 
+                    list="g2"
+                    name="g2search"
+                    value={applicationformData.g2search}
+                    onChange={
+                    //     (event) =>{
+                    //     setSearch(event.target.value)
+                    // } 
+                    handlesChangeAppLoan
+                }
+                    placeholder="search guarantor by name"
+                    />
+                    
+                    <datalist id="g2" className="data--list">
+                        {members? 
                         members.map(member =>(
                             (member.firstname === "Admin" ? "" :
-                        <>
-                        <option value={member.firstname}>{member.firstname}</option>
-                        </>
-                    )
-                        ))
-                        : ""}
-
-
-                    </select>
+                            (member.firstname === username? '' :
+                            <option value={`${member.firstname} ${member.lastname} ${member.phonenumber} `} >{`  ${member.firstname} ${member.lastname}    |       ${member.email}`}</option>
+                            )))) : 'Nothing'}
+                    </datalist>
 
                     <br />
                     <br />
@@ -382,7 +426,7 @@ export default function ApplyLoan(){
                     id="g2firstName" 
                     type='text'
                     name="g2firstName"
-                    value={applicationformData.g2firstName}
+                    value={applicationformData.g2search? applicationformData.g2search.split(' ')[0]: '' }
                     onChange={handlesChangeAppLoan} 
                     required 
                     />
@@ -393,23 +437,13 @@ export default function ApplyLoan(){
                     id="g2lastName" 
                     type='text'
                     name="g2lastName"
-                    value={applicationformData.g2lastName}
+                    value={applicationformData.g2search? applicationformData.g2search.split(' ')[1]: '' }
                     onChange={handlesChangeAppLoan}  
                     required
                     />
 
                     <br />
                     <br />
-                    {/* <label htmlFor="g2idNumber">ID Number*</label>
-                    <input 
-                    className="loan--input" 
-                    id="g2idNumber" 
-                    type='number' 
-                    name="g2IDnumber"
-                    value={applicationformData.g2IDnumber}
-                    onChange={handlesChangeAppLoan} 
-                    required
-                    /> */}
 
                     <label htmlFor="g2phoneNumber">Phone Number*:</label>
                     <input 
@@ -417,7 +451,7 @@ export default function ApplyLoan(){
                     id="g2phoneNumber" 
                     type='tel'
                     name="g2phoneNumber"
-                    value={applicationformData.g2phoneNumber}
+                    value={applicationformData.g2search? applicationformData.g2search.split(' ')[2]: '' }
                     onChange={handlesChangeAppLoan} 
                     required
                     />
@@ -425,9 +459,6 @@ export default function ApplyLoan(){
                     <br />
                     <br />
                 </fieldset>
-                {/* <button type="button" onClick={handlecancelLoan}>Cancel</button>
-                <button type="button" onClick={submit}>Cancel</button>
-                 */}
                 <button 
                 type="button"
                     onClick={handlecancelLoan}>
