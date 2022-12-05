@@ -8,6 +8,8 @@ export default function Loans(){
 
     const[userLoan, setUserLoan] = useState(window.localStorage.getItem("userId"));
     const[loanee, setLoanee] = useState("");
+    const[reply, setReply] = useState("");
+    const[loading, setLoading] = useState(false);
     // const[search, setSearch] = useState('')
     
 
@@ -24,6 +26,7 @@ export default function Loans(){
     },[])
     
 
+    
 
 
     return(
@@ -52,6 +55,7 @@ export default function Loans(){
                             <th>Amount(Ksh)</th>
                             <th>Interest</th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total<small><br />(amount + interest)</small></th>
+                            <th>Payment<br />Duration</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -66,6 +70,7 @@ export default function Loans(){
                             <td>{loanee.amount}.00</td>
                             <td>{loanee.interest}.00</td>
                             <td>{loanee.interest + loanee.amount}.00</td>
+                            <td>{loanee.duration}</td>
                             <td>{loanee.loanStatus}</td>
                             <td className="button--moredetails">
                                 {loanee.loanStatus === "Pending Approval" ? 
@@ -73,14 +78,25 @@ export default function Loans(){
                                 id ="cancel--loan" 
                                 className="admin--btn" 
                                 onClick={() =>{
-                                    Axios.post(`${ApiLink}/cancelloan`,
-                                    {
-                                        loanid:loanee.loanId
-                                    }).then(responsey =>{
-                                        console.log(responsey);
-                                    }).catch(err =>{
-                                        console.log(err);
-                                    })
+                                    const a = window.confirm('Delete your application!')
+                                    if(a){
+                                        setLoading(true)
+                                        Axios.post(`${ApiLink}/cancelloan`,
+                                        {
+                                            loanid:loanee.loanId
+                                        }).then(responsey =>{
+                                            console.log(responsey.data);
+                                            // window.location.reload(false); 
+                                            setLoading(false)
+                                            setReply(responsey.data.Message)  
+                                        }).catch(err =>{
+                                            console.log(err);
+                                            setLoading(false)
+                                            setReply(err)
+                                        })
+                                    }else{
+
+                                    }
                                 }}
                                 > Cancel Loan</button> : ""}
                             </td>
@@ -88,6 +104,15 @@ export default function Loans(){
                         : <tr><td>You have no applied loans"</td ></tr>}
                     </tbody>
                 </table>
+                {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                    : ""}
+                {reply? <p className={reply==='Loan canceled successfully'? 'good--reply' : 'error--reply'}>{reply}</p>:''}
+                {reply? setTimeout(() => {
+                    setReply('')  
+                }, 3000): ''}
+
                 {/* <fieldset className="pendingloan--field">
                     <legend style={{textDecoration:"underline"}}>Loans Disbursed</legend>
                     <table className="pending--loans"> */}

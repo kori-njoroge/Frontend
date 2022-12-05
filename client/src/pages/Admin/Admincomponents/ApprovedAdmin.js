@@ -8,6 +8,9 @@ export default function ApprovedLoans(){
     const[disbursedLoan, setDisbursedLoan] = useState()
     const[search, setSearch] = useState('')
     const[searchloan, setSearchloan] = useState('')
+    const[loading, setLoading] = useState(false)
+    const[reply, setReply] = useState('')
+
 
     useEffect(() =>{
         Axios.post(`${ApiLink}/approvedloans`).then(reply =>{
@@ -29,7 +32,7 @@ export default function ApprovedLoans(){
                 onChange={(event) =>{
                     setSearch(event.target.value)
                 }}
-                placeholder="seach by name"
+                placeholder="search by name"
                 />
             </form>
             <table className="approved--loan">
@@ -67,20 +70,62 @@ export default function ApprovedLoans(){
                                 <td><button 
                                 className="disburse--btn"
                                 onClick={() =>{
-                                    Axios.post(`${ApiLink}/admin/approvedloans/disburse`,{
-                                        loanId:apploan.loanId
-                                    }).then(response =>{
-                                        console.log(response)
-                                    })
+                                    const a = window.confirm('Confirm to disburse the loan')
+                                    if(a){
+                                        setLoading(true)
+                                        Axios.post(`${ApiLink}/admin/approvedloans/disburse`,{
+                                            loanId:apploan.loanId
+                                        }).then(response =>{
+                                            console.log(response)
+                                            setLoading(false)
+                                            setReply(response.data.message)
+                                        }).catch(err =>{
+                                            setLoading(false)
+                                            setReply(err)
+                                        })
+                                    }else{
+                                        setReply('Process terminated!')
+                                    }
                                 }}
                                 >
                                 Disburse
+                                </button>
+                                <button 
+                                className="disburse--btn"
+                                onClick={() =>{
+                                    const a = window.confirm('Confirm to reject the loan')
+                                    if(a){
+                                        setLoading(true)
+                                        Axios.post(`${ApiLink}/admin/approvedloans/reject`,{
+                                            loanId:apploan.loanId
+                                        }).then(response =>{
+                                            console.log(response)
+                                            setLoading(false)
+                                            setReply(response.data.message)
+                                        }).catch(err =>{
+                                            setLoading(false)
+                                            setReply(err)
+                                        })
+                                    }else{
+                                        setReply('Process terminated')
+                                    }
+                                }}
+                                >
+                                Reject
                                 </button></td>
                             </tr>
                         ))
                     : "no data"}
                 </tbody>
             </table>
+            {reply? <p className={reply !=='Error try again later!'? 'good--reply' : 'error--reply'}>{reply}</p> : ''}
+            {reply? setTimeout(() => {
+                setReply('')
+            }, 2000) : ''}
+            {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                : ""}
             
             <hr width="95%" size="2" color="white"/> 
 

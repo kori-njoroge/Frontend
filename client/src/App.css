@@ -1,14 +1,3 @@
-/*about us page styles */
-.aboutus{
-    height: 200%;
-    width: 90%;
-    position: absolute;
-    left: 5rem;
-    top: 8rem;
-
-    border-radius: 10px;
-}
-
 /* //home styles */
 .home--page{
     display: flex;
@@ -203,6 +192,21 @@ word-spacing: 3px;
     margin-left: 6%;
 }
 
+.dash--cards{
+    border: 1px solid black;
+    border-radius: 6px;
+    height: 170px;
+    width: 300px;
+    margin-right: 2%;
+    padding-left: 15px;
+}
+
+.interest--section{
+    color: rgb(112, 61, 122);
+    font-size: 15px;
+    font-weight: bolder;
+}
+
 
 
 
@@ -301,9 +305,18 @@ legend{
 .form--loan{
     border: 1px solid #ffffff;
     border-radius: 10px;
-    height:400px;
+    height:600px;
     overflow-y:auto;
     padding-left: 35px;
+}
+
+.member--inquestion--loan{
+    /* color: red; */
+    margin: 20px;
+    border: 1px solid white;
+    width: 15%;
+    background-color: rgb(224, 209, 238);
+    border-radius: 10px;
 }
 
 
@@ -614,4 +627,122 @@ input::-webkit-inner-spin-button {
     width: 40%;
     height: 25px;
     border: 1px solid black;
+}
+
+.aboutUs--body{
+    /* border: 1px solid black; */
+    /* margin-top: 2%; */
+    text-align: center;
+}
+
+.aboutUs--title{
+    text-align: center;
+    margin-top: 7%;
+    font-size: 70px;
+}
+.contact--title{
+    text-align: center;
+    margin-top: 7%;
+    font-size: 40px;
+}
+
+.about--content{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    line-height: 35px;
+}
+
+.mission--cards{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    padding: 2px;
+}
+.about--cards{
+    border: 1px solid black;
+    width: 17%;
+    margin: 2%;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.list--dignity{
+    text-align: left;
+}
+
+.objectives{
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: left;
+    line-height: 40px;
+}
+
+
+.aboutUs--nav{
+    background-color: rgb(206, 180, 233);
+    height: 80px;
+    padding: 15px;
+    display: flex;
+}
+.aboutUs--nav >h2{
+    /* color: red;   */
+    margin-right: auto;
+    margin-top: -1px;
+    font-size: 35px;
+    word-spacing: -6px;
+    margin-left: 20px;
+}
+#aboutus--footer{
+    background-color: rgb(206, 180, 233);
+    margin-bottom: -2px;
+    height: 30px;
+    padding: 10px;
+}
+.contact--uus{
+    margin-top: 2%;
+    padding-left: 20%;
+    padding-bottom: 3%;
+    line-height: 70px;
+}
+
+.contact--us--email{
+    background-color: none;
+    /* margin-right: 25%; */
+}
+
+.name--phone{
+    height: 40px;
+    margin-left: 20px;
+    width: 30%;
+    border: none;
+    border-radius: 3px;
+    padding:20px;
+    font-size: 15px;
+}
+
+.email--contact{
+    margin-left: 20px;
+    width: 62%;
+    font-size: 15px;
+    padding:20px;
+}
+.contact--us--email > textarea{
+    margin-left: 20px;
+    width: 62%;
+    height: 100px;
+    border: none;
+    font-size: 15px;
+    padding:20px;
+    padding-top:5px;
+}
+.contact--us--email > button{
+    height: 40px;
+    margin-left: 56%;
+}
+
+.email--link >a {
+    text-decoration: none;
+    color: black;
 }

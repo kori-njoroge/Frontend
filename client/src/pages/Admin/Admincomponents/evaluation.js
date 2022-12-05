@@ -6,6 +6,7 @@ export default function Evaluation(props){
     console.log(props.userid)
     const loanID= props.loanid
     const[reply, setReply] = useState('')
+    const[loading, setLoading] = useState(false)
 
     const [evaluationData, setFormData] = React.useState(
         {
@@ -31,30 +32,78 @@ export default function Evaluation(props){
 function handleapprove(){
     const a = window.confirm("Confirm Loan Approval!");
     if(a){
+        setLoading(true)
         Axios.post(`${Link}/admin/appliedloans/evaluation`,{
             status:"Yaay!",
             loanid:loanID
         }).then(response =>{
             console.log(response);
+            setLoading(false)
             setReply(response.data)
+            setFormData(
+                {
+                    memberage: '', 
+                    membersavings: '',   
+                    guarantormembers: '', 
+                    // selectedtime: "", 
+                    guarantorsavings: "",
+                    loanshistory: ""
+                }
+            )
         }).catch(err =>{
             console.log(err)
         })
+        setFormData(
+            {
+                memberage: '', 
+                membersavings: '',   
+                guarantormembers: '', 
+                // selectedtime: "", 
+                guarantorsavings: "",
+                loanshistory: ""
+            }
+        )
+    }else{
+        setReply('Process terminated!')
     }
 }
 
 function handlerejection(){
     const a = window.confirm("Confirm loan rejection!");
     if(a){
+        setLoading(true);
         Axios.post(`${Link}/admin/appliedloans/evaluation`,{
             status:"Boo!",
             loanid:loanID
         }).then(response =>{
             console.log(response);
+            setLoading(false)
             setReply(response.data)
+            setFormData(
+                {
+                    memberage: '', 
+                    membersavings: '',   
+                    guarantormembers: '', 
+                    // selectedtime: "", 
+                    guarantorsavings: "",
+                    loanshistory: ""
+                }
+            )
         }).catch(err =>{
             console.log(err)
         })
+        setFormData(
+            {
+                memberage: '', 
+                membersavings: '',   
+                guarantormembers: '', 
+                // selectedtime: "", 
+                guarantorsavings: "",
+                loanshistory: ""
+            }
+        )
+    }else{
+        setReply('Process termminated!');
     }
 }
 
@@ -239,6 +288,14 @@ if(evaluationData.memberage === 'yes' && evaluationData.membersavings  === 'yes'
                 <button  >Approve</button>
                 <button type = 'button' onClick={handlerejection}>Reject</button>
             </div>
+            {loading ? <div  className='donut-wrapper'>
+                        <div  className='donut multi'></div>
+                    </div>
+                    : ""}
+            {reply? <p className={reply ==='Loan rejected!'?  'error--reply' : 'good--reply' }>{reply}</p> : ''}
+            {reply? setTimeout(() => {
+                setReply('')
+            }, 3000) : ''}
             </form>
             </fieldset>
             {/* </form> */}

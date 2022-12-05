@@ -12,6 +12,7 @@ import pic from '../images/Cafebord-2-COLOURBOX23980354-1024x1024-1.jpg'
 
 export default function Signin(){
     const navigate = useNavigate();
+    const [loading, setLoading] =useState(false);
     const[loginStatus, setLoginstatus] = useState(false)//error code here 
     const [signinData, setSigninData] = useState(
         {   
@@ -36,16 +37,19 @@ export default function Signin(){
 
     function SigninFunc(event){
         event.preventDefault();
+        setLoading(true)
         Axios.post(`${ApiLink}/signin`,
         {   
             phonenumber: signinData.phonenumber,
             password: signinData.password,
         }).then(response =>{    
             console.log("signedin",response.data)        
+            setLoading(false)
             if(response.data.message){
                 setLoginstatus(response.data.message)
             }else{
-                setLoginstatus(response.data[0].result[0].firstname);
+                // setLoginstatus(response.data[0].result[0].firstname);
+                const status = response.data[0].result[0].accountStatus
                 const log = response.data[0].result[0]
                 const reg = response.data[1].resut[0].total
                 window.localStorage.setItem("currentUserDetails", JSON.stringify(log));
@@ -62,6 +66,8 @@ export default function Signin(){
                     setTimeout(() => {
                         navigate('/register');
                     }, 6000)
+                }else if( status === 'Deactivated'){
+                    setLoginstatus('Your account is deactivated please contact the admin for help')
                 }else{
                     navigate('/dashboard/summary');
                 }
@@ -89,6 +95,7 @@ export default function Signin(){
 
     function handleonFocus(){
         setReg(false)
+        setLoginstatus('')
     }
 
     return(
@@ -147,6 +154,10 @@ export default function Signin(){
         <div>
             <p className="no--account">Dont have an account  <Link to={'/signup'}>Sign Up</Link></p>
         </div>
+            {loading ? <div  className='donut-wrapper'>
+                            <div  className='donut multi'></div>
+                        </div>
+                    : ""}
             {reg? <p className="invalid"><Link className="invalid"  style={{textdecoration: 'node'}} to = {'/register'}>{regStatus}</Link></p> : ""}
         </form>
         </div>

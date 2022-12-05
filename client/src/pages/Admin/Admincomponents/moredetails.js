@@ -221,7 +221,7 @@ export default function MoreDetails(props){
                 </button>
             </fieldset>
                  */}
-                {reply? <p className={ reply === "Message sent successfully!"?  "good--reply":"error--deactivate"}>{reply}</p> : ''}
+                {reply? <p className={ reply === "Message sent successfully!"?  "good--reply":"error--activate"}>{reply}</p> : ''}
                 {reply? setTimeout(() => {
                     setReply('')
                     }, 3000): ''}

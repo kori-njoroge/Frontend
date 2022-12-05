@@ -18,8 +18,8 @@ export default function ApplyLoan(){
             lastName:"",
             IDnumber:"",
             phonenumber:"",
-            amount:"",
-            duration:"3 Months",
+            amount:'',
+            duration:'3months',
             purpose:"",
             g1firstName:"",
             g1lastName:"",
@@ -89,14 +89,17 @@ export default function ApplyLoan(){
                         if(response){
                             alert(response.data.message);
                             if(response.data.message === "You already applied for a loan"){
-                            setApplicationformData(
+                            
+                            
+                            }else{
+                                setApplicationformData(
                                 {
                                     firstName:"",
                                     lastName:"",
                                     IDnumber:"",
                                     phonenumber:"",
                                     amount:"",
-                                    duration:"3 months",
+                                    duration:"3 Months",
                                     purpose:"",
                                     g1firstName:"",
                                     g1lastName:"",
@@ -107,8 +110,6 @@ export default function ApplyLoan(){
                                     interest:""
                                 }
                                 )
-                            }else{
-
                             }
                         }
                         
@@ -132,15 +133,17 @@ export default function ApplyLoan(){
             const value = applicationformData.amount
             const amountCheck = value>500001;
             setWrong(amountCheck);
-            // console.log(amountCheck);
         }
 
         //interest calclations
-        const duration = Number((applicationformData.duration).split('m')[0])
-        const interest = Math.floor(applicationformData.amount * 0.03 )
+        const duration = (applicationformData.duration).split('m')[0]
+        const interest = Math.floor(Number(applicationformData.amount) * 0.03 )
         const totalinterest = Math.floor(interest * duration)
         const total = Math.floor(Number(totalinterest) + Number(applicationformData.amount))
-        // console.log("eat",typeof(Number((applicationformData.duration).split('')[0])))
+        // console.log("eat",typeof(Number((applicationformData.duration).split('m')[0])))
+        // console.log('duration',duration)
+        // const animal = Number(applicationformData.amount)
+        // console.log("typeof",typeof(animal))
 
 
     return(
@@ -242,8 +245,8 @@ export default function ApplyLoan(){
                     <br />
                     <br />
                     
-                    <fieldset className="member--inquestion">
-                        <h4>Interest Section</h4>
+                    <fieldset className="member--inquestion--loan">
+                        <h4>Interest Calculator</h4>
                     Amount:{applicationformData.amount}<br />
                     Duration:{applicationformData.duration}<br />
                     interest(p.m):{interest}<br />
