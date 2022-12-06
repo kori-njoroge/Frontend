@@ -764,3 +764,63 @@ input::-webkit-inner-spin-button {
     text-align: center;
     margin-left:25% ;
 }
+
+.current--user--dash{
+    /* color: red; */
+    width: 14%;
+    background-color: rgb(206, 180, 233);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* PROFILE STLING */
+.profileContainer {
+    position: fixed;
+    width: 20%;
+    height: 75%;   
+    border-radius: 10px;
+    background-color: #dae2e2;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 50px 105px;
+    border: 1px solid black;
+    margin-left: 30%;
+    margin-top: 3%;
+    padding-left: 25px;
+    padding-right: -40px;
+    overflow: auto;
+}
+
+.profiles{
+    width: 40px;
+    height: 41px;
+    border: none;
+    border-radius: 6px;
+    /* background-color: cornflowerblue; */
+    color: black;
+    cursor: pointer;
+    margin-left: auto;
+    margin-top: 1%;
+    margin-right: -75%;
+    overflow: auto;
+}
+.profile--img{
+    /* background-color: red; */
+    width: 30%;
+    height:30%;
+    margin-left: 33%;
+}
+.profile--name{
+    text-align: center;
+}
+
+.change--password{
+    line-height: 40px;
+    margin-top: 10px;
+}
+
+.change--password >button{
+    margin-left: 40px;
+    align-self: center;
+    margin-bottom: 20px;
+}
