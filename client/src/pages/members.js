@@ -2,6 +2,7 @@ import React, { useEffect,useState} from "react";
 import CurrentUser from "../components/user";
 import Axios from "axios";
 import Link from "../components/link";
+import { PDFExport} from '@progress/kendo-react-pdf'
 
 
 export default function Members(){
@@ -9,6 +10,16 @@ export default function Members(){
     const[members, setMembers] = useState([]);
     const[more, setMore] = useState(false);
     const[search,setSearch] = useState('')
+    const pdfExport =React.useRef(null)
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
+    }
+
+    var element = document.querySelector("hideElement");
+
+// Then, set the display property to none
+    // element.style.display = "none";
 
 
     useEffect(() =>{
@@ -25,7 +36,10 @@ export default function Members(){
     return(
         <div>
             <CurrentUser />
+            <canvas id='my-canvas' />
+            <PDFExport ref={pdfExport}>
             <h2>Members</h2>
+            </PDFExport>
                 <div className="members-table">
             <form>
                 <input 
@@ -38,6 +52,7 @@ export default function Members(){
                 placeholder="seach members"
                 />
             </form>
+            <PDFExport ref={pdfExport}>
                 <table>
                     <thead>
                         <tr>
@@ -64,11 +79,13 @@ export default function Members(){
                             
                         </tr>
                     )
-                        ))
-                        : ""}
+                    ))
+                    : ""}
                         
                     </tbody>
                 </table>
+            <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download</button>     
+                </PDFExport>
             </div>
         </div>
     )

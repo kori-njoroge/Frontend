@@ -123,6 +123,15 @@ export default function MpesaPay(){
                         checked ={formData.isChecked === "Loan Service Fee"}
                         required
                     /> Loan Service fee<br/>
+
+<input 
+                        type='radio'
+                        name="isChecked"
+                        value="Welfare Funds"
+                        onChange={handleFormData}
+                        checked ={formData.isChecked === "Loan Service Fee"}
+                        required
+                    /> Welfare funds<br/>
                 </fieldset>
                 <div className="mpesaform--footer">
                     <button 

@@ -89,53 +89,7 @@ console.log(total);
                                 <td>{deposit.savingDepositId}</td>
                                 <td>{(deposit.createdAt).split('T')[0]}</td>
                                 <td>{deposit.savingsamount}</td>
-                                {/* <td> */}
-                                    {/* <button
-                                    onClick={() =>{
-                                                <Bar
-                                                  data={{
-                                                    // Name of the variables on x-axies for each bar
-                                                    labels: ["1st bar", "2nd bar", "3rd bar", "4th bar"],
-                                                    datasets: [
-                                                      {
-                                                        // Label for bars
-                                                        label: "total count/value",
-                                                        // Data or value of your each variable
-                                                        data: [200,200, 10, 10],
-                                                        // Color of each bar
-                                                        backgroundColor: ["aqua", "green", "red", "yellow"],
-                                                        // Border color of each bar
-                                                        borderColor: ["aqua", "green", "red", "yellow"],
-                                                        borderWidth: 0.2,
-                                                      },
-                                                    ],
-                                                  }}
-                                                  // Height of graph
-                                                  height={200}
-                                                  options={{
-                                                    maintainAspectRatio: false,
-                                                    responsive:false,
-                                                    scales: {
-                                                      yAxes: [
-                                                        {
-                                                          ticks: {
-                                                            // The y-axis value will start from zero
-                                                            beginAtZero: false,
-                                                          },
-                                                        },
-                                                      ],
-                                                    },
-                                                    legend: {
-                                                      labels: {
-                                                        fontSize: 15,
-                                                      },
-                                                    },
-                                                  }}
-                                                />
-                                              
-                                    }}       
-                                    >Bar chart</button>
-                                </td> */}
+                                {/* <td> */}                                            
                             </tr>
                         ))
                     : null}
@@ -155,15 +109,15 @@ console.log(total);
         <Bar
           data={{
             // Name of the variables on x-axies for each bar
-            labels: ["Median", "Mean", "Lowest", "Highest"],
+            labels: ["Median", "Mean", "Lowest", "Total"],
             datasets: [
               {
                 // Label for bars
                 label: "total count/value",
                 // Data or value of your each variable
-                data: [1000,20, 1, 3000],
+                data: [1000,20, 1, total],
                 // Color of each bar
-                backgroundColor: ["aqua", "green", "red", "yellow"],
+                backgroundColor: ["aqua", "red", "yellow","green"],
                 // Border color of each bar
                 borderColor: ["aqua", "green", "red", "yellow"],
                 borderWidth: 0.2,

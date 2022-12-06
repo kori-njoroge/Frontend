@@ -124,7 +124,7 @@ return (
                     setChangePass(false)
                 }}>Cancel</button>
                 <button > Submit</button>
-                {reply? <p className={reply === 'Passwords do no match!' ?'invalid' : 'valid'}>{reply}</p> : ''}
+                {reply? <p className={reply === 'Passwords do no match!' || reply === 'Error, try again later!' ?'invalid' : 'valid'}>{reply}</p> : ''}
             </form> : 
             ''}
         </div>   

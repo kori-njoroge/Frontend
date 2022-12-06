@@ -91,9 +91,9 @@ return (
             }}
             id="cancelBtn"
         >
-            Cancel
+            Exit
         </button>
-        <button>Continue</button>
+        {/* <button>Continue</button> */}
         </div>
     </div>
     </div>
