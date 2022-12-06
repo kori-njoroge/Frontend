@@ -10,13 +10,14 @@ export default function Members(){
     const[members, setMembers] = useState([]);
     const[more, setMore] = useState(false);
     const[search,setSearch] = useState('')
+
     const pdfExport =React.useRef(null)
 
     function saveCanvasAsPDF(){
         pdfExport.current.save();
     }
 
-    var element = document.querySelector("hideElement");
+    var element = document.querySelector("#hideElement");
 
 // Then, set the display property to none
     // element.style.display = "none";
@@ -36,10 +37,10 @@ export default function Members(){
     return(
         <div>
             <CurrentUser />
-            <canvas id='my-canvas' />
-            <PDFExport ref={pdfExport}>
+            {/* <canvas id='my-canvas' /> */}
+            {/* <PDFExport ref={pdfExport}> */}
             <h2>Members</h2>
-            </PDFExport>
+            {/* </PDFExport> */}
                 <div className="members-table">
             <form>
                 <input 
@@ -50,7 +51,9 @@ export default function Members(){
                     setSearch(event.target.value)
                 }}
                 placeholder="seach members"
-                />
+                />&nbsp;&nbsp;&nbsp;&nbsp;
+            <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download List</button>     
+
             </form>
             <PDFExport ref={pdfExport}>
                 <table>
@@ -84,7 +87,6 @@ export default function Members(){
                         
                     </tbody>
                 </table>
-            <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download</button>     
                 </PDFExport>
             </div>
         </div>

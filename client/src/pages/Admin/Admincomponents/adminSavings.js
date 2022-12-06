@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Link from "../../../components/link";
+import { PDFExport} from '@progress/kendo-react-pdf'
+
 
 export default function AdminSaving(){
 
     const[memberSavers, setSavers] = useState();
     const[savingsTotal, setTotalSavings] = useState();
     const[search, setSearch]= useState('')
+
+
+    const pdfExport =React.useRef(null)
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
+    }
 
     useEffect(() =>{
         Axios.post(`${Link}/adminsavings`).then(savers =>{
@@ -24,6 +33,7 @@ export default function AdminSaving(){
     return(
         <div>
             <h3>Savings</h3>
+            {/* <canvas id='savings' /> */}
             <form>
                 <input 
                 className="search--members" 
@@ -33,7 +43,10 @@ export default function AdminSaving(){
                 }}
                 placeholder="seach by name"
                 />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+                <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download List</button>  
             </form>
+            <PDFExport ref={pdfExport}>
             <table className="savings--table--admin">
                 <tbody>
                 <tr>
@@ -71,6 +84,7 @@ export default function AdminSaving(){
                     </tr>
             </tbody>
             </table>
+            </PDFExport>
         </div>
     )
 }

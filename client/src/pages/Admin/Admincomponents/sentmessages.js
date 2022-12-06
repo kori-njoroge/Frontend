@@ -2,10 +2,18 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Axios from 'axios'
 import ApiLink from '../../../components/link'
+import { PDFExport} from '@progress/kendo-react-pdf'
+
 
 export default function Messages() {
     const[search, setSearch] = useState ('')
     const[messages, setMessages] = useState([])
+
+    const pdfExport =React.useRef(null)
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
+    }
 
     useEffect(() =>{
         Axios.post(`${ApiLink}/sentmessages`).then(response =>{
@@ -32,8 +40,9 @@ export default function Messages() {
                     setSearch(event.target.value)
                 }}
                 placeholder="Search by members"
-                />
+                />&nbsp;&nbsp;&nbsp;&nbsp;<button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download Messages</button>     
             </form>
+            <PDFExport ref={pdfExport}>  
             <table className='messages--table'>
                     <thead >
                         <tr>
@@ -64,6 +73,7 @@ export default function Messages() {
                     : ""}
                     </tbody>
                 </table>
+                </PDFExport>
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import ApiLink from "../../../components/link";
+import { PDFExport} from '@progress/kendo-react-pdf'
+
 
 
 export default function GroupAccounts(){
@@ -12,6 +14,14 @@ export default function GroupAccounts(){
     const[showBalance2,setShowBalance2] = useState(true);
     const[showBalance3,setShowBalance3] = useState(true);
     const[showBalance4,setShowBalance4] = useState(true);
+
+
+    const pdfExport =React.useRef(null)
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
+    }
+
 
 useEffect(() =>{
     Axios.post(`${ApiLink}/admin/groupaccounts`, ).then( response =>{
@@ -29,6 +39,9 @@ useEffect(() =>{
 
 
     return(
+        <>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download Data</button>  
+            <PDFExport ref={pdfExport}>  
         <div className="group--account">
         <div className="admin--cards">
             <h3>Total Savings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i 
@@ -96,5 +109,7 @@ useEffect(() =>{
             Ksh:{regAccount? regAccount : 0}.00</p>  
         </div>
         </div>
+        </PDFExport>
+        </>
     )
 }

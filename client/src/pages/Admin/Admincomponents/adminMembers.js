@@ -6,6 +6,7 @@ import MoreDetails from "./moredetails";
 import Link from "../../../components/link";
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
+import { PDFExport} from '@progress/kendo-react-pdf'
 
 
 
@@ -20,6 +21,12 @@ export default function Adminmembers(){
     const[savingsdetails, setSavingsDetails]= useState(null)
     const[loandetails, setLoanDetails]= useState(null)
     const[savingsTotal, setsavingsTotal]= useState(null)
+
+    const pdfExport =React.useRef(null)
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
+    }
 
 
     useEffect(() =>{
@@ -45,26 +52,27 @@ export default function Adminmembers(){
         
     //     }
 
-    function generatePDF(){
-        const element = document.getElementById('report');
-        const doc = new jsPDF({
-            orientation: 'landscape',
-            unit: 'in',
-            format: [4, 2],
-        });
-        doc.html(element, {
-            async callback(doc) {
-                await doc.save('pdf_name');
-            },
-        });
+    // function generatePDF(){
+    //     const element = document.getElementById('report');
+    //     const doc = new jsPDF({
+    //         orientation: 'landscape',
+    //         unit: 'in',
+    //         format: [4, 2],
+    //     });
+    //     doc.html(element, {
+    //         async callback(doc) {
+    //             await doc.save('pdf_name');
+    //         },
+    //     });
 
-    }
+    // }
 
     console.log(search)
 
     return(
         <div >
             <h3>Members</h3>
+            {/* <canvas id='my-canvas' /> */}
             <form>
                 <input 
                 className="search--members" 
@@ -72,9 +80,11 @@ export default function Adminmembers(){
                 onChange={(event) =>{
                     setSearch(event.target.value)
                 }}
-                placeholder="seach members"
-                />
+                placeholder="search members"
+                />&nbsp;&nbsp;&nbsp;&nbsp;
+                <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download List</button>     
             </form>
+            <PDFExport ref={pdfExport}>
             <table className="admin--members--table">
                     <thead>
                         <tr>
@@ -130,6 +140,7 @@ export default function Adminmembers(){
                     : ""}
                     </tbody>
                 </table>
+                </PDFExport> 
                 
 
                 {more ? 
