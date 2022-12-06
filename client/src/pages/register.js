@@ -3,6 +3,7 @@ import Axios  from 'axios';
 import ApiLink from '../components/link';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import logo from '../images/logo.jpg'
 
 export default function Register() {
 
@@ -104,17 +105,26 @@ export default function Register() {
 
 
     return (
+        <>
+        <div className="aboutUs--nav">
+            <NavLink to={"/"}><button className="homenav--btn"><i className="fa fa-home"/>  Home</button></NavLink>
+            <NavLink to={'/Aboutus'}><button className="homenav--btn">About Us</button></NavLink>
+            <NavLink to={'/Contactus'}><button className="homenav--btn"><i className="fa fa-envelope"/> Contact Us</button></NavLink>
+            <NavLink to ={'/signin'}><button className="homenav--btn">Sign in</button></NavLink>
+            <NavLink to={'/signup'}><button className="homenav--btn">Get started</button></NavLink>
+        </div>
         <div className='register--mpesa'>
         <p className='heading--register'>Complete the registration to access to your account!</p>
         <div className='registration--section'>
             <div className='statement-section'>
                 <fieldset className='reg--fieldset'>
-                <ol>
+                    <img className='reg--logo' src={logo}></img>
+                    <h3>Welcome! <br /><br />complete one more step to activate<br /> your account</h3>
+                <ul>
                     <li>Each member is obliged to a 500 non refundable fee</li>
-                    <li>Each member is obliged to a 500 non refundable fee</li>
-                    <li>Each member is obliged to a 500 non refundable fee</li>
-                    <li>Each member is obliged to a 500 non refundable fee</li>
-                </ol>
+                    
+                </ul>
+                <h4>See you soon</h4>
                 </fieldset>
             </div>
             <div className='reg--mpesa--section'>
@@ -164,7 +174,8 @@ export default function Register() {
                 </fieldset>
             </div>
         </div>
-        <p className="copyright">Copyright&copy;2022St Andrews||All rights reserved</p>
         </div>
+        <p className="copyright" id="register--footer">Copyright&copy;2022St Andrews||All rights reserved</p>
+        </>
     )
 }

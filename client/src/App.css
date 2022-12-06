@@ -746,3 +746,21 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
     color: black;
 }
+
+#register--footer{
+        background-color: rgb(206, 180, 233);
+        margin-top: 7%;
+        height: 50px;
+        padding: 10px;
+}
+
+.reg--logo{
+    /* border: 2px solid black; */
+    /* border-radius: 55%; */
+    width: 40% ;
+    height:40% ;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    margin-left:25% ;
+}
