@@ -93,9 +93,6 @@ export default function Register() {
             console.log(err);
         })
     }
-    // else if(register && !register){
-
-    // }
     }
 
     function handleOnFocus(){
@@ -138,7 +135,7 @@ export default function Register() {
                         type="tel"
                         placeholder='2547/1XXXXXXXX'
                         name='phonenumber'
-                        value={formDataReg.phonenumber}
+                        value={FormData.phonenumber}
                         onChange={handleFormData}
                         onFocus={handleOnFocus}
                         required

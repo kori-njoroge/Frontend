@@ -36,14 +36,7 @@ export default function Navbar() {
             <NavLink to={"/"}  style={{textDecoration:"none"}} ><h4 className="nav--home">Home</h4></NavLink>
             <NavLink to={'/aboutus'}  style={{textDecoration:"none"}} ><h4 className="nav--aboutus">About us</h4></NavLink>
             <NavLink to={'/contactus'}  style={{textDecoration:"none"}} ><h4 className="nav--title">Contact us</h4></NavLink>
-            <h4 
-            className="nav--title"
-            onClick={() => {
-                console.log('modal')
-                setModalOpen(prevstate => !prevstate);
-                }}
-            ><i className="fa-solid fa-user fa-2x"/></h4>
-            <button onClick={Signout} ><i className="fa-solid fa-right-from-bracket" id ="logoutIcon"></i></button>
+            <button onClick={Signout} ><i className="fa-solid fa-right-from-bracket" id ="logoutIcon"> </i>  Log out</button>
         </nav>
         {modalOpen && <Profile setOpenModal={setModalOpen} />}
         {/* <Dropdown>  

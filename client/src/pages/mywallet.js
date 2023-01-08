@@ -4,6 +4,7 @@ import CurrentUser from "../components/user";
 
 ////////
 import { Bar } from "react-chartjs-2";
+import { PDFExport} from '@progress/kendo-react-pdf'
 
 
 
@@ -28,6 +29,13 @@ export default function MyWallet(){
     function handleTransact(){
         // setTransact(prevState =>!prevState);
         setTransact(prevState => !prevState);
+    }
+
+    const pdfExport =React.useRef(null)
+
+
+    function saveCanvasAsPDF(){
+        pdfExport.current.save();
     }
 
 
@@ -71,8 +79,11 @@ console.log(total);
                     setSearch(event.target.value)
                 }}
                 placeholder="search by amount"
-                />
+                />&nbsp;&nbsp;&nbsp;&nbsp;
+                <button style={{displa: 'none'}} id="hideElement" onClick={saveCanvasAsPDF}>Download List</button> 
             </form>
+            <PDFExport ref={pdfExport}>
+            &nbsp;&nbsp;&nbsp;&nbsp;My Savings
                 <table>
                     <tbody>
                     <tr>
@@ -83,7 +94,7 @@ console.log(total);
                     </tr>
                     {userSavings ?
                         userSavings.filter((deposit) =>{
-                            return search === ''? deposit :(deposit.savingsamount.toString()).includes(search)
+                            return search === ''? deposit :((deposit.createdAt).toLowerCase()).includes(search)
                         }).map(deposit =>(
                             <tr key={deposit.savingDepositId}>
                                 <td>{deposit.savingDepositId}</td>
@@ -100,6 +111,7 @@ console.log(total);
                     </tr>
                     </tbody>
                 </table>
+                </PDFExport>
 
 
 
@@ -109,13 +121,13 @@ console.log(total);
         <Bar
           data={{
             // Name of the variables on x-axies for each bar
-            labels: ["Median", "Mean", "Lowest", "Total"],
+            labels: [ "Average", "Total"],
             datasets: [
               {
                 // Label for bars
                 label: "total count/value",
                 // Data or value of your each variable
-                data: [1000,20, 1, total],
+                data: [total/userSavings.length, total],
                 // Color of each bar
                 backgroundColor: ["aqua", "red", "yellow","green"],
                 // Border color of each bar

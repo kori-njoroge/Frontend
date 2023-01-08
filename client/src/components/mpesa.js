@@ -17,6 +17,7 @@ export default function MpesaPay(){
         const[deposit, setDeposit] = useState(false);
         const[errorMessage, setError] = useState("");
         const[loading, setLoading] = useState(false)
+        const[phone, setPhone] = useState('')
             
         function handleFormData(event){
             const{name, value, type, checked} = event.target
@@ -31,6 +32,7 @@ export default function MpesaPay(){
         
         useEffect(() =>{
             setCurrentUser(JSON.parse(window.localStorage.getItem("currentUserDetails")));
+            setPhone(JSON.parse(window.localStorage.getItem('phonenumber')))
         },[])
         console.log(currentUser);
         
@@ -51,7 +53,7 @@ export default function MpesaPay(){
                     firstname:currentUser.firstname,
                     lastname:currentUser.lastname,
                     phonenumber :currentUser.phonenumber,
-                    phonepay:formData.phonenumber,
+                    phonepay:`254${phone}`,
                     amount:formData.amount,
                     purpose:formData.isChecked,
                     userid:currentUser.userId
@@ -80,7 +82,7 @@ export default function MpesaPay(){
                 placeholder="2547/1xxxxxxxx" 
                 id="PhoneNumberMpesa"
                 name="phonenumber"
-                value={formData.phonenumber}
+                value={`254${phone}`}
                 onChange={handleFormData}
                 required
                 />
@@ -124,12 +126,12 @@ export default function MpesaPay(){
                         required
                     /> Loan Service fee<br/>
 
-<input 
+                    <input 
                         type='radio'
                         name="isChecked"
                         value="Welfare Funds"
                         onChange={handleFormData}
-                        checked ={formData.isChecked === "Loan Service Fee"}
+                        checked ={formData.isChecked === "Welfare Funds"}
                         required
                     /> Welfare funds<br/>
                 </fieldset>

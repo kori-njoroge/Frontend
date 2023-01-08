@@ -72,8 +72,8 @@ export default function ApplyLoan(){
                     
                 }else{
                 
-                if (applicationformData.amount > 500000) {
-                    window.alert('Check your amount!')
+                if (applicationformData.amount > 500000 || applicationformData.amount <= 0) {
+                    window.alert('Invalid amount!')
                     }else if(g1phone === g2phone){
                         window.alert('Please check guarator details!')
                     }else{
